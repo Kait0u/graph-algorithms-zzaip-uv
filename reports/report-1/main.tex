@@ -78,12 +78,15 @@ Przedstawiono dwie różne techniki reprezentacji grafu. Poniższa tabela zestaw
     Iteracja po wszystkich krawędziach/łukach & $\Theta(|V|^2)$ & $\Theta(|V|+|E|)$ \\
     Dodanie krawędzi/łuku & $O(1)$ & $O(1)$ amortyzowane \\
     Usunięcie krawędzi/łuku & $O(1)$ & $O(d)$ \\
-    BFS lub DFS & $\Theta(|V|^2)$ & $\Theta(|V|+|E|)$ \\
     \bottomrule
   \end{tabularx}
   \caption{Porównanie kosztów operacji dla macierzy i listy sąsiedztwa; opracowanie na podstawie \cite{learngraphtheory-2026-graphrepresentation}.}
   \label{tab:porownanie-reprezentacji}
 \end{table}
+
+Dla listy sąsiedztwa przyjęto, że liczba sąsiadów wierzchołka jest przechowywana lub dostępna w~czasie $O(1)$, a~dodanie połączenia nie obejmuje sprawdzenia, czy już istnieje. Dla digrafu $d$ oznacza stopień wyjściowy. W~grafie nieskierowanym usunięcie krawędzi wymaga przeszukania list obu jej końców, a~jego koszt wynosi $O(d(u)+d(v))$.
+
+Oznaczenie kosztu amortyzowanego $O(1)$ dla dodawania oznacza, że wykonanie $k$ kolejnych operacji dodawania do początkowo pustej struktury ma łączny koszt $O(k)$, nawet jeśli pojedyncza operacja wymaga więcej pracy. Tak jest np. przy dopisywaniu do tablicy dynamicznej, której pojemność w~razie potrzeby zwiększa się o~stały mnożnik, kopiując jej zawartość.
 
 W przypadku grafu nieskierowanego każda krawędź jest zwykle przechowywana na~dwóch listach sąsiedztwa, natomiast w~przypadku digrafu każdy łuk jest przechowywany raz, na~liście jego wierzchołka źródłowego.
 
@@ -137,7 +140,7 @@ Problem wiąże się z kilkoma przypadkami brzegowymi, które należy obsłuży�
 
 \section{Przegląd algorytmów najkrótszej ścieżki}
 
-Niniejsza sekcja stanowić będzie przegląd algorytmów najkrótszej ścieżki rozważanych w~ramach niniejszego projektu. Mechanizm działania każdej metody zostanie opisany wraz z~jej~ograniczeniami. Będą to jednak jedynie ograniczenia metody wobec klasy, którą reprezentuje - np. nie będzie uznawane za~ograniczenie znalezienie ścieżek zaczynających się tylko w jednym punkcie, jeśli algorytm rozwiązuje problem SSSP.
+Niniejsza sekcja stanowić będzie przegląd algorytmów najkrótszej ścieżki rozważanych w~ramach niniejszego projektu. Mechanizm działania każdej metody zostanie opisany wraz z~jej~ograniczeniami. Będą to jednak jedynie ograniczenia metody wobec klasy, którą reprezentuje - np. nie będzie uznawane za~ograniczenie znalezienie ścieżek zaczynających się tylko w jednym punkcie, jeśli algorytm rozwiązuje problem SSSP. Podane w~tabelach złożoności pamięciowe dotyczą pamięci pomocniczej i~nie obejmują wejściowej reprezentacji grafu; uwzględniają natomiast struktury wynikowe tworzone przez algorytm.
 
 Każdy algorytm ponadto zostanie scharakteryzowany pod kątem jego mechanizmu działania (pseudokod). Opisane zostaną także charakterystyki takie jak złożoność czasowa i pamięciowa.
 
@@ -439,7 +442,7 @@ Poniżej przedstawiono pseudokod algorytmu Floyda--Warshalla. Algorytm wyznacza 
   \label{alg:floyd-warshall}
   \small
   \begin{algorithmic}[1]
-    \Require Graf ważony $G=(V,E)$, funkcja wag $w$
+    \Require Graf ważony bez pętli własnych $G=(V,E)$, funkcja wag $w$
     \Ensure Macierz najkrótszych odległości $d$, macierz poprzedników $\pi$ lub informacja o cyklu o ujemnej wadze
     \For{$i \gets 1, \ldots, |V|$}
       \For{$j \gets 1, \ldots, |V|$}
@@ -558,9 +561,9 @@ W przypadku algorytmu Floyda-Warshalla, złożoność obliczeniowa niezmiennie w
 
 Aby uzyskać wiarygodne pomiary, należy ustalić maksymalnie jednolite podejście do generowania grafów. Ponieważ projekt dotyczy zagadnienia poszukiwania najkrótszej ścieżki w~grafie, najbardziej naturalnym wyborem zdaje się generowanie digrafów, a~zatem grafów skierowanych\footnote{Grafy nieskierowane można przedstawić za~pomocą grafów skierowanych, w~których każdy łuk $(u, v)$ o~wadze $w$ ma także w $A$ odpowiadający mu jeden i~tylko jeden łuk $(v, u)$, o~takiej samej wadze.}. Grafy te nie będą zawierać pętli\footnote{Pętla, zwana także pętlą własną, to krawędź lub łuk w grafie, który łączy dany wierzchołek z nim samym.}.
 
-Podstawowymi parametrami, które należy ustalić podczas generowania grafu, są: wierzchołki (ich liczba, oznaczająca rozmiar grafu), łuki (ich liczba, związana bezpośrednio z gęstością grafu) oraz wagi. Ponieważ do generowania zostanie wykorzystana pseudolosowość, należy zadbać o~to, by dla danej konfiguracji (rozmiar, gęstość) początkowo założyć próbę rzędu tysiąca grafów, a~jej liczebność zweryfikować w~badaniach pilotażowych. Grafy w~takiej próbie będą miały ten sam rozmiar i~zadaną gęstość, natomiast ich wagi i~topologia mogą się różnić.
+Podstawowymi parametrami, które należy ustalić podczas generowania grafu, są: wierzchołki (ich liczba, oznaczająca rozmiar grafu), łuki (ich liczba, związana bezpośrednio z gęstością grafu) oraz wagi. Ponieważ do generowania zostanie wykorzystana pseudolosowość, należy zadbać o~to, by dla danej konfiguracji (rozmiar, gęstość) początkowo założyć próbę rzędu tysiąca grafów, a~jej liczebność zweryfikować w~badaniach pilotażowych. Grafy w~takiej próbie będą miały ten sam rozmiar i~tę samą liczbę łuków odpowiadającą gęstości docelowej, natomiast ich wagi i~topologia mogą się różnić.
 
-Istotne jest to, w~jaki sposób należy generować wagi. Ze względu na to, że nie każdy algorytm wspiera ujemne wagi, należy zapewnić, by wagi generowanych grafów były nieujemne. Jednak sam ten fakt nie wystarczy do~określenia informacyjnej heurystyki dla algorytmu A*. Bez wiedzy dziedzinowej i~dodatkowych informacji o~interpretacji grafu jej skonstruowanie może być trudne. Aby rozwiązać ten problem, autor proponuje podejście oparte o~przypisanie każdemu wierzchołkowi unikalnych współrzędnych. Następnie, należy wygenerować łuki między wybranymi wierzchołkami. Liczba łuków jest ustalona ściśle parametrem gęstości. Waga łuku jest z~kolei zależna od odległości między współrzędnymi dwóch jego wierzchołków, z~losowanym niezależnie dla każdego łuku współczynnikiem skalującym $c_{uv}$. Poglądowy algorytm generowania został opisany jako algorytm \ref{alg:generator-grafow}.
+Istotne jest to, w~jaki sposób należy generować wagi. Ze względu na to, że nie każdy algorytm wspiera ujemne wagi, należy zapewnić, by wagi generowanych grafów były nieujemne. Jednak sam ten fakt nie wystarczy do~określenia informacyjnej heurystyki dla algorytmu A*. Bez wiedzy dziedzinowej i~dodatkowych informacji o~interpretacji grafu jej skonstruowanie może być trudne. Aby rozwiązać ten problem, autor proponuje podejście oparte o~przypisanie każdemu wierzchołkowi unikalnych współrzędnych. Następnie, należy wygenerować łuki między wybranymi wierzchołkami. Ich liczbę wyznacza się na podstawie gęstości docelowej, zaokrąglając wynik w~górę do liczby całkowitej; rzeczywista gęstość może więc nieznacznie różnić się od docelowej. Waga łuku jest z~kolei zależna od odległości między współrzędnymi dwóch jego wierzchołków, z~losowanym niezależnie dla każdego łuku współczynnikiem skalującym $c_{uv}$. Poglądowy algorytm generowania został opisany jako algorytm \ref{alg:generator-grafow}.
 
 \begin{algorithm}[H]
   \caption{Generowanie próby losowych grafów skierowanych}
