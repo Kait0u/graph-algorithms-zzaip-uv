@@ -153,11 +153,11 @@ Poprawność algorytmu wynika z faktu, że przy nieujemnych wagach żadna późn
 
 \subsubsection{Ograniczenia}
 
-Ze względu na swój zachłanny charakter, algorytm Dijkstry nie działa poprawnie w obecności ujemnych wag krawędzi. Algorytm opiera się bowiem na~założeniu, że ścieżki zwiększają swój koszt wraz z~każdym kolejnym wierzchołkiem. Obecność ujemnych wag mogłaby spowodować zmniejszenie kosztu ścieżki wraz z dodaniem doń wierzchołka.
+Ze względu na swój zachłanny charakter, algorytm Dijkstry nie gwarantuje poprawnego wyniku dla grafów z~ujemnymi wagami krawędzi. Algorytm opiera się bowiem na~założeniu, że koszt ścieżki nie maleje wraz z~każdym kolejnym przejściem. Obecność ujemnych wag mogłaby spowodować zmniejszenie kosztu ścieżki wraz z dodaniem doń wierzchołka.
 
 Algorytm jest odporny na sytuację, w której graf jest niespójny i~istnieje przynajmniej jeden wierzchołek $V_i$, dla którego nie istnieje droga $S$-$V_i$. W takim przypadku dystans jest określony jako $\infty$. 
 
-Rzeczywista złożoność algorytmu zależy od zastosowanej reprezentacji grafu oraz struktury kolejki priorytetowej. Zestawienie dwóch struktur danych grafu (macierzy i listy sąsiedztwa) z dwoma sposobami realizacji kolejki (tablicą z wyborem liniowym oraz kopcem binarnym) daje cztery możliwe kombinacje implementacyjne, spośród których optymalne są macierz z wyborem liniowym dla grafów gęstych ($O(|V|^2)$) oraz lista z kopcem binarnym dla grafów rzadkich ($O((|V|+|E|)\log |V|)$).
+Rzeczywista złożoność algorytmu zależy od zastosowanej reprezentacji grafu oraz struktury kolejki priorytetowej. Zestawienie dwóch struktur danych grafu (macierzy i listy sąsiedztwa) z dwoma sposobami realizacji kolejki (tablicą z wyborem liniowym oraz kopcem binarnym) daje cztery możliwe kombinacje implementacyjne. Ich złożoności asymptotyczne przedstawiono w~dalszej części podrozdziału, natomiast rzeczywiste czasy działania będą przedmiotem badań.
 
 \subsubsection{Działanie algorytmu}
 
@@ -206,9 +206,9 @@ Całkowity czas działania algorytmu Dijkstry wynika ze współdziałania dwóch
 
 Zestawienie dwóch struktur reprezentacji grafu z dwoma mechanizmami kolejkowania prowadzi do czterech możliwych wariantów implementacyjnych, przedstawionych w Tabeli~\ref{tab:zlozonosc-dijkstry} \cite{geeksforgeeks-2025-dijkstracomplexity}:
 \begin{itemize}
-  \item \textbf{Macierz sąsiedztwa i wybór liniowy:} obie fazy mają koszt $O(|V|^2)$, dając łączną złożoność $O(|V|^2)$. Brak narzutu logarytmicznego czyni to rozwiązanie optymalnym dla grafów gęstych, w których $|E| \approx |V|^2$.
-  \item \textbf{Lista sąsiedztwa i kopiec binarny:} eliminacja pustych przejść przez macierz oraz logarytmiczny koszt obsługi kolejki dają złożoność $O((|V|+|E|)\log |V|)$. Dla grafów rzadkich ($|E| \approx |V|$) czas ten redukuje się do $O(|V|\log |V|)$, co stanowi znaczną poprawę względem wariantu macierzowego. W~przypadku grafu pełnego ($|E| = \Theta(|V|^2)$) koszt ten wzrasta jednak do $O(|V|^2\log |V|)$, ustępując wariantowi z~tablicą.
-  \item \textbf{Kombinacje hybrydowe (macierz z kopcem oraz lista z wyborem liniowym):} stanowią warianty nieefektywne — w macierzy narzut kopca spowalnia algorytm ($O(|V|^2 + |E|\log |V|)$), zaś w liście wąskim gardłem pozostaje tablica ($O(|V|^2)$).
+  \item \textbf{Macierz sąsiedztwa i wybór liniowy:} obie fazy mają koszt $O(|V|^2)$, dając łączną złożoność $O(|V|^2)$, również dla grafów gęstych, w~których $|E| \approx |V|^2$.
+  \item \textbf{Lista sąsiedztwa i kopiec binarny:} eliminacja pustych przejść przez macierz oraz logarytmiczny koszt obsługi kolejki dają złożoność $O((|V|+|E|)\log |V|)$. Dla grafów rzadkich ($|E| \approx |V|$) otrzymuje się ograniczenie $O(|V|\log |V|)$, a~dla grafu pełnego ($|E| = \Theta(|V|^2)$) ograniczenie $O(|V|^2\log |V|)$. Są to oszacowania asymptotyczne, a~nie wyniki pomiarów.
+  \item \textbf{Kombinacje hybrydowe (macierz z kopcem oraz lista z wyborem liniowym):} dla macierzy i~kopca analiza uwzględnia koszt przeglądu macierzy oraz obsługi kopca ($O(|V|^2 + |E|\log |V|)$), natomiast dla listy z~wyborem liniowym koszt wynosi $O(|V|^2)$.
 \end{itemize}
 
 Pamięć dodatkowa dla wyboru liniowego wynosi $O(|V|)$ (tablice $d$, $\pi$ oraz tablica odwiedzonych), natomiast kopiec z~leniwym usuwaniem duplikatów mieści tymczasowo do $O(|E|)$ wpisów, ustalając pamięć pomocniczą na poziomie $O(|V| + |E|)$.
@@ -239,7 +239,7 @@ Algorytm Bellmana-Forda (1955, 1956, 1958) to algorytm klasy SSSP. Dla zadanego 
 
 Podstawą działania algorytmu jest operacja relaksacji krawędzi. Polega ona na sprawdzeniu, czy przejście do wierzchołka $v$ przez wierzchołek $u$ pozwala uzyskać mniejszy koszt niż dotychczas znana odległość do $v$. Takie sprawdzenie jest wykonywane dla każdej krawędzi $(u,v)$. Jeżeli tak, odległość zostaje zaktualizowana, a $u$ jest zapamiętywany jako poprzednik $v$ na aktualnie najkrótszej znanej ścieżce.
 
-Algorytm wykonuje $|V|-1$ pełnych iteracji relaksacji. Jest to wystarczająca liczba, ponieważ najkrótsza ścieżka bez powtarzających się wierzchołków może zawierać najwyżej $|V|-1$ krawędzi. Po wykonaniu tych iteracji algorytm ponownie sprawdza wszystkie krawędzie. Jeżeli możliwa jest jeszcze jakakolwiek aktualizacja odległości, oznacza to istnienie osiągalnego cyklu o~ujemnej wadze.
+Algorytm wykonuje co najwyżej $|V|-1$ pełnych iteracji relaksacji; może zakończyć je wcześniej, jeśli w~danej iteracji nie nastąpiła żadna zmiana. Jest to wystarczająca liczba, ponieważ najkrótsza ścieżka bez powtarzających się wierzchołków może zawierać najwyżej $|V|-1$ krawędzi. Po zakończeniu iteracji algorytm ponownie sprawdza wszystkie krawędzie. Jeżeli możliwa jest jeszcze jakakolwiek aktualizacja odległości, oznacza to istnienie osiągalnego cyklu o~ujemnej wadze.
 
 \subsubsection{Ograniczenia}
 
@@ -322,17 +322,17 @@ Oprócz wyznaczenia minimalnego kosztu dojścia, algorytm rekonstruuje wierzcho�
 
 Aby algorytm gwarantował znalezienie najkrótszej ścieżki, heurystyka musi być \textbf{dopuszczalna} (ang. \textit{admissible}). Oznacza to, że nie może ona przeszacowywać rzeczywistego minimalnego kosztu dojścia z wierzchołka $v$ do celu $t$, oznaczanego przez $d^*(v,t)$: \\ $0 \leq h(v) \leq d^*(v,t)$ dla każdego $v \in V$, przy czym $h(t) = 0$. Dopuszczalność jest warunkiem zapewniającym, że wyznaczona trasa do celu będzie optymalna.
 
-Silniejszą własnością jest \textbf{spójność} (monotoniczność) heurystyki. Wymaga ona, aby dla każdej krawędzi $(u,v)\in E$ zachodziła nierówność: $h(u) \leq w(u,v) + h(v)$. Każda heurystyka spójna jest dopuszczalna. Przy heurystyce spójnej w chwili przetworzenia danego wierzchołka jego odległość jest optymalna i ostateczna. Jeżeli heurystyka jest jedynie dopuszczalna, lecz niespójna, znalezienie krótszej drogi może wymagać ponownego rozpatrzenia wcześniej odwiedzonego wierzchołka.
+Silniejszą własnością jest \textbf{spójność} (monotoniczność) heurystyki. Wymaga ona, aby dla każdej krawędzi $(u,v)\in E$ zachodziła nierówność: $h(u) \leq w(u,v) + h(v)$. Nieujemna heurystyka spójna, dla której $h(t)=0$, jest dopuszczalna. Przy heurystyce spójnej w chwili przetworzenia danego wierzchołka jego odległość jest optymalna i ostateczna. Jeżeli heurystyka jest jedynie dopuszczalna, lecz niespójna, znalezienie krótszej drogi może wymagać ponownego rozpatrzenia wcześniej odwiedzonego wierzchołka.
 
 Szczególnym przypadkiem jest heurystyka idealna ($h = d^*$). Przy właściwym rozstrzyganiu remisów algorytm rozwija wówczas wyłącznie wierzchołki leżące na optymalnej ścieżce. 
 
 \subsubsection{Ograniczenia}
 
-Algorytm A* wymaga grafu o nieujemnych wagach krawędzi. Podobnie jak w algorytmie Dijkstry, obecność wag ujemnych unieważnia założenie o monotonicznym wzroście kosztu ścieżki i prowadzi do błędnych wyników.
+Algorytm A* wymaga grafu o nieujemnych wagach krawędzi. Podobnie jak w algorytmie Dijkstry, obecność wag ujemnych unieważnia założenie o monotonicznym wzroście kosztu ścieżki i może prowadzić do błędnych wyników.
 
-Zastosowanie heurystyki niedopuszczalnej pozbawia algorytm gwarancji optymalności. Ponadto efektywność metody zależy wprost od jakości heurystyki: heurystyka słaba (np. bliska zeru) sprowadza przeszukiwanie do algorytmu Dijkstry, rozwijając zbędne obszary grafu.
+Zastosowanie heurystyki niedopuszczalnej pozbawia algorytm gwarancji optymalności. Ponadto efektywność metody zależy od jakości heurystyki: heurystyka słabo informacyjna (np. bliska zeru) może upodobnić przebieg wyszukiwania do algorytmu Dijkstry i~prowadzić do przetworzenia większej liczby wierzchołków.
 
-Algorytm wymaga wiedzy dziedzinowej pozwalającej sformułować funkcję heurystyczną. Zwykle wiąże się to z tym, że wierzchołek przechowuje pewne dane (np. współrzędne), które umożliwiają interpretację. W~abstrakcyjnych grafach, pozbawionych interpretacji, zdefiniowanie użytecznej i spójnej heurystyki bywa trudne lub niemożliwe.
+Sformułowanie informacyjnej funkcji heurystycznej zwykle wymaga wiedzy dziedzinowej o~rozwiązywanym problemie. Może się to wiązać z~tym, że wierzchołek przechowuje pewne dane (np. współrzędne), które umożliwiają interpretację. W~abstrakcyjnych grafach, pozbawionych interpretacji, zdefiniowanie użytecznej i spójnej heurystyki bywa trudne; bez wiedzy dziedzinowej można jednak zastosować heurystykę zerową.
 
 \subsubsection{Działanie algorytmu}
 
@@ -620,9 +620,9 @@ W przypadku algorytmu Floyda-Warshalla, złożoność obliczeniowa niezmiennie w
 
 Aby uzyskać wiarygodne pomiary, należy ustalić maksymalnie jednolite podejście do generowania grafów. Ponieważ projekt dotyczy zagadnienia poszukiwania najkrótszej ścieżki w~grafie, najbardziej naturalnym wyborem zdaje się generowanie digrafów, a~zatem grafów skierowanych\footnote{Grafy nieskierowane można przedstawić za~pomocą grafów skierowanych, w~których każdy łuk $(u, v)$ o~wadze $w$ ma także w $A$ odpowiadający mu jeden i~tylko jeden łuk $(v, u)$, o~takiej samej wadze.}. Grafy te nie będą zawierać pętli\footnote{Pętla, zwana także pętlą własną, to krawędź lub łuk w grafie, który łączy dany wierzchołek z nim samym.}.
 
-Podstawowymi parametrami, które należy ustalić podczas generowania grafu, są: wierzchołki (ich liczba, oznaczająca rozmiar grafu), łuki (ich liczba, związana bezpośrednio z gęstością grafu) oraz wagi. Ponieważ do generowania zostanie wykorzystana pseudolosowość, należy zadbać o~to, by dla danej konfiguracji (rozmiar, gęstość) początkowo założyć próbę rzędu tysiąca grafów, a~jej liczebność zweryfikować w~badaniach pilotażowych. Każda obserwacja w takiej próbie będzie charakteryzować się tym samym rozmiarem i gęstością, zaś różnymi wagami i różną topologią.
+Podstawowymi parametrami, które należy ustalić podczas generowania grafu, są: wierzchołki (ich liczba, oznaczająca rozmiar grafu), łuki (ich liczba, związana bezpośrednio z gęstością grafu) oraz wagi. Ponieważ do generowania zostanie wykorzystana pseudolosowość, należy zadbać o~to, by dla danej konfiguracji (rozmiar, gęstość) początkowo założyć próbę rzędu tysiąca grafów, a~jej liczebność zweryfikować w~badaniach pilotażowych. Grafy w~takiej próbie będą miały ten sam rozmiar i~zadaną gęstość, natomiast ich wagi i~topologia mogą się różnić.
 
-Istotne jest to, w~jaki sposób należy generować wagi. Ze względu na to, że nie każdy algorytm wspiera ujemne wagi, należy zapewnić, by wagi generowanych grafów były nieujemne. Jednak sam ten fakt nie wystarczy. Algorytm A* wymaga, by każdy wierzchołek posiadał przypisaną wartość heurystyki, która wynika z interpretacji grafu. Nie jest możliwe dostarczenie odpowiedniej jakościowo heurystyki patrząc na graf abstrakcyjnie. Aby rozwiązać ten problem, autor proponuje podejście oparte o~przypisanie każdemu wierzchołkowi unikalnych współrzędnych. Następnie, należy wygenerować łuki między wybranymi wierzchołkami. Liczba łuków jest ustalona ściśle parametrem gęstości. Waga łuku jest z~kolei zależna od odległości między współrzędnymi dwóch jego wierzchołków, z~losowanym niezależnie dla każdego łuku współczynnikiem skalującym $c_{uv}$. Poglądowy algorytm generowania został opisany jako algorytm \ref{alg:generator-grafow}.
+Istotne jest to, w~jaki sposób należy generować wagi. Ze względu na to, że nie każdy algorytm wspiera ujemne wagi, należy zapewnić, by wagi generowanych grafów były nieujemne. Jednak sam ten fakt nie wystarczy do~określenia informacyjnej heurystyki dla algorytmu A*. Bez wiedzy dziedzinowej i~dodatkowych informacji o~interpretacji grafu jej skonstruowanie może być trudne. Aby rozwiązać ten problem, autor proponuje podejście oparte o~przypisanie każdemu wierzchołkowi unikalnych współrzędnych. Następnie, należy wygenerować łuki między wybranymi wierzchołkami. Liczba łuków jest ustalona ściśle parametrem gęstości. Waga łuku jest z~kolei zależna od odległości między współrzędnymi dwóch jego wierzchołków, z~losowanym niezależnie dla każdego łuku współczynnikiem skalującym $c_{uv}$. Poglądowy algorytm generowania został opisany jako algorytm \ref{alg:generator-grafow}.
 
 \begin{algorithm}[H]
   \caption{Generowanie próby losowych grafów skierowanych}
@@ -687,7 +687,7 @@ W~odniesieniu do algorytmu A*, generowanie wag na~podstawie faktycznego umiejsco
 
 Dopuszczalne jest wygenerowanie grafu niespójnego, bowiem wszystkie cztery rozważane algorytmy, poprawnie zaimplementowane, powinny być w~stanie obsłużyć tę sytuację. Przy odpowiednio dużej próbie wystąpienie takiej sytuacji nie powinno stwarzać problemów w~szerszej perspektywie. Prawdopodobieństwo spójności zależy od relacji między $n_G$ a~$\rho_G$: przy ustalonej gęstości procentowej wraz ze wzrostem liczby wierzchołków rośnie średni stopień wyjściowy $\rho_G(n_G - 1)$, co sprzyja spójności większych struktur. 
 
-Eksperymenty wydajnościowe oraz generowane dlań grafy powinny być powtarzalne. Istotne jest zatem skojarzenie każdej próby z ziarnem, za pomocą którego je wygenerowano. Dzięki temu, mając ziarno, będzie możliwe ich powtórzenie.
+Eksperymenty wydajnościowe oraz generowane dlań grafy powinny być powtarzalne. Istotne jest zatem skojarzenie każdej próby z~ziarnem generatora pseudolosowego. Ponowne użycie tego samego ziarna odtworzy ten sam ciąg wartości pseudolosowych przy tym samym generatorze; wraz z~zachowaniem parametrów i~procedury generowania umożliwi to odtworzenie próby.
 
 Tam, gdzie przeprowadzane będą testy z~weryfikacją odręczną, bądź testy przypadków szczególnych, grafy zostaną przygotowane z uwzględnieniem specjalnych potrzeb danego testu. Grafy pod te testy zostaną ustalone, w~imię powtarzalności testów, a zatem nie~będą generowane każdorazowo, losowo - o~ich rozmiarach i~topologii zadecydują potrzeby przeprowadzanych testów.
 
@@ -756,7 +756,7 @@ Tam, gdzie przeprowadzane będą testy z~weryfikacją odręczną, bądź testy p
 }
 \end{center}
 
-Aby móc rzetelnie porównać algorytmy, należy zadbać o~to, aby ich implementacje odzwierciedlały różne rozważane wcześniej warianty i~podjęte decyzje implementacyjne, które mogą prowadzić do różnic w~wydajności w~zależności od grafu przetwarzanego przez daną implementację. Mnogość implementacji gwarantuje możliwie szeroką obserwację. Przewidziano łącznie 11 standardowych implementacji.
+Aby móc rzetelnie porównać algorytmy, należy zadbać o~to, aby ich implementacje odzwierciedlały różne rozważane wcześniej warianty i~podjęte decyzje implementacyjne, które mogą prowadzić do różnic w~wydajności w~zależności od grafu przetwarzanego przez daną implementację. Uwzględnienie różnych implementacji pozwoli zaobserwować wpływ wybranych decyzji implementacyjnych na wyniki. Przewidziano łącznie 11 standardowych implementacji.
 
 \begin{itemize}
 	\item Algorytm Dijkstry 
@@ -829,7 +829,7 @@ Na potrzeby pytania badawczego PB1 mogą powstać dodatkowe implementacje algory
 
 Głównym celem eksperymentów wydajnościowych jest określenie tego, jaki wpływ na wydajność obliczeniową oraz pamięciową mają zarówno różne konfiguracje grafów, jak~i~różne decyzje implementacyjne (np. macierz sąsiedztwa vs. lista sąsiedztwa). Standardowo mierzony będzie czas wykonania, co świadczyć ma o~wydajności obliczeniowej, zaś wydajność pamięciowa będzie mierzona w oparciu o~faktycznie spożytkowaną pamięć w~trakcie pracy algorytmu\footnote{Szczegóły sposobu pomiaru wykorzystania pamięci są ściśle związane z wykorzystanymi technologiami. Zagadnienie pomiaru pamięci zostanie doprecyzowane na~etapie implementacyjnym.}.
 
-Oprócz tego warto również zliczać charakterystyczne operacje wykonywane w~trakcie pracy algorytmów. Do takich operacji można zaliczyć: wpis do struktury danych, odczyt ze struktury danych, porównanie. Te operacje są charakterystyczne dla każdego z~rozważanych algorytmów i~wynikają ściśle z~algorytmu i~jego implementacji oraz dostarczonych danych - są to wielkości niezmienne, w przeciwieństwie do np. czasu wykonania, który może fluktuować, choćby za~sprawą działań systemu operacyjnego w tle. Należy jednak pamiętać, że~każdy pomiar odbywa się z~niezerowym narzutem obliczeniowym, co może wydłużyć czas działania lub zwiększyć zapotrzebowanie pamięciowe implementacji algorytmu.
+Oprócz tego warto również zliczać charakterystyczne operacje wykonywane w~trakcie pracy algorytmów. Do takich operacji można zaliczyć: wpis do struktury danych, odczyt ze struktury danych, porównanie. Dla ustalonej deterministycznej implementacji i~tych samych danych liczby tych operacji powinny być powtarzalne, w~przeciwieństwie do czasu wykonania, który może fluktuować, choćby za~sprawą działań systemu operacyjnego w~tle. Należy jednak pamiętać, że~każdy pomiar odbywa się z~niezerowym narzutem obliczeniowym, co może wydłużyć czas działania lub zwiększyć zapotrzebowanie pamięciowe implementacji algorytmu.
 
 {\small
 \renewcommand{\arraystretch}{1.2}
@@ -886,7 +886,7 @@ Analogiczne parametry będą rozważane dla problemów badawczych PB1 oraz PB2, 
 
 \subsection{Metodyka pomiarów}
 
-Pomiary zostaną zrealizowane w~ramach izolowanych przebiegów na dużych próbach (np. 1000) grafów\footnote{Autor zastrzega sobie możliwość dostosowania rozmiaru do~sytuacji, które mogą się ujawnić w~trakcie wykonania.}, dla sformalizowanej listy konfiguracji. Dla każdej instancji zadaniowej pomiar czasu wykonania zostanie powtórzony wielokrotnie (liczba powtórzeń zostanie ustalona na etapie pilotażowym), a~wartością reprezentatywną dla danego grafu będzie mediana tych przebiegów, co pozwoli ograniczyć wpływ chwilowych fluktuacji środowiska systemowego. Czas mierzony będzie przy użyciu sprzętowego zegara monotonicznego o~wysokiej rozdzielczości. W~celu umożliwienia porównania wyników całej próby z~innymi próbami (innymi konfiguracjami), dla każdego monitorowanego parametru zostaną obliczone:
+Pomiary zostaną zrealizowane w~ramach izolowanych przebiegów na dużych próbach (np. 1000) grafów\footnote{Autor zastrzega sobie możliwość dostosowania rozmiaru do~sytuacji, które mogą się ujawnić w~trakcie wykonania.}, dla sformalizowanej listy konfiguracji. Dla każdej instancji zadaniowej pomiar czasu wykonania zostanie powtórzony wielokrotnie (liczba powtórzeń zostanie ustalona na etapie pilotażowym), a~wartością reprezentatywną dla danego grafu będzie mediana tych przebiegów, co pozwoli ograniczyć wpływ chwilowych fluktuacji środowiska systemowego. Czas będzie mierzony za pomocą zegara monotonicznego o~możliwie wysokiej rozdzielczości, dostępnego w~wybranym środowisku. W~celu umożliwienia porównania wyników całej próby z~innymi próbami (innymi konfiguracjami), dla każdego monitorowanego parametru zostaną obliczone:
 \begin{itemize}
 	\item Średnia i mediana
 	\item Minimum i maksimum
@@ -1070,7 +1070,7 @@ W~celu zachowania ścisłej powtarzalności badań, jednoznacznej identyfikacji 
 
 \subsection{Scenariusze testowe}
 
-Pod pojęciem scenariuszy testowych rozumie się dedykowane próby weryfikacji poprawności implementacji algorytmów na niewielkich, w~pełni kontrolowanych instancjach grafów. W~przeciwieństwie do masowych badań wydajnościowych, celem tych scenariuszy nie jest pomiar czasu, lecz potwierdzenie, że każdy algorytm zachowuje się zgodnie z~teoretycznym modelem zarówno w~przypadkach typowych (możliwych do bezbłędnego przeliczenia ręcznego na kartce), jak i~w~sytuacjach brzegowych. Zgodnie z~założeniami projektu właściwe testy poprawności zostaną przeprowadzone w~kolejnych etapach prac - w~Raporcie 2 (dla algorytmów Dijkstry i~Bellmana--Forda) oraz w~Raporcie 3 (dla algorytmów A* i~Floyda--Warshalla). Grafy do tych testów zostaną przygotowane ręcznie na etapie ich realizacji, odpowiednio do potrzeb danego przypadku, i~nie są opisywane w~tym miejscu.
+Pod pojęciem scenariuszy testowych rozumie się dedykowane próby weryfikacji poprawności implementacji algorytmów na niewielkich, w~pełni kontrolowanych instancjach grafów. W~przeciwieństwie do masowych badań wydajnościowych, celem tych scenariuszy nie jest pomiar czasu, lecz weryfikacja, czy implementacje zachowują się zgodnie z~modelem teoretycznym w~wybranych przypadkach typowych (możliwych do bezbłędnego przeliczenia ręcznego na kartce) i~brzegowych. Zgodnie z~założeniami projektu właściwe testy poprawności zostaną przeprowadzone w~kolejnych etapach prac - w~Raporcie 2 (dla algorytmów Dijkstry i~Bellmana--Forda) oraz w~Raporcie 3 (dla algorytmów A* i~Floyda--Warshalla). Grafy do tych testów zostaną przygotowane ręcznie na etapie ich realizacji, odpowiednio do potrzeb danego przypadku, i~nie są opisywane w~tym miejscu.
 
 Weryfikacja obejmie testy podstawowej poprawności obliczeń (na małych grafach o~jednoznacznym rozwiązaniu możliwym do weryfikacji ręcznej) oraz testy przypadków szczególnych, obejmujące m.in.:
 \begin{itemize}
