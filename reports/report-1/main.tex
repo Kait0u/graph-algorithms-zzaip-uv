@@ -21,7 +21,7 @@ Graf skierowany, zwany również digrafem, to taki, w którym występuje pojęci
 
 Wierzchołki w grafie posiadają skalarną własność zwaną "stopniem". W grafie symetrycznym, stopień wierzchołka $v$, zapisywany jako $d(v)$ to liczba krawędzi, z którymi ten wierzchołek jest incydentny\footnote{Wierzchołek $v$ jest incydentny z krawędzią $e$ jeśli $v \in e$}. W przypadku digrafów, rozróżniany jest stopień wejściowy $d^{-}(v)$ (liczba łuków prowadzących do danego wierzchołka) oraz stopień wyjściowy $d^{+}(v)$ (liczba łuków wychodzących z tegoż wierzchołka).
 
-Graf lub digraf, który nie zawiera połączeń wierzchołków samych ze sobą nazywany jest (di)grafem prostym \cite{wilson-1996-introductiontographtheory}. Graf, w którym dla każdej pary wierzchołków istnieje krawędź łącząca te dwa wierzchołki, nazywamy pełnym. Analogicznie, digrafem pełnym nazywamy taki digraf, w którym dla każdej pary wierzchołków istnieją dwa łuki, które razem łączą te wierzchołki obustronnie.
+Graf prosty nie zawiera pętli ani wielokrotnych krawędzi między tą samą parą wierzchołków. Analogicznie, digraf prosty nie zawiera pętli ani wielokrotnych łuków o~tym samym początku i~końcu \cite{wilson-1996-introductiontographtheory}. Graf, w którym dla każdej pary wierzchołków istnieje krawędź łącząca te dwa wierzchołki, nazywamy pełnym. Analogicznie, digrafem pełnym nazywamy taki digraf, w którym dla każdej pary wierzchołków istnieją dwa łuki, które razem łączą te wierzchołki obustronnie.
 
 \section{Reprezentacja grafu}
 
@@ -201,13 +201,13 @@ W~pseudokodzie $s$ oznacza źródło, $N(u)$ zbiór sąsiadów wierzchołka $u$,
 Całkowity czas działania algorytmu Dijkstry wynika ze współdziałania dwóch zasadniczych operacji powtarzanych iteracyjnie:
 \begin{enumerate}
   \item \textbf{Wybór wierzchołka o minimalnej odległości:} w~tablicy z~wyborem liniowym operacja ta wykonywana $|V|$ razy wymaga każdorazowo przeszukania $|V|$ pozycji, dając sumarycznie $|V| \times |V| = O(|V|^2)$ operacji. Zastosowanie kopca binarnego\footnote{Zastosowanie kopca adresowalnego z~operacją \textit{decrease-key} ogranicza liczbę pobrań do co najwyżej $|V|$ (koszt $O(|V|\log |V|)$) oraz redukuje pamięć pomocniczą kolejki do $O(|V|)$.} redukuje koszt pobrania do poziomu $O(\log |V|)$, przy czym z~kolejki pobieranych jest łącznie do $O(|V| + |E|)$\footnote{Składnik $|V|$ odpowiada liczbie rozwinięć właściwych wierzchołków osiągalnych ze źródła, natomiast składnik $|E|$ stanowi górne ograniczenie na liczbę zduplikowanych wpisów usuwanych leniwie.} wpisów przy leniwym usuwaniu duplikatów, co sumarycznie zajmuje do $O((|V| + |E|)\log |V|)$ czasu.
-  \item \textbf{Przegląd i relaksacja krawędzi wychodzących:} w~reprezentacji macierzowej sprawdzenie sąsiadów wierzchołka wymaga weryfikacji całego wiersza macierzy ($|V|$ elementów), co narzuca sztywny koszt $|V| \times |V| = O(|V|^2)$, niezależnie od liczby krawędzi. Z~kolei lista sąsiedztwa przechowuje wyłącznie istniejące krawędzie, dzięki czemu w~całym algorytmie pętla relaksacji wykonuje się dokładnie $|E|$ razy. Każda skuteczna relaksacja wiąże się ze wstawieniem wpisu do kopca w~czasie $O(\log |V|)$ (łącznie $O(|E|\log |V|)$).
+  \item \textbf{Przegląd i relaksacja krawędzi wychodzących:} w~reprezentacji macierzowej sprawdzenie sąsiadów wierzchołka wymaga weryfikacji całego wiersza macierzy ($|V|$ elementów), co daje w~najgorszym przypadku koszt $O(|V|^2)$, niezależnie od liczby krawędzi. Z~kolei lista sąsiedztwa przechowuje wyłącznie istniejące połączenia. W~grafie skierowanym algorytm przegląda co najwyżej $|E|$ łuków; w~grafie nieskierowanym krawędź może wystąpić na listach obu swoich końców. Każda skuteczna relaksacja wiąże się ze wstawieniem wpisu do kopca w~czasie $O(\log |V|)$ (łącznie $O(|E|\log |V|)$).
 \end{enumerate}
 
 Zestawienie dwóch struktur reprezentacji grafu z dwoma mechanizmami kolejkowania prowadzi do czterech możliwych wariantów implementacyjnych, przedstawionych w Tabeli~\ref{tab:zlozonosc-dijkstry} \cite{geeksforgeeks-2025-dijkstracomplexity}:
 \begin{itemize}
   \item \textbf{Macierz sąsiedztwa i wybór liniowy:} obie fazy mają koszt $O(|V|^2)$, dając łączną złożoność $O(|V|^2)$. Brak narzutu logarytmicznego czyni to rozwiązanie optymalnym dla grafów gęstych, w których $|E| \approx |V|^2$.
-  \item \textbf{Lista sąsiedztwa i kopiec binarny:} eliminacja pustych przejść przez macierz oraz logarytmiczny koszt obsługi kolejki dają złożoność $O((|V|+|E|)\log |V|)$. Dla grafów rzadkich ($|E| \approx |V|$) czas ten redukuje się do $O(|V|\log |V|)$, co stanowi znaczną poprawę względem wariantu macierzowego. W~przypadku grafu pełnego ($|E| = |V|^2$) koszt ten wzrasta jednak do $O(|V|^2\log |V|)$, ustępując wariantowi z~tablicą.
+  \item \textbf{Lista sąsiedztwa i kopiec binarny:} eliminacja pustych przejść przez macierz oraz logarytmiczny koszt obsługi kolejki dają złożoność $O((|V|+|E|)\log |V|)$. Dla grafów rzadkich ($|E| \approx |V|$) czas ten redukuje się do $O(|V|\log |V|)$, co stanowi znaczną poprawę względem wariantu macierzowego. W~przypadku grafu pełnego ($|E| = \Theta(|V|^2)$) koszt ten wzrasta jednak do $O(|V|^2\log |V|)$, ustępując wariantowi z~tablicą.
   \item \textbf{Kombinacje hybrydowe (macierz z kopcem oraz lista z wyborem liniowym):} stanowią warianty nieefektywne — w macierzy narzut kopca spowalnia algorytm ($O(|V|^2 + |E|\log |V|)$), zaś w liście wąskim gardłem pozostaje tablica ($O(|V|^2)$).
 \end{itemize}
 
@@ -673,7 +673,7 @@ Istotne jest to, w~jaki sposób należy generować wagi. Ze względu na to, że
   \label{tab:oznaczenia-generatora}
 \end{table}
 
-W linii 3, algorytm opiera wartość rozmiaru boku kwadratowej siatki współrzędnych na trzykrotności pierwiastka z~docelowej liczby wierzchołków. Zabieg ten jest celowy, a~liczba~3 nie jest przypadkowa. Liczba wszystkich punktów o współrzędnych całkowitoliczbowych to $L^2 = 9n_G$, co z kolei oznacza, że~zajętych zostanie losowe $\frac{n_G}{9n_G} = \frac{1}{9} \approx 11\%$ z nich, co pozwoli na zróżnicowanie przestrzenne grafu. Wyborem alternatywnym mógłby być współczynnik 2, wówczas $\frac{1}{4}$ punktów zostałaby wykorzystana na potrzeby rozlokowania wierzchołków - między tymi będą wówczas mniejsze odległości\footnote{W~trakcie implementacji autor zastrzega sobie możliwość zmiany współczynnika w~oparciu o~empiryczne badanie jakości generowanych próbek.}. 
+W linii 3, algorytm opiera wartość rozmiaru boku kwadratowej siatki współrzędnych na trzykrotności pierwiastka z~docelowej liczby wierzchołków. Zabieg ten ma zapewnić zróżnicowanie przestrzenne grafu. Ze względu na zaokrąglenie w~górę liczba punktów siatki spełnia $L^2 \ge 9n_G$, zatem zajętych zostanie co najwyżej $\frac{1}{9}$, czyli około $11{,}1\%$ punktów. Wyborem alternatywnym mógłby być współczynnik 2, przy którym zajętych zostałoby co najwyżej $\frac{1}{4}$ punktów siatki; mniejsza siatka może sprzyjać mniejszym odległościom między wierzchołkami\footnote{W~trakcie implementacji autor zastrzega sobie możliwość zmiany współczynnika w~oparciu o~empiryczne badanie jakości generowanych próbek.}.
 
 W~odniesieniu do algorytmu A*, generowanie wag na~podstawie faktycznego umiejscowienia przestrzennego wierzchołków jest istotne z~punktu widzenia heurystyki. Dzięki przyjęciu współczynnika $c \ge 1$, waga każdego łuku spełnia warunek $w(u, v) = \lceil c \cdot d_E \rceil \ge d_E(u, v)$. Gwarantuje to, że odległość euklidesowa do~celu $h(v) = d_E(v, t)$ jest dla algorytmu A* heurystyką dopuszczalną i~spójną (nigdy nie~przeszacowuje rzeczywistego kosztu trasy).
 
@@ -977,7 +977,7 @@ Każda badana implementacja otrzymuje dokładnie tę samą próbę zadań $Z$, p
   \label{tab:wykorzystanie-danych-zadaniowych}
 \end{table}
 
-Dla każdej instancji zadaniowej w~próbie uruchamiane są wszystkie badane warianty implementacyjne (zestawione w~podrozdziale~\ref{sec:warianty-implementacyjne}), a~dla każdego pojedynczego przebiegu rejestrowany jest kompletny wektor metryk wydajnościowych zdefiniowanych w~Tabeli~\ref{tab:zestawienie-wielkosci-pomiarowych}. W~ten sposób dla każdej komórki macierzy i~każdej implementacji powstaje zbiór $N_p$ surowych obserwacji, który podlega opisanej wcześniej agregacji statystycznej. Umożliwia to rzetelne i~statystycznie wiarygodne porównanie zachowania badanych struktur danych w~funkcji rozmiaru i~gęstości grafu.
+Dla każdej instancji zadaniowej w~próbie uruchamiane są wszystkie badane warianty implementacyjne (zestawione w~podrozdziale~\ref{sec:warianty-implementacyjne}), a~dla każdego pojedynczego przebiegu rejestrowany jest kompletny wektor metryk wydajnościowych zdefiniowanych w~Tabeli~\ref{tab:zestawienie-wielkosci-pomiarowych}. W~ten sposób dla każdej komórki macierzy i~każdej implementacji powstaje zbiór $N_p$ surowych obserwacji, który podlega opisanej wcześniej agregacji statystycznej. Umożliwi to porównanie zachowania badanych struktur danych w~funkcji rozmiaru i~gęstości grafu; interpretacja wyników będzie uwzględniać ograniczenia badań.
 
 \newpage
 
@@ -1056,7 +1056,7 @@ Scenariusze te służą zebraniu danych potrzebnych do odpowiedzi na dwa pytania
       \item pętla wywołująca algorytm Dijkstry (w wariancie lista sąsiedztwa + kopiec binarny) kolejno dla każdego wierzchołka $v \in V$ jako źródła,
       \item algorytm Floyda--Warshalla wykonany jednokrotnie na macierzy sąsiedztwa.
     \end{enumerate}
-    Granicę pomiarową dla obu podejść stanowi całkowity czas wyznaczenia pełnej macierzy odległości $|V| \times |V|$ wraz z~niezbędną inicjalizacją struktur danych. Dla obu metod mierzony jest łączny czas wykonania oraz zapotrzebowanie pamięciowe w~zależności od gęstości grafu $\rho_G$, co pozwoli wskazać empiryczny próg gęstości, przy którym jedno rozwiązanie staje się szybsze od drugiego.
+    Granicę pomiarową dla obu podejść stanowi całkowity czas wyznaczenia pełnej macierzy odległości $|V| \times |V|$ wraz z~niezbędną inicjalizacją struktur danych. Dla obu metod mierzony jest łączny czas wykonania oraz zapotrzebowanie pamięciowe w~zależności od gęstości grafu $\rho_G$, co pozwoli sprawdzić, czy w~badanym zakresie występuje próg gęstości, przy którym jedno rozwiązanie staje się szybsze od drugiego.
 \end{itemize}
 Powyższe scenariusze należy traktować jako poglądowe - do~momentu ich realizacji podejście może zostać udoskonalone bądź zmienione.
 
