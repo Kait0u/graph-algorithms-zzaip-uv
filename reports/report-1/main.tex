@@ -11,57 +11,57 @@
 \reportchapter{Podstawy teoretyczne}
 \section{Teoria grafów}
 
-Graf to struktura matematyczna, za pomocą której można przedstawić relacje/powiązania pomiędzy elementami pewnego zbioru. W skład grafu wchodzą wierzchołki oraz połączenia między nimi. Można wyróżnić dwa standardowe typy grafów: nieskierowany oraz skierowany. Rysunek \ref{fig:typy-grafow} przedstawia przykłady obu typów diagramów.
+Graf to struktura matematyczna, za~pomocą której można przedstawić relacje/powiązania pomiędzy elementami pewnego zbioru. W~skład grafu wchodzą wierzchołki oraz połączenia między nimi. Można wyróżnić dwa standardowe typy grafów: nieskierowany oraz skierowany. Rysunek \ref{fig:typy-grafow} przedstawia przykłady obu typów diagramów.
 
-Graf nieskierowany, zwany także symetrycznym, to taki, w którym wierzchołki połączone są krawędziami. Formalnie, taki graf można zapisać jako parę $G = (V, E)$, gdzie $V$ to zbiór wierzchołków, a $E$ to zbiór par nieuporządkowanych $\{v_i, v_j\}$, z których każda reprezentuje pojedyncze, dwukierunkowe połączenie między danymi wierzchołkami $v_i, v_j \in V$ \cite{sikorski-nd-matematykadyskretna}. Istnienie krawędzi oznacza zachodzącą symetryczną relację sąsiedztwa pomiędzy dwoma wierzchołkami - $v_i$ jest połączony z $v_j$, a $v_j$ jest połączony z $v_i$. Graf nieskierowany jest często nazywany po prostu \glqq grafem\grqq{}.
+Graf nieskierowany, zwany także symetrycznym, to taki, w~którym wierzchołki połączone są krawędziami. Formalnie, taki graf można zapisać jako parę $G = (V, E)$, gdzie $V$ to zbiór wierzchołków, a~$E$ to zbiór par nieuporządkowanych $\{v_i, v_j\}$, z~których każda reprezentuje pojedyncze, dwukierunkowe połączenie między danymi wierzchołkami $v_i, v_j \in V$ \cite{sikorski-nd-matematykadyskretna}. Istnienie krawędzi oznacza zachodzącą symetryczną relację sąsiedztwa pomiędzy dwoma wierzchołkami - $v_i$ jest połączony z~$v_j$, a~$v_j$ jest połączony z~$v_i$. Graf nieskierowany jest często nazywany po~prostu \glqq grafem\grqq{}.
 
-Graf skierowany, zwany również digrafem, to taki, w którym występuje pojęcie kierunku relacji pomiędzy wierzchołkami. Zamiast dwukierunkowych krawędzi występują tutaj jednokierunkowe łuki, z których każdy jest przedstawiony jako para uporządkowana $(v_i, v_j)$. Relacja sąsiedztwa reprezentowana przez łuk nie jest symetryczna, tj. z istnienia łuku $(v_i, v_j)$ wynika, że wierzchołek $v_i$ jest połączony z $v_j$, jednak nie wynika, że $v_j$ jest połączony z~$v_i$. To~drugie połączenie opisywałby inny łuk - $(v_j, v_i)$. Formalnie, taki graf można zapisać jako parę $G = (V, A)$, gdzie $V$ to zbiór wierzchołków, a $A$ to zbiór par uporządkowanych $(v_i, v_j)$.
+Graf skierowany, zwany również digrafem, to taki, w~którym występuje pojęcie kierunku relacji pomiędzy wierzchołkami. Zamiast dwukierunkowych krawędzi występują tutaj jednokierunkowe łuki, z~których każdy jest przedstawiony jako para uporządkowana $(v_i, v_j)$. Relacja sąsiedztwa reprezentowana przez łuk nie jest symetryczna, tj. z~istnienia łuku $(v_i, v_j)$ wynika, że wierzchołek $v_i$ jest połączony z~$v_j$, jednak nie wynika, że $v_j$ jest połączony z~$v_i$. To~drugie połączenie opisywałby inny łuk - $(v_j, v_i)$. Formalnie, taki graf można zapisać jako parę $G = (V, A)$, gdzie $V$ to zbiór wierzchołków, a~$A$ to zbiór par uporządkowanych $(v_i, v_j)$.
 
 \input{figures/graph-types}
 
-Wierzchołki w grafie posiadają skalarną własność zwaną \glqq stopniem\grqq{}. W grafie symetrycznym, stopień wierzchołka $v$, zapisywany jako $d(v)$ to liczba krawędzi, z którymi ten wierzchołek jest incydentny\footnote{Wierzchołek $v$ jest incydentny z krawędzią $e$ jeśli $v \in e$}. W przypadku digrafów, rozróżniany jest stopień wejściowy $d^{-}(v)$ (liczba łuków prowadzących do danego wierzchołka) oraz stopień wyjściowy $d^{+}(v)$ (liczba łuków wychodzących z tegoż wierzchołka).
+Wierzchołki w~grafie posiadają skalarną własność zwaną \glqq stopniem\grqq{}. W~grafie symetrycznym, stopień wierzchołka $v$, zapisywany jako $d(v)$ to liczba krawędzi, z~którymi ten wierzchołek jest incydentny\footnote{Wierzchołek $v$ jest incydentny z~krawędzią $e$ jeśli $v \in e$}. W~przypadku digrafów, rozróżniany jest stopień wejściowy $d^{-}(v)$ (liczba łuków prowadzących do~danego wierzchołka) oraz stopień wyjściowy $d^{+}(v)$ (liczba łuków wychodzących z~tegoż wierzchołka).
 
-Graf prosty nie zawiera pętli ani wielokrotnych krawędzi między tą samą parą wierzchołków. Analogicznie, digraf prosty nie zawiera pętli ani wielokrotnych łuków o~tym samym początku i~końcu \cite{wilson-1996-introductiontographtheory}. Graf, w którym dla każdej pary wierzchołków istnieje krawędź łącząca te dwa wierzchołki, nazywamy pełnym. Analogicznie, digrafem pełnym nazywamy taki digraf, w którym dla każdej pary wierzchołków istnieją dwa łuki, które razem łączą te wierzchołki obustronnie.
+Graf prosty nie zawiera pętli ani wielokrotnych krawędzi między tą samą parą wierzchołków. Analogicznie, digraf prosty nie zawiera pętli ani wielokrotnych łuków o~tym samym początku i~końcu \cite{wilson-1996-introductiontographtheory}. Graf, w~którym dla każdej pary wierzchołków istnieje krawędź łącząca te dwa wierzchołki, nazywamy pełnym. Analogicznie, digrafem pełnym nazywamy taki digraf, w~którym dla każdej pary wierzchołków istnieją dwa łuki, które razem łączą te wierzchołki obustronnie.
 
 \section{Reprezentacja grafu}
 
-Dany graf można przedstawić na różne równoważne sposoby, z których każdy może uwydatniać inne właściwości. Z perspektywy człowieka, można przedstawić graf w postaci wizualnej (np. \ref{fig:typy-grafow}). W przypadku odpowiednio skomplikowanych grafów jest to jednak zadanie trudne. Ponadto, metoda ta jest niepraktyczna dla przetwarzania programistycznego. Graf można wyrazić także w postaci matematycznej definicji, tak jak to uczyniono w~poprzednim rozdziale - jako parę składającą się ze zbioru wierzchołków oraz zbioru połączeń (krawędzi/łuków).
+Dany graf można przedstawić na~różne równoważne sposoby, z~których każdy może uwydatniać inne właściwości. Z~perspektywy człowieka, można przedstawić graf w~postaci wizualnej (np. \ref{fig:typy-grafow}). W~przypadku odpowiednio skomplikowanych grafów jest to jednak zadanie trudne. Ponadto, metoda ta jest niepraktyczna dla przetwarzania programistycznego. Graf można wyrazić także w~postaci matematycznej definicji, tak jak to uczyniono w~poprzednim rozdziale - jako parę składającą się ze~zbioru wierzchołków oraz zbioru połączeń (krawędzi/łuków).
 
-Z perspektywy realizacji niniejszego projektu, istotne jest jednak skupienie się na takich metodach reprezentacji grafu, które można skutecznie przetwarzać w ramach programu komputerowego. Najbardziej popularne formy reprezentacji to~macierz sąsiedztwa i~lista sąsiedztwa.
+Z~perspektywy realizacji niniejszego projektu, istotne jest jednak skupienie się na~takich metodach reprezentacji grafu, które można skutecznie przetwarzać w~ramach programu komputerowego. Najbardziej popularne formy reprezentacji to~macierz sąsiedztwa i~lista sąsiedztwa.
 
 \subsection{Macierz sąsiedztwa}
 
-Macierz sąsiedztwa to taka macierz kwadratowa $A$ o wymiarach $|V| \times |V|$, w~której wiersze i~kolumny odpowiadają poszczególnym wierzchołkom grafu, a~poszczególne komórki reprezentują status istnienia połączenia między nimi. W~standardowej macierzy sąsiedztwa, wartość komórki 0 oznacza brak połączenia między dwoma odpowiednimi wierzchołkami, zaś wartość 1 oznacza, że takie połączenie istnieje. Wartości na przekątnej tej macierzy określają istnienie połączenia wierzchołka z sobą samym.
+Macierz sąsiedztwa to taka macierz kwadratowa $A$ o~wymiarach $|V| \times |V|$, w~której wiersze i~kolumny odpowiadają poszczególnym wierzchołkom grafu, a~poszczególne komórki reprezentują status istnienia połączenia między nimi. W~standardowej macierzy sąsiedztwa, wartość komórki 0 oznacza brak połączenia między dwoma odpowiednimi wierzchołkami, zaś wartość 1 oznacza, że takie połączenie istnieje. Wartości na~przekątnej tej macierzy określają istnienie połączenia wierzchołka z~sobą samym.
 
-Dla grafu nieskierowanego, macierz sąsiedztwa jest symetryczna względem głównej przekątnej, tj. $A_{ij}=A_{ji}$. Symetria macierzy wynika z faktu, że w grafie nieskierowanym relacja sąsiedztwa jest relacją symetryczną. Przykład dla grafu o sześciu wierzchołkach przedstawia rysunek \ref{fig:macierz-sasiedztwa-graf-nieskierowany}.
+Dla grafu nieskierowanego, macierz sąsiedztwa jest symetryczna względem głównej przekątnej, tj. $A_{ij}=A_{ji}$. Symetria macierzy wynika z~faktu, że w~grafie nieskierowanym relacja sąsiedztwa jest relacją symetryczną. Przykład dla grafu o~sześciu wierzchołkach przedstawia rysunek \ref{fig:macierz-sasiedztwa-graf-nieskierowany}.
 
 \input{figures/adjacency-matrix-undirected}
 
-Dla digrafu, przyjmujemy konwencję, w której wiersz oznacza wierzchołek źródłowy, a~kolumna oznacza wierzchołek docelowy. Zatem $A_{ij}=1$ wtedy i~tylko wtedy, gdy istnieje łuk $v_i \to v_j$. Ponieważ relacja sąsiedztwa w~digrafie nie jest relacją symetryczną, również i macierz nie musi być symetryczna\footnote{W szczególnym przypadku, jeśli każda połączona para wierzchołków jest zawsze połączona dwoma łukami, wówczas macierz sąsiedztwa będzie symetryczna.}. Przykład dla grafu o sześciu wierzchołkach przedstawia rysunek \ref{fig:macierz-sasiedztwa-graf-skierowany}.
+Dla digrafu, przyjmujemy konwencję, w~której wiersz oznacza wierzchołek źródłowy, a~kolumna oznacza wierzchołek docelowy. Zatem $A_{ij}=1$ wtedy i~tylko wtedy, gdy istnieje łuk $v_i \to v_j$. Ponieważ relacja sąsiedztwa w~digrafie nie jest relacją symetryczną, również i~macierz nie musi być symetryczna\footnote{W~szczególnym przypadku, jeśli każda połączona para wierzchołków jest zawsze połączona dwoma łukami, wówczas macierz sąsiedztwa będzie symetryczna.}. Przykład dla grafu o~sześciu wierzchołkach przedstawia rysunek \ref{fig:macierz-sasiedztwa-graf-skierowany}.
 
 \input{figures/adjacency-matrix-directed}
 
-W przypadku, gdy problem reprezentowany przez graf jest problemem optymalizacyjnym (np. algorytm najkrótszej ścieżki), w którym koszt przypisany jest połączeniom między wierzchołkami, zamiast wartości 1 w macierzy sąsiedztwa pojawia się zwykle odpowiedni parametr danego połączenia. Takim parametrem może być waga, koszt, odległość, itp. Wówczas każda wartość może być inna, z~racji reprezentowania konkretnego parametru, aniżeli~faktu istnienia\footnote{Tutaj może pojawić się konflikt interpretacji - gdyby waga połączenia wynosiła 0, byłoby to niejednoznaczne i~mogłoby to zostać zrozumiane jako połączenie nieistniejące. W~takim przypadku alternatywnym podejściem jest ustalenie $+\inf$ jako wartości oznaczającej niewystępowanie połączenia.}.
+W~przypadku, gdy problem reprezentowany przez graf jest problemem optymalizacyjnym (np. algorytm najkrótszej ścieżki), w~którym koszt przypisany jest połączeniom między wierzchołkami, zamiast wartości 1 w~macierzy sąsiedztwa pojawia się zwykle odpowiedni parametr danego połączenia. Takim parametrem może być waga, koszt, odległość, itp. Wówczas każda wartość może być inna, z~racji reprezentowania konkretnego parametru, aniżeli~faktu istnienia\footnote{Tutaj może pojawić się konflikt interpretacji - gdyby waga połączenia wynosiła 0, byłoby to niejednoznaczne i~mogłoby to zostać zrozumiane jako połączenie nieistniejące. W~takim przypadku alternatywnym podejściem jest ustalenie $+\inf$ jako wartości oznaczającej niewystępowanie połączenia.}.
 
-Z perspektywy implementacji tej techniki reprezentacji w pewnym języku programowania, najbardziej typową formą będzie tablica dwuwymiarowa lub lista list, w zależności od~możliwości i~filozofii wybranego języka programowania. Implementując macierz samodzielnie, należy rozważyć także kwestię układu macierzy, co jest związane z~działaniem procesora oraz~z~efektywnym zarządzaniem pamięcią podręczną. Efektywniej jest bowiem poruszać się w~ramach ciągłego obszaru pamięci (jakim jest tablica), aniżeli stale poruszać się po~rozlokowanych w~różnych obszarach pamięci wartościach, co~niweluje optymalizacje procesora. Implementując macierz samodzielnie, należy zatem rozważyć, czy tablice wewnętrzne funkcjonować będą jako wiersze czy też kolumny rzeczywistej macierzy. Na decyzję powinna wpłynąć analiza, czy~iteracja będzie mieć miejsce przede wszystkim po wierszach macierzy, czy po jej kolumnach.
+Z~perspektywy implementacji tej techniki reprezentacji w~pewnym języku programowania, najbardziej typową formą będzie tablica dwuwymiarowa lub lista list, w~zależności od~możliwości i~filozofii wybranego języka programowania. Implementując macierz samodzielnie, należy rozważyć także kwestię układu macierzy, co jest związane z~działaniem procesora oraz~z~efektywnym zarządzaniem pamięcią podręczną. Efektywniej jest bowiem poruszać się w~ramach ciągłego obszaru pamięci (jakim jest tablica), aniżeli stale poruszać się po~rozlokowanych w~różnych obszarach pamięci wartościach, co~niweluje optymalizacje procesora. Implementując macierz samodzielnie, należy zatem rozważyć, czy tablice wewnętrzne funkcjonować będą jako wiersze czy też kolumny rzeczywistej macierzy. Na~decyzję powinna wpłynąć analiza, czy~iteracja będzie mieć miejsce przede wszystkim po~wierszach macierzy, czy po~jej kolumnach.
 
-O~ile w~przypadku grafu symetrycznego może to nie mieć szczególnego znaczenia, o~tyle dla digrafu wiersze i kolumny niosą różne informacje. Jeśli z~perspektywy wykonywanego kodu łuki przetwarzane są według~tego, z~których wierzchołków wychodzą, wiersze powinny oznaczać wierzchołki źródłowe. W~przypadku, gdy łuki analizowane są pod kątem ich celów, wówczas traktowanie wierszy jako wierzchołków docelowych może być skuteczniejszym rozwiązaniem, choć jest to wbrew konwencji teoretycznej.
+O~ile w~przypadku grafu symetrycznego może to nie mieć szczególnego znaczenia, o~tyle dla digrafu wiersze i~kolumny niosą różne informacje. Jeśli z~perspektywy wykonywanego kodu łuki przetwarzane są według~tego, z~których wierzchołków wychodzą, wiersze powinny oznaczać wierzchołki źródłowe. W~przypadku, gdy łuki analizowane są pod kątem ich celów, wówczas traktowanie wierszy jako wierzchołków docelowych może być skuteczniejszym rozwiązaniem, choć jest to wbrew konwencji teoretycznej.
 
 \subsection{Lista sąsiedztwa}
 
-Innym sposobem na reprezentację grafu w~postaci programistycznej jest zbudowanie tak~zwanej listy sąsiedztwa. Choć nazywana jest ona listą, w~rzeczywistości jest to odwzorowanie wierzchołka źródłowego na listę jego sąsiadów. W przypadku grafu skierowanego można wówczas mówić o~następnikach, bowiem są to wierzchołki, do~których istnieją łuki wyprowadzone z~rozważanego wierzchołka.
+Innym sposobem na~reprezentację grafu w~postaci programistycznej jest zbudowanie tak~zwanej listy sąsiedztwa. Choć nazywana jest ona listą, w~rzeczywistości jest to odwzorowanie wierzchołka źródłowego na~listę jego sąsiadów. W~przypadku grafu skierowanego można wówczas mówić o~następnikach, bowiem są to wierzchołki, do~których istnieją łuki wyprowadzone z~rozważanego wierzchołka.
 
 \input{figures/adjacency-list-undirected}
 
 \input{figures/adjacency-list-directed}
 
-Z poziomu implementacji najczęstszym narzędziem do tego będzie tablica asocjacyjna (ang. \textit{hash map}), która będzie odzwierciedlać wierzchołki na listy referencji do wierzchołków, z~którymi dany wierzchołek sąsiaduje (z~jego perspektywy). W~niektórych językach programowania tablica asocjacyjna występuje pod nazwą \glqq słownik\grqq{}.
+Z~poziomu implementacji najczęstszym narzędziem do~tego będzie tablica asocjacyjna (ang. \textit{hash map}), która będzie odzwierciedlać wierzchołki na~listy referencji do~wierzchołków, z~którymi dany wierzchołek sąsiaduje (z~jego perspektywy). W~niektórych językach programowania tablica asocjacyjna występuje pod nazwą \glqq słownik\grqq{}.
 
-W szczególności, w~przypadku języków programowania o~silnej orientacji na~paradygmat obiektowy, alternatywnym sposobem wykorzystania listy sąsiedztwa jest przedstawienie grafu jako zbioru wierzchołków, z~których każdy posiada własną listę referencji do swoich bezpośrednich sąsiadów. Jest to bardziej rozproszony wariant tej samej techniki.
+W~szczególności, w~przypadku języków programowania o~silnej orientacji na~paradygmat obiektowy, alternatywnym sposobem wykorzystania listy sąsiedztwa jest przedstawienie grafu jako zbioru wierzchołków, z~których każdy posiada własną listę referencji do~swoich bezpośrednich sąsiadów. Jest to bardziej rozproszony wariant tej samej techniki.
 
 \subsection{Porównanie}
 
-Przedstawiono dwie różne techniki reprezentacji grafu. Poniższa tabela zestawia podstawowe koszty operacji dla macierzy i listy sąsiedztwa. Wartość $d$ oznacza stopień wierzchołka $u$. Zestawienie opracowano na podstawie \cite{learngraphtheory-2026-graphrepresentation}; złożoność pamięciową obu reprezentacji opisano również w~\cite{mit-2011-graphrepresentation}.
+Przedstawiono dwie różne techniki reprezentacji grafu. Poniższa tabela zestawia podstawowe koszty operacji dla macierzy i~listy sąsiedztwa. Wartość $d$ oznacza stopień wierzchołka $u$. Zestawienie opracowano na~podstawie \cite{learngraphtheory-2026-graphrepresentation}; złożoność pamięciową obu reprezentacji opisano również w~\cite{mit-2011-graphrepresentation}.
 
 \begin{table}[H]
   \centering
@@ -80,28 +80,28 @@ Przedstawiono dwie różne techniki reprezentacji grafu. Poniższa tabela zestaw
     Usunięcie krawędzi/łuku & $O(1)$ & $O(d)$ \\
     \bottomrule
   \end{tabularx}
-  \caption{Porównanie kosztów operacji dla macierzy i listy sąsiedztwa; opracowanie na podstawie \cite{learngraphtheory-2026-graphrepresentation}.}
+  \caption{Porównanie kosztów operacji dla macierzy i~listy sąsiedztwa; opracowanie na~podstawie \cite{learngraphtheory-2026-graphrepresentation}.}
   \label{tab:porownanie-reprezentacji}
 \end{table}
 
-Dla listy sąsiedztwa przyjęto, że liczba sąsiadów wierzchołka jest przechowywana lub dostępna w~czasie $O(1)$, a~dodanie połączenia polega na wstawieniu elementu na początek listy wiązanej, bez sprawdzania, czy połączenie już istnieje. Dla digrafu $d$ oznacza stopień wyjściowy. W~grafie nieskierowanym usunięcie krawędzi wymaga przeszukania list obu jej końców, a~jego koszt wynosi $O(d(u)+d(v))$.
+Dla listy sąsiedztwa przyjęto, że liczba sąsiadów wierzchołka jest przechowywana lub dostępna w~czasie $O(1)$, a~dodanie połączenia polega na~wstawieniu elementu na~początek listy wiązanej, bez sprawdzania, czy połączenie już istnieje. Dla digrafu $d$ oznacza stopień wyjściowy. W~grafie nieskierowanym usunięcie krawędzi wymaga przeszukania list obu jej końców, a~jego koszt wynosi $O(d(u)+d(v))$.
 
-W przypadku grafu nieskierowanego każda krawędź jest zwykle przechowywana na~dwóch listach sąsiedztwa, natomiast w~przypadku digrafu każdy łuk jest przechowywany raz, na~liście jego wierzchołka źródłowego.
+W~przypadku grafu nieskierowanego każda krawędź jest zwykle przechowywana na~dwóch listach sąsiedztwa, natomiast w~przypadku digrafu każdy łuk jest przechowywany raz, na~liście jego wierzchołka źródłowego.
 
-Z perspektywy technicznej istotny może też być fakt, że macierz sąsiedztwa stosuje dużo prostsze struktury danych, co może uczynić tę opcję prostszą do~implementacji w językach niskiego poziomu, o~stosunkowo prostej bibliotece standardowej. Przykładowo, biblioteka standardowa języka~C nie oferuje żadnej formy tablicy asocjacyjnej - trzeba ją zaimplementować samodzielnie. Na korzyść listy sąsiedztwa przemawia natomiast fakt, że może być ona bardziej wygodna w~obsłudze, z~racji pracy na~wyższym poziomie abstrakcji. Różnica ta może się uwidocznić w~szczególności podczas pracy z~językami obiektowymi, takimi jak Java, Python lub C\#. W przeciwieństwie do macierzy sąsiedztwa, można tu pracować bezpośrednio z~wierzchołkami jako obiektami. Praca z~wierzchołkami jako obiektami z wykorzystaniem macierzy sąsiedztwa wymagałaby ciągłego odwoływania się za pomocą indeksów do innej tablicy bądź listy, która przechowywałaby obiekty. Wymagałoby to od programisty dużo więcej wysiłku i~mogłoby skomplikować kod.
+Z~perspektywy technicznej istotny może też być fakt, że macierz sąsiedztwa stosuje dużo prostsze struktury danych, co może uczynić tę opcję prostszą do~implementacji w~językach niskiego poziomu, o~stosunkowo prostej bibliotece standardowej. Przykładowo, biblioteka standardowa języka~C nie oferuje żadnej formy tablicy asocjacyjnej - trzeba ją zaimplementować samodzielnie. Na~korzyść listy sąsiedztwa przemawia natomiast fakt, że może być ona bardziej wygodna w~obsłudze, z~racji pracy na~wyższym poziomie abstrakcji. Różnica ta może się uwidocznić w~szczególności podczas pracy z~językami obiektowymi, takimi jak Java, Python lub C\#. W~przeciwieństwie do~macierzy sąsiedztwa, można tu pracować bezpośrednio z~wierzchołkami jako obiektami. Praca z~wierzchołkami jako obiektami z~wykorzystaniem macierzy sąsiedztwa wymagałaby ciągłego odwoływania się za~pomocą indeksów do~innej tablicy bądź listy, która przechowywałaby obiekty. Wymagałoby to od~programisty dużo więcej wysiłku i~mogłoby skomplikować kod.
 
-Metody te różnią się także w ujęciu dynamizmu. Wprawdzie w obu istnieje możliwość dodania połączenia pomiędzy istniejącymi wierzchołkami, gdyby takie połączenie nie istniało, bądź też usunięcia go (obie operacje są wykonywane bardziej wydajnie przy użyciu macierzy sąsiedztwa), ale sytuacja zmienia się, gdy należałoby dodać nowy wierzchołek. Choć nie jest to popularna operacja, wykonanie jej na macierzy sąsiedztwa wymagałoby przepisania macierzy do nowych wymiarów. W~przypadku listy sąsiedztwa, operacja ta wymagałaby jedynie utworzenia nowego wierzchołka wraz z jego wypełnioną listą sąsiedztwa, wpisania go do tablicy asocjacyjnej (która z~natury jest dynamiczna), a następnie dodania tego wierzchołka do odpowiednich list sąsiedztwa istniejących wierzchołków.
+Metody te różnią się także w~ujęciu dynamizmu. Wprawdzie w~obu istnieje możliwość dodania połączenia pomiędzy istniejącymi wierzchołkami, gdyby takie połączenie nie istniało, bądź też usunięcia go (obie operacje są wykonywane bardziej wydajnie przy użyciu macierzy sąsiedztwa), ale sytuacja zmienia się, gdy należałoby dodać nowy wierzchołek. Choć nie jest to popularna operacja, wykonanie jej na~macierzy sąsiedztwa wymagałoby przepisania macierzy do~nowych wymiarów. W~przypadku listy sąsiedztwa, operacja ta wymagałaby jedynie utworzenia nowego wierzchołka wraz z~jego wypełnioną listą sąsiedztwa, wpisania go do~tablicy asocjacyjnej (która z~natury jest dynamiczna), a~następnie dodania tego wierzchołka do~odpowiednich list sąsiedztwa istniejących wierzchołków.
 
 
 \section{Problem najkrótszej ścieżki}
 
 \subsection{Pojęcie ścieżki}
 
-Polska nomenklatura teorii grafów bywa dość niespójna. Angielskie źródła najczęściej wspominają o trzech typach ciągów wierzchołków połączonych ze sobą: \textit{walk}, \textit{trail} i \textit{path} \cite{wilson-1996-introductiontographtheory}. Niektóre polskie tłumaczenia (na przykład \cite{horzyk-2018-grafyistrukturygrafowe}) przypisują słowo \textit{ścieżka} lub \textit{droga} każdemu z tych angielskich odpowiedników, chociaż słowo \textit{ścieżka} najbardziej naturalnie tłumaczy się na język angielski jako \textit{path}. Inne, np. materiały dra J. Sikorskiego \cite{sikorski-nd-matematykadyskretna} wprowadzają konkretny podział:
+Polska nomenklatura teorii grafów bywa dość niespójna. Angielskie źródła najczęściej wspominają o~trzech typach ciągów wierzchołków połączonych ze~sobą: \textit{walk}, \textit{trail} i~\textit{path} \cite{wilson-1996-introductiontographtheory}. Niektóre polskie tłumaczenia (na~przykład \cite{horzyk-2018-grafyistrukturygrafowe}) przypisują słowo \textit{ścieżka} lub \textit{droga} każdemu z~tych angielskich odpowiedników, chociaż słowo \textit{ścieżka} najbardziej naturalnie tłumaczy się na~język angielski jako \textit{path}. Inne, np. materiały dra J. Sikorskiego \cite{sikorski-nd-matematykadyskretna} wprowadzają konkretny podział:
 \begin{itemize}
-	\item \textbf{Droga} - ciąg wierzchołków\footnote{w oryginalnym brzmieniu: ciąg (naprzemienny) wierzchołków i krawędzi grafu: $(v_0, e_1, v_1, e_2, ..., v_{t-1}, e_t, v_t)$, spełniający warunek $e_i = \{v_{i-1}, v_i\}$ dla $i = 1, ..., t$, jednak autor też zaznacza, że drogę można przedstawić jako ciąg wierzchołków, przy założeniu istnienia krawędzi między nimi, lub jako ciąg krawędzi zależnych.}, między którymi istnieją połączenia (krawędzie/łuki). \\ (Definicja analogiczna do definicji \textit{\textbf{walk}}).
-	\item \textbf{Droga prosta} - droga, która nie powtarza krawędzi. \\ (Definicja analogiczna do definicji \textit{\textbf{trail}}).
-	\item \textbf{Droga elementarna} - droga, która nie powtarza wierzchołków. \\ (Definicja analogiczna do definicji \textit{\textbf{path}}).
+	\item \textbf{Droga} - ciąg wierzchołków\footnote{w~oryginalnym brzmieniu: ciąg (naprzemienny) wierzchołków i~krawędzi grafu: $(v_0, e_1, v_1, e_2, ..., v_{t-1}, e_t, v_t)$, spełniający warunek $e_i = \{v_{i-1}, v_i\}$ dla $i = 1, ..., t$, jednak autor też zaznacza, że drogę można przedstawić jako ciąg wierzchołków, przy założeniu istnienia krawędzi między nimi, lub jako ciąg krawędzi zależnych.}, między którymi istnieją połączenia (krawędzie/łuki). \\ (Definicja analogiczna do~definicji \textit{\textbf{walk}}).
+	\item \textbf{Droga prosta} - droga, która nie powtarza krawędzi. \\ (Definicja analogiczna do~definicji \textit{\textbf{trail}}).
+	\item \textbf{Droga elementarna} - droga, która nie powtarza wierzchołków. \\ (Definicja analogiczna do~definicji \textit{\textbf{path}}).
 \end{itemize}
 
 Dla zachowania porządku autor projektu przyjmie, że przez \textit{ścieżkę} rozumie się \textit{drogę elementarną}, odpowiadającą angielskiemu terminowi \textit{path}.
@@ -110,59 +110,59 @@ Dla zachowania porządku autor projektu przyjmie, że przez \textit{ścieżkę} 
 
 \subsection{Definicja problemu}
 
-Problem najkrótszej ścieżki polega na znalezieniu w grafie drogi elementarnej pomiędzy dwoma zadanymi wierzchołkami grafu, której koszt jest najmniejszy.
-Koszt jest zagadnieniem związanym z grafem ważonym - jest to mierzalna wartość przypisana każdej krawędzi / każdemu łukowi w grafie. Koszt ścieżki jest to zatem suma kosztów poszczególnych jej odcinków. Koszt jest pojęciem abstrakcyjnym i może być różnie interpretowany, w~zależności od~tego, co~dany graf reprezentuje. Najkrótsza ścieżka od $v_i$ do $v_j$ to, w rozumieniu tego problemu, droga elementarna o najniższym sumarycznym koszcie\footnote{W szczególnym przypadku - jeśli wszystkie wagi zostaną ustalone na poziomie 1, wówczas problem sprowadza się do znalezienia ścieżki o najmniejszej liczbie odcinków - krawędzi bądź łuków.}. Rysunek~\ref{fig:przyklad-najkrotszej-sciezki} pokazuje kilka ścieżek między wierzchołkami $s$ i $t$ oraz ścieżkę o najmniejszym koszcie. 
+Problem najkrótszej ścieżki polega na~znalezieniu w~grafie drogi elementarnej pomiędzy dwoma zadanymi wierzchołkami grafu, której koszt jest najmniejszy.
+Koszt jest zagadnieniem związanym z~grafem ważonym - jest to mierzalna wartość przypisana każdej krawędzi / każdemu łukowi w~grafie. Koszt ścieżki jest to zatem suma kosztów poszczególnych jej odcinków. Koszt jest pojęciem abstrakcyjnym i~może być różnie interpretowany, w~zależności od~tego, co~dany graf reprezentuje. Najkrótsza ścieżka od~$v_i$ do~$v_j$ to, w~rozumieniu tego problemu, droga elementarna o~najniższym sumarycznym koszcie\footnote{W~szczególnym przypadku - jeśli wszystkie wagi zostaną ustalone na~poziomie 1, wówczas problem sprowadza się do~znalezienia ścieżki o~najmniejszej liczbie odcinków - krawędzi bądź łuków.}. Rysunek~\ref{fig:przyklad-najkrotszej-sciezki} pokazuje kilka ścieżek między wierzchołkami $s$ i~$t$ oraz ścieżkę o~najmniejszym koszcie.
 
 \input{figures/shortest-path-example}
 
-W zależności od oczekiwanego wyniku można wyróżnić następujące wersje problemu, które przekładają się na realizujące je algorytmy \cite{esparza-2025-shortestpaths}:
+W~zależności od~oczekiwanego wyniku można wyróżnić następujące wersje problemu, które przekładają się na~realizujące je algorytmy \cite{esparza-2025-shortestpaths}:
 \begin{itemize}
 	\item \textbf{SPSP (Single-Pair Shortest Path)} - najkrótsza ścieżka dla pojedynczej pary. Przykładowy~algorytm:~A*.
-	\item \textbf{SSSP (Single-Source Shortest Path)} - najkrótsze ścieżki od ustalonego wierzchołka źródłowego do każdego innego wierzchołka grafu. Przykładowe~algorytmy:~Dijkstra,~Bellman-Ford.
+	\item \textbf{SSSP (Single-Source Shortest Path)} - najkrótsze ścieżki od~ustalonego wierzchołka źródłowego do~każdego innego wierzchołka grafu. Przykładowe~algorytmy:~Dijkstra,~Bellman-Ford.
 	\item \textbf{APSP (All-Pairs Shortest Path)} - najkrótsze ścieżki pomiędzy wszystkimi możliwymi parami różnych wierzchołków. Przykładowy~algorytm:~Floyd-Warshall.
 \end{itemize}
 
 \input{figures/shortest-path-problem-types}
 
-Klasy problemów można uporządkować względem rozmiaru ich wyników. Dla danego grafu, algorytmy rozwiązujące problem SSSP mogą dostarczyć odpowiedzi dla problemów SPSP dla tego samego wierzchołka początkowego i~dla~każdego innego wierzchołka stanowiącego wierzchołek końcowy. Podobnie, APSP zawiera w sobie odpowiedzi dla problemów SSSP, dla każdego potencjalnego wierzchołka startowego. Warto przy okazji zwrócić też uwagę, że większy zakres wyników nie musi oznaczać, że algorytm jest bardziej skomplikowany (co może być kwestią subiektywną).
+Klasy problemów można uporządkować względem rozmiaru ich wyników. Dla danego grafu, algorytmy rozwiązujące problem SSSP mogą dostarczyć odpowiedzi dla problemów SPSP dla tego samego wierzchołka początkowego i~dla~każdego innego wierzchołka stanowiącego wierzchołek końcowy. Podobnie, APSP zawiera w~sobie odpowiedzi dla problemów SSSP, dla każdego potencjalnego wierzchołka startowego. Warto przy okazji zwrócić też uwagę, że większy zakres wyników nie musi oznaczać, że algorytm jest bardziej skomplikowany (co może być kwestią subiektywną).
 
-W standardowym ujęciu, wynikiem są najkrótsze długości ścieżek dla każdej szukanej ścieżki, zgodnie z wersją problemu. Bardzo często jednak problem jest modyfikowany tak, by jego celem było znalezienie konkretnych ścieżek, których długość można następnie obliczyć znając ich kształt (wierzchołki, krawędzie składowe).
+W~standardowym ujęciu, wynikiem są najkrótsze długości ścieżek dla każdej szukanej ścieżki, zgodnie z~wersją problemu. Bardzo często jednak problem jest modyfikowany tak, by jego celem było znalezienie konkretnych ścieżek, których długość można następnie obliczyć znając ich kształt (wierzchołki, krawędzie składowe).
 
-Problem wiąże się z kilkoma przypadkami brzegowymi, które należy obsłużyć. Niektóre z~nich mogą nie zaistnieć przy odpowiednich założeniach dotyczących danych wejściowych.
+Problem wiąże się z~kilkoma przypadkami brzegowymi, które należy obsłużyć. Niektóre z~nich mogą nie zaistnieć przy odpowiednich założeniach dotyczących danych wejściowych.
 \begin{itemize}
-	\item Ścieżka nie istnieje - może to wystąpić np. w przypadku grafu niespójnego.
-	\item Istnieje więcej niż jedna ścieżka - algorytm może albo wybrać jedną, albo zwrócić informacje na temat wszystkich możliwości.
-	\item Cykle - jeśli w grafie istnieje cykl, istnieje ryzyko, że algorytm poszukujący może utknąć w pętli.
-	\item Więcej niż jedno połączenie między wierzchołkami - algorytm powinien wybrać najbardziej korzystne w sensie poszukiwania rozwiązania połączenie.
+	\item Ścieżka nie istnieje - może to wystąpić np. w~przypadku grafu niespójnego.
+	\item Istnieje więcej niż jedna ścieżka - algorytm może albo wybrać jedną, albo zwrócić informacje na~temat wszystkich możliwości.
+	\item Cykle - jeśli w~grafie istnieje cykl, istnieje ryzyko, że algorytm poszukujący może utknąć w~pętli.
+	\item Więcej niż jedno połączenie między wierzchołkami - algorytm powinien wybrać najbardziej korzystne w~sensie poszukiwania rozwiązania połączenie.
 \end{itemize}
 
 \section{Przegląd algorytmów najkrótszej ścieżki}
 
-Niniejsza sekcja stanowić będzie przegląd algorytmów najkrótszej ścieżki rozważanych w~ramach niniejszego projektu. Mechanizm działania każdej metody zostanie opisany wraz z~jej~ograniczeniami. Będą to jednak jedynie ograniczenia metody wobec klasy, którą reprezentuje - np. nie będzie uznawane za~ograniczenie znalezienie ścieżek zaczynających się tylko w jednym punkcie, jeśli algorytm rozwiązuje problem SSSP. Podane w~tabelach złożoności pamięciowe dotyczą pamięci pomocniczej i~nie obejmują wejściowej reprezentacji grafu; uwzględniają natomiast struktury wynikowe tworzone przez algorytm.
+Niniejsza sekcja stanowić będzie przegląd algorytmów najkrótszej ścieżki rozważanych w~ramach niniejszego projektu. Mechanizm działania każdej metody zostanie opisany wraz z~jej~ograniczeniami. Będą to jednak jedynie ograniczenia metody wobec klasy, którą reprezentuje - np. nie będzie uznawane za~ograniczenie znalezienie ścieżek zaczynających się tylko w~jednym punkcie, jeśli algorytm rozwiązuje problem SSSP. Podane w~tabelach złożoności pamięciowe dotyczą pamięci pomocniczej i~nie obejmują wejściowej reprezentacji grafu; uwzględniają natomiast struktury wynikowe tworzone przez algorytm.
 
-Każdy algorytm ponadto zostanie scharakteryzowany pod kątem jego mechanizmu działania (pseudokod). Opisane zostaną także charakterystyki takie jak złożoność czasowa i pamięciowa.
+Każdy algorytm ponadto zostanie scharakteryzowany pod kątem jego mechanizmu działania (pseudokod). Opisane zostaną także charakterystyki takie jak złożoność czasowa i~pamięciowa.
 
 \newpage
 
 \subsection{Algorytm Dijkstry}
 
-Algorytm Dijkstry (1956) \cite{dijkstra-1959-shortestpath} to algorytm klasy SSSP. Dla zadanego wierzchołka startowego $S$ w grafie $G$, oblicza on długość najkrótszych ścieżek do wszystkich pozostałych wierzchołków tego grafu.
+Algorytm Dijkstry (1956) \cite{dijkstra-1959-shortestpath} to algorytm klasy SSSP. Dla zadanego wierzchołka startowego $S$ w~grafie $G$, oblicza on długość najkrótszych ścieżek do~wszystkich pozostałych wierzchołków tego grafu.
 
-Algorytm ma charakter zachłanny z elementami programowania dynamicznego. W~każdej iteracji wybiera spośród nieprzetworzonych wierzchołków ten, którego obecnie znana odległość od źródła jest najmniejsza. Następnie uznaje tę~odległość za ostateczną i~próbuje ją poprawić dla~jego~sąsiadów poprzez~operację relaksacji krawędzi. 
+Algorytm ma charakter zachłanny z~elementami programowania dynamicznego. W~każdej iteracji wybiera spośród nieprzetworzonych wierzchołków ten, którego obecnie znana odległość od~źródła jest najmniejsza. Następnie uznaje tę~odległość za~ostateczną i~próbuje ją poprawić dla~jego~sąsiadów poprzez~operację relaksacji krawędzi.
 
-Poprawność algorytmu wynika z faktu, że przy nieujemnych wagach żadna późniejsza ścieżka nie może doprowadzić do wybranego wierzchołka z mniejszym kosztem niż jego aktualnie znana odległość. Algorytm korzysta również z własności optymalnej podstruktury: każda podścieżka ścieżki najkrótszej jest również ścieżką najkrótszą.
+Poprawność algorytmu wynika z~faktu, że przy nieujemnych wagach żadna późniejsza ścieżka nie może doprowadzić do~wybranego wierzchołka z~mniejszym kosztem niż jego aktualnie znana odległość. Algorytm korzysta również z~własności optymalnej podstruktury: każda podścieżka ścieżki najkrótszej jest również ścieżką najkrótszą.
 
 \subsubsection{Ograniczenia}
 
-Ze względu na swój zachłanny charakter, algorytm Dijkstry nie gwarantuje poprawnego wyniku dla grafów z~ujemnymi wagami krawędzi. Algorytm opiera się bowiem na~założeniu, że koszt ścieżki nie maleje wraz z~każdym kolejnym przejściem. Obecność ujemnych wag mogłaby spowodować zmniejszenie kosztu ścieżki wraz z dodaniem doń wierzchołka.
+Ze~względu na~swój zachłanny charakter, algorytm Dijkstry nie gwarantuje poprawnego wyniku dla grafów z~ujemnymi wagami krawędzi. Algorytm opiera się bowiem na~założeniu, że koszt ścieżki nie maleje wraz z~każdym kolejnym przejściem. Obecność ujemnych wag mogłaby spowodować zmniejszenie kosztu ścieżki wraz z~dodaniem doń wierzchołka.
 
-Algorytm jest odporny na sytuację, w której graf jest niespójny i~istnieje przynajmniej jeden wierzchołek $V_i$, dla którego nie istnieje droga $S$-$V_i$. W takim przypadku dystans jest określony jako $\infty$. 
+Algorytm jest odporny na~sytuację, w~której graf jest niespójny i~istnieje przynajmniej jeden wierzchołek $V_i$, dla którego nie istnieje droga $S$-$V_i$. W~takim przypadku dystans jest określony jako $\infty$.
 
-Rzeczywista złożoność algorytmu zależy od zastosowanej reprezentacji grafu oraz struktury kolejki priorytetowej. Zestawienie dwóch struktur danych grafu (macierzy i listy sąsiedztwa) z dwoma sposobami realizacji kolejki (tablicą z wyborem liniowym oraz kopcem binarnym) daje cztery możliwe kombinacje implementacyjne. Ich złożoności asymptotyczne przedstawiono w~dalszej części podrozdziału, natomiast rzeczywiste czasy działania będą przedmiotem badań.
+Rzeczywista złożoność algorytmu zależy od~zastosowanej reprezentacji grafu oraz struktury kolejki priorytetowej. Zestawienie dwóch struktur danych grafu (macierzy i~listy sąsiedztwa) z~dwoma sposobami realizacji kolejki (tablicą z~wyborem liniowym oraz kopcem binarnym) daje cztery możliwe kombinacje implementacyjne. Ich złożoności asymptotyczne przedstawiono w~dalszej części podrozdziału, natomiast rzeczywiste czasy działania będą przedmiotem badań.
 
 \subsubsection{Działanie algorytmu}
 
-Poniżej znajduje się pseudokod algorytmu Dijkstry. Wykorzystuje on strukturę danych, jaką jest kolejka priorytetowa - została ona ujęta w pseudokodzie jako najpopularniejszy sposób implementowania tej logiki. Zastosowana w kodzie operacja $\operatorname{pobierzNajmniejszy}(Q)$ usuwa z~kolejki priorytetowej i~zwraca element o~najmniejszym kluczu, którym w~tym przypadku jest aktualnie znana odległość od~źródła. W praktyce krok związany z obsługą kolejki priorytetowej można zrealizować na wielu innych strukturach, takich jak tablica, lista, czy zbiór\footnote{Edsger Dijkstra, autor algorytmu, w~swoim artykule proponował zbiór\cite{dijkstra-1959-shortestpath}.}; a następnie przeszukać wybraną strukturę w poszukiwaniu wierzchołka o~najmniejszej odległości od źródła.
+Poniżej znajduje się pseudokod algorytmu Dijkstry. Wykorzystuje on strukturę danych, jaką jest kolejka priorytetowa - została ona ujęta w~pseudokodzie jako najpopularniejszy sposób implementowania tej logiki. Zastosowana w~kodzie operacja $\operatorname{pobierzNajmniejszy}(Q)$ usuwa z~kolejki priorytetowej i~zwraca element o~najmniejszym kluczu, którym w~tym przypadku jest aktualnie znana odległość od~źródła. W~praktyce krok związany z~obsługą kolejki priorytetowej można zrealizować na~wielu innych strukturach, takich jak tablica, lista, czy zbiór\footnote{Edsger Dijkstra, autor algorytmu, w~swoim artykule proponował zbiór\cite{dijkstra-1959-shortestpath}.}; a~następnie przeszukać wybraną strukturę w~poszukiwaniu wierzchołka o~najmniejszej odległości od~źródła.
 
 
 \begin{algorithm}[H]
@@ -199,20 +199,20 @@ W~pseudokodzie $s$ oznacza źródło, $N(u)$ zbiór sąsiadów wierzchołka $u$,
 
 \newpage
 
-Całkowity czas działania algorytmu Dijkstry wynika ze współdziałania dwóch zasadniczych operacji powtarzanych iteracyjnie:
+Całkowity czas działania algorytmu Dijkstry wynika ze~współdziałania dwóch zasadniczych operacji powtarzanych iteracyjnie:
 \begin{enumerate}
-  \item \textbf{Wybór wierzchołka o minimalnej odległości:} w~tablicy z~wyborem liniowym operacja ta wykonywana $|V|$ razy wymaga każdorazowo przeszukania $|V|$ pozycji, dając sumarycznie $|V| \times |V| = O(|V|^2)$ operacji. Zastosowanie kopca binarnego\footnote{Zastosowanie kopca adresowalnego z~operacją \textit{decrease-key} ogranicza liczbę pobrań do co najwyżej $|V|$ (koszt $O(|V|\log |V|)$) oraz redukuje pamięć pomocniczą kolejki do $O(|V|)$.} redukuje koszt pobrania do poziomu $O(\log |V|)$, przy czym z~kolejki pobieranych jest łącznie do $O(|V| + |E|)$\footnote{Składnik $|V|$ odpowiada liczbie rozwinięć właściwych wierzchołków osiągalnych ze źródła, natomiast składnik $|E|$ stanowi górne ograniczenie na liczbę zduplikowanych wpisów usuwanych leniwie.} wpisów przy leniwym usuwaniu duplikatów, co sumarycznie zajmuje do $O((|V| + |E|)\log |V|)$ czasu.
-  \item \textbf{Przegląd i relaksacja krawędzi wychodzących:} w~reprezentacji macierzowej sprawdzenie sąsiadów wierzchołka wymaga weryfikacji całego wiersza macierzy ($|V|$ elementów), co daje w~najgorszym przypadku koszt $O(|V|^2)$, niezależnie od liczby krawędzi. Z~kolei lista sąsiedztwa przechowuje wyłącznie istniejące połączenia. W~grafie skierowanym algorytm przegląda co najwyżej $|E|$ łuków; w~grafie nieskierowanym krawędź może wystąpić na listach obu swoich końców. Każda skuteczna relaksacja wiąże się ze wstawieniem wpisu do kopca w~czasie $O(\log |V|)$ (łącznie $O(|E|\log |V|)$).
+  \item \textbf{Wybór wierzchołka o~minimalnej odległości:} w~tablicy z~wyborem liniowym operacja ta wykonywana $|V|$ razy wymaga każdorazowo przeszukania $|V|$ pozycji, dając sumarycznie $|V| \times |V| = O(|V|^2)$ operacji. Zastosowanie kopca binarnego\footnote{Zastosowanie kopca adresowalnego z~operacją \textit{decrease-key} ogranicza liczbę pobrań do~co najwyżej $|V|$ (koszt $O(|V|\log |V|)$) oraz redukuje pamięć pomocniczą kolejki do~$O(|V|)$.} redukuje koszt pobrania do~poziomu $O(\log |V|)$, przy czym z~kolejki pobieranych jest łącznie do~$O(|V| + |E|)$\footnote{Składnik $|V|$ odpowiada liczbie rozwinięć właściwych wierzchołków osiągalnych ze~źródła, natomiast składnik $|E|$ stanowi górne ograniczenie na~liczbę zduplikowanych wpisów usuwanych leniwie.} wpisów przy leniwym usuwaniu duplikatów, co sumarycznie zajmuje do~$O((|V| + |E|)\log |V|)$ czasu.
+  \item \textbf{Przegląd i~relaksacja krawędzi wychodzących:} w~reprezentacji macierzowej sprawdzenie sąsiadów wierzchołka wymaga weryfikacji całego wiersza macierzy ($|V|$ elementów), co daje w~najgorszym przypadku koszt $O(|V|^2)$, niezależnie od~liczby krawędzi. Z~kolei lista sąsiedztwa przechowuje wyłącznie istniejące połączenia. W~grafie skierowanym algorytm przegląda co najwyżej $|E|$ łuków; w~grafie nieskierowanym krawędź może wystąpić na~listach obu swoich końców. Każda skuteczna relaksacja wiąże się ze~wstawieniem wpisu do~kopca w~czasie $O(\log |V|)$ (łącznie $O(|E|\log |V|)$).
 \end{enumerate}
 
-Zestawienie dwóch struktur reprezentacji grafu z dwoma mechanizmami kolejkowania prowadzi do czterech możliwych wariantów implementacyjnych, przedstawionych w Tabeli~\ref{tab:zlozonosc-dijkstry} \cite{geeksforgeeks-2025-dijkstracomplexity}. Analizę algorytmu i~wpływu struktury kolejki przedstawiono także w~\cite{sedgewick-nd-shortestpaths}:
+Zestawienie dwóch struktur reprezentacji grafu z~dwoma mechanizmami kolejkowania prowadzi do~czterech możliwych wariantów implementacyjnych, przedstawionych w~Tabeli~\ref{tab:zlozonosc-dijkstry} \cite{geeksforgeeks-2025-dijkstracomplexity}. Analizę algorytmu i~wpływu struktury kolejki przedstawiono także w~\cite{sedgewick-nd-shortestpaths}:
 \begin{itemize}
-  \item \textbf{Macierz sąsiedztwa i wybór liniowy:} obie fazy mają koszt $O(|V|^2)$, dając łączną złożoność $O(|V|^2)$, również dla grafów gęstych, w~których $|E| \approx |V|^2$.
-  \item \textbf{Lista sąsiedztwa i kopiec binarny:} eliminacja pustych przejść przez macierz oraz logarytmiczny koszt obsługi kolejki dają złożoność $O((|V|+|E|)\log |V|)$. Dla grafów rzadkich ($|E| \approx |V|$) otrzymuje się ograniczenie $O(|V|\log |V|)$, a~dla grafu pełnego ($|E| = \Theta(|V|^2)$) ograniczenie $O(|V|^2\log |V|)$. Są to oszacowania asymptotyczne, a~nie wyniki pomiarów.
-  \item \textbf{Kombinacje hybrydowe (macierz z kopcem oraz lista z wyborem liniowym):} dla macierzy i~kopca analiza uwzględnia koszt przeglądu macierzy oraz obsługi kopca ($O(|V|^2 + |E|\log |V|)$), natomiast dla listy z~wyborem liniowym koszt wynosi $O(|V|^2)$.
+  \item \textbf{Macierz sąsiedztwa i~wybór liniowy:} obie fazy mają koszt $O(|V|^2)$, dając łączną złożoność $O(|V|^2)$, również dla grafów gęstych, w~których $|E| \approx |V|^2$.
+  \item \textbf{Lista sąsiedztwa i~kopiec binarny:} eliminacja pustych przejść przez macierz oraz logarytmiczny koszt obsługi kolejki dają złożoność $O((|V|+|E|)\log |V|)$. Dla grafów rzadkich ($|E| \approx |V|$) otrzymuje się ograniczenie $O(|V|\log |V|)$, a~dla grafu pełnego ($|E| = \Theta(|V|^2)$) ograniczenie $O(|V|^2\log |V|)$. Są to oszacowania asymptotyczne, a~nie wyniki pomiarów.
+  \item \textbf{Kombinacje hybrydowe (macierz z~kopcem oraz lista z~wyborem liniowym):} dla macierzy i~kopca analiza uwzględnia koszt przeglądu macierzy oraz obsługi kopca ($O(|V|^2 + |E|\log |V|)$), natomiast dla listy z~wyborem liniowym koszt wynosi $O(|V|^2)$.
 \end{itemize}
 
-Pamięć dodatkowa dla wyboru liniowego wynosi $O(|V|)$ (tablice $d$, $\pi$ oraz tablica odwiedzonych), natomiast kopiec z~leniwym usuwaniem duplikatów mieści tymczasowo do $O(|E|)$ wpisów, ustalając pamięć pomocniczą na poziomie $O(|V| + |E|)$. Podobny wariant leniwy, w~którym kolejka może osiągnąć rozmiar proporcjonalny do liczby krawędzi, przedstawiono w~\cite{sedgewick-2025-lazydijkstra}.
+Pamięć dodatkowa dla wyboru liniowego wynosi $O(|V|)$ (tablice $d$, $\pi$ oraz tablica odwiedzonych), natomiast kopiec z~leniwym usuwaniem duplikatów mieści tymczasowo do~$O(|E|)$ wpisów, ustalając pamięć pomocniczą na~poziomie $O(|V| + |E|)$. Podobny wariant leniwy, w~którym kolejka może osiągnąć rozmiar proporcjonalny do~liczby krawędzi, przedstawiono w~\cite{sedgewick-2025-lazydijkstra}.
 
 \begin{table}[H]
   \centering
@@ -228,7 +228,7 @@ Pamięć dodatkowa dla wyboru liniowego wynosi $O(|V|)$ (tablice $d$, $\pi$ oraz
     Lista sąsiedztwa, kopiec binarny & $O((|V|+|E|)\log |V|)$ & $O(|V| + |E|)$ \\
     \bottomrule
   \end{tabularx}
-  \caption{Złożoność czasowa i pamięciowa algorytmu Dijkstry dla wszystkich kombinacji struktur.}
+  \caption{Złożoność czasowa i~pamięciowa algorytmu Dijkstry dla wszystkich kombinacji struktur.}
   \label{tab:zlozonosc-dijkstry}
 \end{table}
 
@@ -236,19 +236,19 @@ Pamięć dodatkowa dla wyboru liniowego wynosi $O(|V|)$ (tablice $d$, $\pi$ oraz
 
 \subsection{Algorytm Bellmana-Forda}
 
-Algorytm Bellmana-Forda (1955, 1956, 1958) to algorytm klasy SSSP \cite{stanford-2026-bellmanfordfloydwarshall}. Dla zadanego wierzchołka startowego $s$ w grafie $G$, oblicza on długość najkrótszych ścieżek do wszystkich pozostałych wierzchołków tego grafu.
+Algorytm Bellmana-Forda (1955, 1956, 1958) to algorytm klasy SSSP \cite{stanford-2026-bellmanfordfloydwarshall}. Dla zadanego wierzchołka startowego $s$ w~grafie $G$, oblicza on długość najkrótszych ścieżek do~wszystkich pozostałych wierzchołków tego grafu.
 
-Podstawą działania algorytmu jest operacja relaksacji krawędzi. Polega ona na sprawdzeniu, czy przejście do wierzchołka $v$ przez wierzchołek $u$ pozwala uzyskać mniejszy koszt niż dotychczas znana odległość do $v$. Takie sprawdzenie jest wykonywane dla każdej krawędzi $(u,v)$. Jeżeli tak, odległość zostaje zaktualizowana, a $u$ jest zapamiętywany jako poprzednik $v$ na aktualnie najkrótszej znanej ścieżce.
+Podstawą działania algorytmu jest operacja relaksacji krawędzi. Polega ona na~sprawdzeniu, czy przejście do~wierzchołka $v$ przez wierzchołek $u$ pozwala uzyskać mniejszy koszt niż dotychczas znana odległość do~$v$. Takie sprawdzenie jest wykonywane dla każdej krawędzi $(u,v)$. Jeżeli tak, odległość zostaje zaktualizowana, a~$u$ jest zapamiętywany jako poprzednik $v$ na~aktualnie najkrótszej znanej ścieżce.
 
-Algorytm wykonuje co najwyżej $|V|-1$ pełnych iteracji relaksacji; może zakończyć je wcześniej, jeśli w~danej iteracji nie nastąpiła żadna zmiana. Jest to wystarczająca liczba, ponieważ najkrótsza ścieżka bez powtarzających się wierzchołków może zawierać najwyżej $|V|-1$ krawędzi. Po zakończeniu iteracji algorytm ponownie sprawdza wszystkie krawędzie. Jeżeli możliwa jest jeszcze jakakolwiek aktualizacja odległości, oznacza to istnienie osiągalnego cyklu o~ujemnej wadze.
+Algorytm wykonuje co najwyżej $|V|-1$ pełnych iteracji relaksacji; może zakończyć je wcześniej, jeśli w~danej iteracji nie nastąpiła żadna zmiana. Jest to wystarczająca liczba, ponieważ najkrótsza ścieżka bez powtarzających się wierzchołków może zawierać najwyżej $|V|-1$ krawędzi. Po~zakończeniu iteracji algorytm ponownie sprawdza wszystkie krawędzie. Jeżeli możliwa jest jeszcze jakakolwiek aktualizacja odległości, oznacza to istnienie osiągalnego cyklu o~ujemnej wadze.
 
 \subsubsection{Ograniczenia}
 
-W przeciwieństwie do algorytmu Dijkstry, algorytm Bellmana-Forda obsługuje ujemne wagi krawędzi. Sama obecność ujemnej krawędzi nie ogranicza poprawności algorytmu; ograniczenie dotyczy cykli o~ujemnej wadze osiągalnych ze źródła. Jest to cykl, którego suma wag jest mniejsza od zera. Wielokrotne przechodzenie przez taki cykl pozwala zmniejszać koszt ścieżki bez ograniczenia. Algorytm może wykryć istnienie takiego cyklu, ale nie zwraca wówczas poprawnych skończonych odległości dla wierzchołków, które można z niego osiągnąć. Cykl o~ujemnej wadze, do którego nie można dotrzeć ze źródła $s$, nie wpływa na wyniki dla tego źródła.
+W~przeciwieństwie do~algorytmu Dijkstry, algorytm Bellmana-Forda obsługuje ujemne wagi krawędzi. Sama obecność ujemnej krawędzi nie ogranicza poprawności algorytmu; ograniczenie dotyczy cykli o~ujemnej wadze osiągalnych ze~źródła. Jest to cykl, którego suma wag jest mniejsza od~zera. Wielokrotne przechodzenie przez taki cykl pozwala zmniejszać koszt ścieżki bez ograniczenia. Algorytm może wykryć istnienie takiego cyklu, ale nie zwraca wówczas poprawnych skończonych odległości dla wierzchołków, które można z~niego osiągnąć. Cykl o~ujemnej wadze, do~którego nie można dotrzeć ze~źródła $s$, nie wpływa na~wyniki dla tego źródła.
 
-Głównym ograniczeniem algorytmu jest jednak jego wydajność. Dla listy krawędzi jego złożoność czasowa wynosi $O(|V||E|)$, ponieważ wszystkie krawędzie są analizowane w każdej iteracji. W przypadku macierzy sąsiedztwa sprawdzanie wszystkich możliwych par wierzchołków prowadzi do złożoności $O(|V|^3)$. Możliwe jest wcześniejsze zakończenie działania algorytmu. Jeżeli podczas pełnej iteracji nie zmieniła się żadna odległość, dalsze iteracje nie poprawią wyniku i algorytm może zakończyć pracę wcześniej.
+Głównym ograniczeniem algorytmu jest jednak jego wydajność. Dla listy krawędzi jego złożoność czasowa wynosi $O(|V||E|)$, ponieważ wszystkie krawędzie są analizowane w~każdej iteracji. W~przypadku macierzy sąsiedztwa sprawdzanie wszystkich możliwych par wierzchołków prowadzi do~złożoności $O(|V|^3)$. Możliwe jest wcześniejsze zakończenie działania algorytmu. Jeżeli podczas pełnej iteracji nie zmieniła się żadna odległość, dalsze iteracje nie poprawią wyniku i~algorytm może zakończyć pracę wcześniej.
 
-W przypadku grafu niespójnego odległość dla wierzchołków nieosiągalnych ze źródła pozostaje równa $\infty$. Wierzchołki te powinny również być pozbawione poprzednika, jeśli taka informacja jest zapisywana.
+W~przypadku grafu niespójnego odległość dla wierzchołków nieosiągalnych ze~źródła pozostaje równa $\infty$. Wierzchołki te powinny również być pozbawione poprzednika, jeśli taka informacja jest zapisywana.
 
 \newpage
 
@@ -303,7 +303,7 @@ W~pseudokodzie $s$ oznacza źródło, $w(u,v)$ wagę krawędzi, a~$d$ i~$\pi$ ta
     Macierz sąsiedztwa & $O(|V|^3)$ & $O(|V|)$ \\
     \bottomrule
   \end{tabularx}
-  \caption{Złożoność czasowa i pamięciowa alg. Bellmana--Forda dla wybranych reprezentacji grafu.}
+  \caption{Złożoność czasowa i~pamięciowa alg. Bellmana--Forda dla wybranych reprezentacji grafu.}
   \label{tab:zlozonosc-bellmana-forda}
 \end{table}
 
@@ -311,29 +311,29 @@ W~pseudokodzie $s$ oznacza źródło, $w(u,v)$ wagę krawędzi, a~$d$ i~$\pi$ ta
 
 \subsection{Algorytm A*}
 
-Algorytm A* (1968) \cite{hart-1968-heuristicpath} to algorytm klasy SPSP. Dla zadanego wierzchołka startowego $s$ oraz wierzchołka docelowego $t$ w grafie $G$, oblicza on najkrótszą ścieżkę między nimi, o~ile takowa istnieje. Algorytm znajduje szerokie zastosowanie m.in. w systemach nawigacyjnych i grach komputerowych.
+Algorytm A* (1968) \cite{hart-1968-heuristicpath} to algorytm klasy SPSP. Dla zadanego wierzchołka startowego $s$ oraz wierzchołka docelowego $t$ w~grafie $G$, oblicza on najkrótszą ścieżkę między nimi, o~ile takowa istnieje. Algorytm znajduje szerokie zastosowanie m.in. w~systemach nawigacyjnych i~grach komputerowych.
 
-Istotą algorytmu jest ukierunkowane przeszukiwanie grafu z wykorzystaniem heurystyki $h(v)$, czyli funkcji szacującej pozostały koszt dotarcia z wierzchołka $v$ do celu $t$. Podczas gdy algorytm Dijkstry bada wierzchołki koncentrycznie wyłącznie na podstawie dotychczas przebytej drogi $d[v]$, A* wybiera wierzchołki na podstawie łącznej funkcji oceny $f(v) = d[v] + h(v)$, reprezentującej przewidywany całkowity koszt ścieżki prowadzącej przez $v$. W~szczególnym przypadku, gdy dla każdego wierzchołka $h(v)=0$, algorytm działa według zasad algorytmu Dijkstry \cite{mit-2026-pathsearch}.
+Istotą algorytmu jest ukierunkowane przeszukiwanie grafu z~wykorzystaniem heurystyki $h(v)$, czyli funkcji szacującej pozostały koszt dotarcia z~wierzchołka $v$ do~celu $t$. Podczas gdy algorytm Dijkstry bada wierzchołki koncentrycznie wyłącznie na~podstawie dotychczas przebytej drogi $d[v]$, A* wybiera wierzchołki na~podstawie łącznej funkcji oceny $f(v) = d[v] + h(v)$, reprezentującej przewidywany całkowity koszt ścieżki prowadzącej przez $v$. W~szczególnym przypadku, gdy dla każdego wierzchołka $h(v)=0$, algorytm działa według zasad algorytmu Dijkstry \cite{mit-2026-pathsearch}.
 
-Postać heurystyki zależy od specyfiki problemu. Jeżeli wierzchołki odpowiadają punktom w przestrzeni, heurystyką może być odległość w odpowiedniej metryce: Manhattan (dla ruchu w czterech kierunkach o jednostkowym koszcie), Czebyszewa (dla ruchu w ośmiu kierunkach o jednostkowym koszcie) lub euklidesowa (gdy wagi krawędzi odpowiadają odległościom geometrycznym).
+Postać heurystyki zależy od~specyfiki problemu. Jeżeli wierzchołki odpowiadają punktom w~przestrzeni, heurystyką może być odległość w~odpowiedniej metryce: Manhattan (dla ruchu w~czterech kierunkach o~jednostkowym koszcie), Czebyszewa (dla ruchu w~ośmiu kierunkach o~jednostkowym koszcie) lub euklidesowa (gdy wagi krawędzi odpowiadają odległościom geometrycznym).
 
-Oprócz wyznaczenia minimalnego kosztu dojścia, algorytm rekonstruuje wierzchołkową postać ścieżki, odtwarzając sekwencję przejść wstecz od celu do źródła za pomocą zapamiętanych poprzedników.
+Oprócz wyznaczenia minimalnego kosztu dojścia, algorytm rekonstruuje wierzchołkową postać ścieżki, odtwarzając sekwencję przejść wstecz od~celu do~źródła za~pomocą zapamiętanych poprzedników.
 
 \subsubsection{Warunki poprawności heurystyki}
 
-Aby algorytm gwarantował znalezienie najkrótszej ścieżki, heurystyka musi być \textbf{dopuszczalna} (ang. \textit{admissible}). Oznacza to, że nie może ona przeszacowywać rzeczywistego minimalnego kosztu dojścia z wierzchołka $v$ do celu $t$, oznaczanego przez $d^*(v,t)$: \\ $0 \leq h(v) \leq d^*(v,t)$ dla każdego $v \in V$, przy czym $h(t) = 0$. Dopuszczalność jest warunkiem zapewniającym, że wyznaczona trasa do celu będzie optymalna.
+Aby algorytm gwarantował znalezienie najkrótszej ścieżki, heurystyka musi być \textbf{dopuszczalna} (ang. \textit{admissible}). Oznacza to, że nie może ona przeszacowywać rzeczywistego minimalnego kosztu dojścia z~wierzchołka $v$ do~celu $t$, oznaczanego przez $d^*(v,t)$: \\ $0 \leq h(v) \leq d^*(v,t)$ dla każdego $v \in V$, przy czym $h(t) = 0$. Dopuszczalność jest warunkiem zapewniającym, że wyznaczona trasa do~celu będzie optymalna.
 
-Silniejszą własnością jest \textbf{spójność} (monotoniczność) heurystyki \cite{mit-2026-pathsearch}. Wymaga ona, aby dla każdej krawędzi $(u,v)\in E$ zachodziła nierówność: $h(u) \leq w(u,v) + h(v)$. Nieujemna heurystyka spójna, dla której $h(t)=0$, jest dopuszczalna \cite{stanford-2023-searchconsistency}. Przy heurystyce spójnej w chwili przetworzenia danego wierzchołka jego odległość jest optymalna i ostateczna. Jeżeli heurystyka jest jedynie dopuszczalna, lecz niespójna, znalezienie krótszej drogi może wymagać ponownego rozpatrzenia wcześniej odwiedzonego wierzchołka.
+Silniejszą własnością jest \textbf{spójność} (monotoniczność) heurystyki \cite{mit-2026-pathsearch}. Wymaga ona, aby dla każdej krawędzi $(u,v)\in E$ zachodziła nierówność: $h(u) \leq w(u,v) + h(v)$. Nieujemna heurystyka spójna, dla której $h(t)=0$, jest dopuszczalna \cite{stanford-2023-searchconsistency}. Przy heurystyce spójnej w~chwili przetworzenia danego wierzchołka jego odległość jest optymalna i~ostateczna. Jeżeli heurystyka jest jedynie dopuszczalna, lecz niespójna, znalezienie krótszej drogi może wymagać ponownego rozpatrzenia wcześniej odwiedzonego wierzchołka.
 
-Szczególnym przypadkiem jest heurystyka idealna ($h = d^*$). Przy właściwym rozstrzyganiu remisów algorytm rozwija wówczas wyłącznie wierzchołki leżące na optymalnej ścieżce. 
+Szczególnym przypadkiem jest heurystyka idealna ($h = d^*$). Przy właściwym rozstrzyganiu remisów algorytm rozwija wówczas wyłącznie wierzchołki leżące na~optymalnej ścieżce.
 
 \subsubsection{Ograniczenia}
 
-Algorytm A* wymaga grafu o nieujemnych wagach krawędzi. Podobnie jak w algorytmie Dijkstry, obecność wag ujemnych unieważnia założenie o monotonicznym wzroście kosztu ścieżki i może prowadzić do błędnych wyników.
+Algorytm A* wymaga grafu o~nieujemnych wagach krawędzi. Podobnie jak w~algorytmie Dijkstry, obecność wag ujemnych unieważnia założenie o~monotonicznym wzroście kosztu ścieżki i~może prowadzić do~błędnych wyników.
 
-Zastosowanie heurystyki niedopuszczalnej pozbawia algorytm gwarancji optymalności. Ponadto efektywność metody zależy od jakości heurystyki: heurystyka słabo informacyjna (np. bliska zeru) może upodobnić przebieg wyszukiwania do algorytmu Dijkstry i~prowadzić do przetworzenia większej liczby wierzchołków.
+Zastosowanie heurystyki niedopuszczalnej pozbawia algorytm gwarancji optymalności. Ponadto efektywność metody zależy od~jakości heurystyki: heurystyka słabo informacyjna (np. bliska zeru) może upodobnić przebieg wyszukiwania do~algorytmu Dijkstry i~prowadzić do~przetworzenia większej liczby wierzchołków.
 
-Sformułowanie informacyjnej funkcji heurystycznej zwykle wymaga wiedzy dziedzinowej o~rozwiązywanym problemie. Może się to wiązać z~tym, że wierzchołek przechowuje pewne dane (np. współrzędne), które umożliwiają interpretację. W~abstrakcyjnych grafach, pozbawionych interpretacji, zdefiniowanie użytecznej i spójnej heurystyki bywa trudne; bez wiedzy dziedzinowej można jednak zastosować heurystykę zerową.
+Sformułowanie informacyjnej funkcji heurystycznej zwykle wymaga wiedzy dziedzinowej o~rozwiązywanym problemie. Może się to wiązać z~tym, że wierzchołek przechowuje pewne dane (np. współrzędne), które umożliwiają interpretację. W~abstrakcyjnych grafach, pozbawionych interpretacji, zdefiniowanie użytecznej i~spójnej heurystyki bywa trudne; bez wiedzy dziedzinowej można jednak zastosować heurystykę zerową.
 
 \subsubsection{Działanie algorytmu}
 
@@ -382,9 +382,9 @@ Sformułowanie informacyjnej funkcji heurystycznej zwykle wymaga wiedzy dziedzin
   \end{algorithmic}
 \end{algorithm}
 
-W~pseudokodzie $s$ i~$t$ oznaczają źródło i~cel, $d[v]$ dotychczasowy koszt dojścia do $v$, a~$h(v)$ oszacowanie kosztu do celu. Kolejka $Q$ porządkuje wierzchołki według sumy tych wartości; $\pi$ przechowuje poprzedników potrzebnych do odtworzenia ścieżki, zaś $d_{\mathrm{pr}}$ jest kosztem dojścia do sąsiada przez bieżący wierzchołek.
+W~pseudokodzie $s$ i~$t$ oznaczają źródło i~cel, $d[v]$ dotychczasowy koszt dojścia do~$v$, a~$h(v)$ oszacowanie kosztu do~celu. Kolejka $Q$ porządkuje wierzchołki według sumy tych wartości; $\pi$ przechowuje poprzedników potrzebnych do~odtworzenia ścieżki, zaś $d_{\mathrm{pr}}$ jest kosztem dojścia do~sąsiada przez bieżący wierzchołek.
 
-Kwestia złożoności algorytmu A* jest zależna od~jakości zastosowanej heurystyki oraz doboru struktur danych. W~przypadku heurystyki spójnej wierzchołki nie są re-ewaluowane, a~złożoność zależy od kombinacji reprezentacji grafu i~kolejki (analogicznie do analizy dla algorytmu Dijkstry). W~wariantach z~kopcem binarnym z~leniwym usuwaniem kolejka może tymczasowo mieścić do $O(|E|)$ wpisów, co daje pamięć pomocniczą $O(|V| + |E|)$. Przy heurystyce $h \equiv 0$ algorytm A* przetwarza wierzchołki według zasad algorytmu Dijkstry, jednak może zakończyć działanie po osiągnięciu celu, bez przeszukiwania całej osiągalnej części grafu.
+Kwestia złożoności algorytmu A* jest zależna od~jakości zastosowanej heurystyki oraz doboru struktur danych. W~przypadku heurystyki spójnej wierzchołki nie są re-ewaluowane, a~złożoność zależy od~kombinacji reprezentacji grafu i~kolejki (analogicznie do~analizy dla algorytmu Dijkstry). W~wariantach z~kopcem binarnym z~leniwym usuwaniem kolejka może tymczasowo mieścić do~$O(|E|)$ wpisów, co daje pamięć pomocniczą $O(|V| + |E|)$. Przy heurystyce $h \equiv 0$ algorytm A* przetwarza wierzchołki według zasad algorytmu Dijkstry, jednak może zakończyć działanie po~osiągnięciu celu, bez przeszukiwania całej osiągalnej części grafu.
 
 \begin{table}[H]
   \centering
@@ -400,7 +400,7 @@ Kwestia złożoności algorytmu A* jest zależna od~jakości zastosowanej heurys
     Heurystyka spójna (lista, kopiec binarny) & $O((|V|+|E|)\log |V|)$ & $O(|V| + |E|)$ \\
     \bottomrule
   \end{tabularx}
-  \caption{Złożoność czasowa i pamięciowa algorytmu A* przy spójnej heurystyce.}
+  \caption{Złożoność czasowa i~pamięciowa algorytmu A* przy spójnej heurystyce.}
   \label{tab:zlozonosc-a-star}
 \end{table}
 
@@ -412,22 +412,22 @@ Algorytm Floyda-Warshalla (1962) to algorytm klasy APSP \cite{stanford-2026-bell
 
 Algorytm realizuje ideę programowania dynamicznego. W~pierwszej swojej fazie buduje macierze~odległości i~poprzedników w~oparciu o~fakty, które można natychmiast ustalić. Są nimi:
 \begin{itemize}
-	\item ścieżki między danym wierzchołkiem a sobą samym (ścieżki o zerowym koszcie) - w tych ścieżkach taki wierzchołek sam jest swoim poprzednikiem.
-	\item ścieżki jednołukowe - łuk $(u, v)$ stanowi sam w sobie ścieżkę od $u$ do $v$, zatem stanowi punkt odniesienia dla późniejszych operacji algorytmu
+	\item ścieżki między danym wierzchołkiem a~sobą samym (ścieżki o~zerowym koszcie) - w~tych ścieżkach taki wierzchołek sam jest swoim poprzednikiem.
+	\item ścieżki jednołukowe - łuk $(u, v)$ stanowi sam w~sobie ścieżkę od~$u$ do~$v$, zatem stanowi punkt odniesienia dla późniejszych operacji algorytmu
 \end{itemize}
-Inne wierzchołki pozostają bez poprzedników, a ścieżki między wierzchołkami źródłowymi a nimi mają początkową długość nieskończoną. 
+Inne wierzchołki pozostają bez poprzedników, a~ścieżki między wierzchołkami źródłowymi a~nimi mają początkową długość nieskończoną.
 
-W drugiej fazie algorytmu, w pętli potrójnie zagnieżdżonej po wierzchołkach: $k$, $i$, $j$, algorytm ma na celu poprawić wyniki na podstawie początkowych założeń. Wierzchołek $k$ stanowi punkt podziału ścieżki $(i, j)$, tak, że jeżeli ścieżka $(i, k, j)$ ma koszt niższy niż dotychczas znana najkrótsza ścieżka od $i$ do $j$, wówczas jej wartość jest aktualizowana o sumę kosztu ścieżki $(i, k)$ oraz $(k, j)$. W~ten sposób koszty znajdowanych ścieżek ulegają poprawie. W~przypadku braku którejś ze ścieżek składowych, jej koszt wynosi $\infty$ na mocy ustaleń z~fazy pierwszej, dzięki czemu nierówność nie zostanie spełniona.
+W~drugiej fazie algorytmu, w~pętli potrójnie zagnieżdżonej po~wierzchołkach: $k$, $i$, $j$, algorytm ma na~celu poprawić wyniki na~podstawie początkowych założeń. Wierzchołek $k$ stanowi punkt podziału ścieżki $(i, j)$, tak, że jeżeli ścieżka $(i, k, j)$ ma koszt niższy niż dotychczas znana najkrótsza ścieżka od~$i$ do~$j$, wówczas jej wartość jest aktualizowana o~sumę kosztu ścieżki $(i, k)$ oraz $(k, j)$. W~ten sposób koszty znajdowanych ścieżek ulegają poprawie. W~przypadku braku którejś ze~ścieżek składowych, jej koszt wynosi $\infty$ na~mocy ustaleń z~fazy pierwszej, dzięki czemu nierówność nie zostanie spełniona.
 
-Po zakończeniu pracy algorytmu, w~oparciu o~macierz poprzedników można odtworzyć dowolną znalezioną ścieżkę.
+Po~zakończeniu pracy algorytmu, w~oparciu o~macierz poprzedników można odtworzyć dowolną znalezioną ścieżkę.
 
 \subsubsection{Ograniczenia}
 
-Algorytm jest kompatybilny z~grafami ważonymi zawierającymi ujemne wagi. Ponadto, posiada mechanizm wykrywania cykli ujemnych. Jeśli dla pewnego wierzchołka $i$ nierówność $d[i][i] < 0$ jest prawdziwa, wówczas w grafie istnieje cykl ujemny. Jeśli ma to miejsce, wówczas nie należy korzystać z macierzy poprzedników do rekonstrukcji ścieżki.
+Algorytm jest kompatybilny z~grafami ważonymi zawierającymi ujemne wagi. Ponadto, posiada mechanizm wykrywania cykli ujemnych. Jeśli dla pewnego wierzchołka $i$ nierówność $d[i][i] < 0$ jest prawdziwa, wówczas w~grafie istnieje cykl ujemny. Jeśli ma to miejsce, wówczas nie należy korzystać z~macierzy poprzedników do~rekonstrukcji ścieżki.
 
-Algorytm ma również dość wysoką złożoność obliczeniową (sześcienną). Oznacza to, że jego zastosowanie do bardzo dużych grafów może powodować problemy z wydajnością.
+Algorytm ma również dość wysoką złożoność obliczeniową (sześcienną). Oznacza to, że jego zastosowanie do~bardzo dużych grafów może powodować problemy z~wydajnością.
 
-Algorytm jest skonstruowany ściśle pod reprezentację macierzową grafu, z wykorzystaniem podwójnej i potrójnej iteracji. Zastosowanie listy sąsiedztwa może się okazać niewydajne. Macierz w dużo prostszy sposób umożliwia dostęp losowy.
+Algorytm jest skonstruowany ściśle pod reprezentację macierzową grafu, z~wykorzystaniem podwójnej i~potrójnej iteracji. Zastosowanie listy sąsiedztwa może się okazać niewydajne. Macierz w~dużo prostszy sposób umożliwia dostęp losowy.
 
 \newpage
 
@@ -476,7 +476,7 @@ Poniżej przedstawiono pseudokod algorytmu Floyda--Warshalla. Algorytm wyznacza 
 Wyznaczona macierz poprzedników $\pi$ umożliwia opcjonalne odtworzenie sekwencji wierzchołków najkrótszej ścieżki pomiędzy dowolną wybraną parą wierzchołków $u, v \in V$. Rekonstrukcję tę realizuje Algorytm~\ref{alg:floyd-warshall-reconstruction}.
 
 \begin{algorithm}[H]
-  \caption{Odtwarzanie ścieżki na podstawie macierzy poprzedników}
+  \caption{Odtwarzanie ścieżki na~podstawie macierzy poprzedników}
   \label{alg:floyd-warshall-reconstruction}
   \small
   \begin{algorithmic}[1]
@@ -494,9 +494,9 @@ Wyznaczona macierz poprzedników $\pi$ umożliwia opcjonalne odtworzenie sekwenc
   \end{algorithmic}
 \end{algorithm}
 
-Macierze $d$ i~$\pi$ przechowują odpowiednio dotychczasowe odległości oraz poprzedników na ścieżkach. Indeksy $i$, $j$ i~$k$ oznaczają wierzchołki, przy czym $k$ jest rozważanym wierzchołkiem pośrednim. W~procedurze odtwarzania $u$ i~$v$ oznaczają początek i~koniec ścieżki.
+Macierze $d$ i~$\pi$ przechowują odpowiednio dotychczasowe odległości oraz poprzedników na~ścieżkach. Indeksy $i$, $j$ i~$k$ oznaczają wierzchołki, przy czym $k$ jest rozważanym wierzchołkiem pośrednim. W~procedurze odtwarzania $u$ i~$v$ oznaczają początek i~koniec ścieżki.
 
-Pierwsza faza algorytmu ma złożoność kwadratową, związaną z przeglądem macierzy. Druga faza to iteracja potrójnie zagnieżdżona - stąd złożoność sześcienna. Rekonstrukcja ścieżki ma~złożoność zależną liniowo od~liczby wierzchołków.
+Pierwsza faza algorytmu ma złożoność kwadratową, związaną z~przeglądem macierzy. Druga faza to iteracja potrójnie zagnieżdżona - stąd złożoność sześcienna. Rekonstrukcja ścieżki ma~złożoność zależną liniowo od~liczby wierzchołków.
 
 \begin{table}[H]
   \centering
@@ -510,36 +510,36 @@ Pierwsza faza algorytmu ma złożoność kwadratową, związaną z przeglądem m
     Odtworzenie ścieżki (dla pary $u,v$) & $O(|V|)$ & $O(|V|)$ \\
     \bottomrule
   \end{tabularx}
-  \caption{Złożoność czasowa i pamięciowa algorytmu Floyda--Warshalla oraz procedury odtwarzania ścieżki.}
+  \caption{Złożoność czasowa i~pamięciowa algorytmu Floyda--Warshalla oraz procedury odtwarzania ścieżki.}
   \label{tab:zlozonosc-floyda-warshalla}
 \end{table}
 
 \reportchapter{Plan prac}
 
-Celem projektu jest zaimplementowanie czterech algorytmów, a następnie porównanie ich w kontekście realizacji swoich zadań. Warto przypomnieć, że realizują one różne typy zadań: Dijkstra, Bellman-Ford $\rightarrow$ SSSP, A* $\rightarrow$ SPSP oraz Floyd-Warshall $\rightarrow$ APSP. Warto także przypomnieć o swego rodzaju potencjalnym \glqq zawieraniu się\grqq{} rozwiązania problemu SPSP w~rozwiązaniu problemu SSSP, które z~kolei może stanowić część rozwiązania problemu APSP. Istnieje zatem sens porównywania tych algorytmów ze~sobą pod~kątem wydajności obliczeniowej i~pamięciowej, tak długo, jak pozostaje się świadomym, w~jakiej relacji z~pozostałymi problemami jest problem rozwiązywany przez algorytm.
+Celem projektu jest zaimplementowanie czterech algorytmów, a~następnie porównanie ich w~kontekście realizacji swoich zadań. Warto przypomnieć, że realizują one różne typy zadań: Dijkstra, Bellman-Ford $\rightarrow$ SSSP, A* $\rightarrow$ SPSP oraz Floyd-Warshall $\rightarrow$ APSP. Warto także przypomnieć o~swego rodzaju potencjalnym \glqq zawieraniu się\grqq{} rozwiązania problemu SPSP w~rozwiązaniu problemu SSSP, które z~kolei może stanowić część rozwiązania problemu APSP. Istnieje zatem sens porównywania tych algorytmów ze~sobą pod~kątem wydajności obliczeniowej i~pamięciowej, tak długo, jak pozostaje się świadomym, w~jakiej relacji z~pozostałymi problemami jest problem rozwiązywany przez algorytm.
 
-Podstawowym celem eksperymentów jest określenie wpływu parametrów grafu - rozmiaru\footnote{Rozmiar grafu to liczba jego wierzchołków: $|V|$.}, gęstości\footnote{Gęstość grafu G ($\rho_G$) to~stosunek liczby łuków/krawędzi w~tym grafie do~maksymalnej ich liczby dla~danego rozmiaru grafu, często wyrażany w procentach.} oraz~rodzajów wag - na~wydajność obliczeniową i~pamięciową implementacji algorytmów. Badane algorytmy, poza algorytmem Floyda-Warshalla, mogą zostać zaimplementowane w~oparciu o~macierz sąsiedztwa bądź~o~listę sąsiedztwa. W takich przypadkach, oba warianty powinny zostać poddane osobnej analizie i~porównane.
+Podstawowym celem eksperymentów jest określenie wpływu parametrów grafu - rozmiaru\footnote{Rozmiar grafu to liczba jego wierzchołków: $|V|$.}, gęstości\footnote{Gęstość grafu G ($\rho_G$) to~stosunek liczby łuków/krawędzi w~tym grafie do~maksymalnej ich liczby dla~danego rozmiaru grafu, często wyrażany w~procentach.} oraz~rodzajów wag - na~wydajność obliczeniową i~pamięciową implementacji algorytmów. Badane algorytmy, poza algorytmem Floyda-Warshalla, mogą zostać zaimplementowane w~oparciu o~macierz sąsiedztwa bądź~o~listę sąsiedztwa. W~takich przypadkach, oba warianty powinny zostać poddane osobnej analizie i~porównane.
 
-Oprócz ogólnych eksperymentów wydajnościowych, przewidziane są także testy i~eksperymenty w ramach pytań badawczych postawionych przez autora.
+Oprócz ogólnych eksperymentów wydajnościowych, przewidziane są także testy i~eksperymenty w~ramach pytań badawczych postawionych przez autora.
 
 \section{Pytania badawcze}
 \label{sec:pytania-badawcze}
 
-Autor zdecydował się na realizację poniższych pytań badawczych w czasie dalszej realizacji projektu:
+Autor zdecydował się na~realizację poniższych pytań badawczych w~czasie dalszej realizacji projektu:
 \begin{itemize}
-	\item \textbf{PB1} - Czy kolejność przetwarzania krawędzi w algorytmie Bellmana-Forda wpływa na~szybkość zbieżności algorytmu?
-	\item \textbf{PB2} - W jakich warunkach wielokrotne uruchomienie algorytmu Dijkstry jest wydajniejsze od~algorytmu Floyda–Warshalla przy obliczaniu najkrótszych ścieżek dla wszystkich par?
+	\item \textbf{PB1} - Czy kolejność przetwarzania krawędzi w~algorytmie Bellmana-Forda wpływa na~szybkość zbieżności algorytmu?
+	\item \textbf{PB2} - W~jakich warunkach wielokrotne uruchomienie algorytmu Dijkstry jest wydajniejsze od~algorytmu Floyda–Warshalla przy obliczaniu najkrótszych ścieżek dla wszystkich par?
 \end{itemize}
 
-Problem PB1 pochyli się nad fragmentem algorytmu Bellmana-Forda, który w pseudokodzie został ujęty od~linii 6, w~której mieści się iteracja po~krawędziach. Dla każdego łuku sprawdza się, czy określono już długość pewnej ścieżki do poprzednika, a~także czy długość tej ścieżki zwiększona o~koszt tego łuku jest mniejszy od dotychczasowej długości (być może nieskończonej) ścieżki do następnika tej krawędzi. Jeśli ten warunek zostanie spełniony, wówczas aktualizuje się macierze długości ścieżek oraz poprzedników na rzecz znalezionej właśnie lepszej opcji. Od tego momentu, nawet w~ramach obecnej iteracji pętli głównej wykonywanej $|V| - 1$ razy, zmiana jest widoczna i~może wpłynąć na produktywność sprawdzenia dla pozostałych krawędzi. Stąd podejrzenie, że~kolejność przeglądu krawędzi może mieć wpływ na jego wydajność.
+Problem PB1 pochyli się nad fragmentem algorytmu Bellmana-Forda, który w~pseudokodzie został ujęty od~linii 6, w~której mieści się iteracja po~krawędziach. Dla każdego łuku sprawdza się, czy określono już długość pewnej ścieżki do~poprzednika, a~także czy długość tej ścieżki zwiększona o~koszt tego łuku jest mniejszy od~dotychczasowej długości (być może nieskończonej) ścieżki do~następnika tej krawędzi. Jeśli ten warunek zostanie spełniony, wówczas aktualizuje się macierze długości ścieżek oraz poprzedników na~rzecz znalezionej właśnie lepszej opcji. Od~tego momentu, nawet w~ramach obecnej iteracji pętli głównej wykonywanej $|V| - 1$ razy, zmiana jest widoczna i~może wpłynąć na~produktywność sprawdzenia dla pozostałych krawędzi. Stąd podejrzenie, że~kolejność przeglądu krawędzi może mieć wpływ na~jego wydajność.
 
-Intuicja stojąca za problemem PB2 polega na spostrzeżeniu, którego dokonano opisując złożoność algorytmu Dijkstry. Zauważono, że wariant algorytmu z~listą sąsiedztwa i kopcem binarnym może zmieniać swoją wydajność wraz z gęstością grafu. Im bardziej liczba krawędzi jest mała i bliska liczbie wierzchołków: $|E| \approx |V|$, czyli graf jest grafem rzadkim, tym bardziej złożoność, która typowo to $O((|V| + |E|)\log |V|)$, można zredukować $O(|V|\log |V|)$. Jednocześnie, im liczba krawędzi takiego grafu jest bliższa grafowi pełnemu $|E| \approx |V|^2$, czyli graf jest grafem gęstym, wówczas złożoność może stać się $O(|V|^2 \log |V|)$. Powtórzone $|V|$-krotnie, złożoności te można określić jako: 
+Intuicja stojąca za~problemem PB2 polega na~spostrzeżeniu, którego dokonano opisując złożoność algorytmu Dijkstry. Zauważono, że wariant algorytmu z~listą sąsiedztwa i~kopcem binarnym może zmieniać swoją wydajność wraz z~gęstością grafu. Im bardziej liczba krawędzi jest mała i~bliska liczbie wierzchołków: $|E| \approx |V|$, czyli graf jest grafem rzadkim, tym bardziej złożoność, która typowo to $O((|V| + |E|)\log |V|)$, można zredukować $O(|V|\log |V|)$. Jednocześnie, im liczba krawędzi takiego grafu jest bliższa grafowi pełnemu $|E| \approx |V|^2$, czyli graf jest grafem gęstym, wówczas złożoność może stać się $O(|V|^2 \log |V|)$. Powtórzone $|V|$-krotnie, złożoności te można określić jako:
 \begin{itemize}
-	\item $O(|V|(|V|+|E|)\log |V|)$ w typowym przypadku;
-	\item $O(|V|^2 \log |V|)$ w przypadku grafu rzadkiego;
-	\item $O(|V|^3 \log |V|)$ w przypadku grafu gęstego.
+	\item $O(|V|(|V|+|E|)\log |V|)$ w~typowym przypadku;
+	\item $O(|V|^2 \log |V|)$ w~przypadku grafu rzadkiego;
+	\item $O(|V|^3 \log |V|)$ w~przypadku grafu gęstego.
 \end{itemize} 
-W przypadku algorytmu Floyda-Warshalla, złożoność obliczeniowa niezmiennie wynosi $O(|V|^3)$. Sugeruje to, że gęstość grafu może mieć wpływ na to, który algorytm lepiej w~danym kontekście zastosować.
+W~przypadku algorytmu Floyda-Warshalla, złożoność obliczeniowa niezmiennie wynosi $O(|V|^3)$. Sugeruje to, że gęstość grafu może mieć wpływ na~to, który algorytm lepiej w~danym kontekście zastosować.
 
 % ## Dwie decyzje metodologiczne, które szczególnie polecam
 % Pierwsza: rozdziel porównanie wydajności algorytmów od porównania zakresu wykonywanej pracy. Przykładowo, dla problemu pojedynczej pary możesz porównać A* z Dijkstrą zatrzymywaną po ustaleniu odległości celu. Dla SSSP możesz porównać Dijkstrę z Bellmanem–Fordem. Dla APSP możesz zestawić Floyda–Warshalla z wielokrotnym uruchomieniem Dijkstry na grafach o nieujemnych wagach. To jest znacznie bardziej obronne metodologicznie niż zestawienie czterech dowolnych czasów.
@@ -557,11 +557,11 @@ W przypadku algorytmu Floyda-Warshalla, złożoność obliczeniowa niezmiennie w
 }
 \end{center}
 
-Aby uzyskać wiarygodne pomiary, należy ustalić maksymalnie jednolite podejście do generowania grafów. Ponieważ projekt dotyczy zagadnienia poszukiwania najkrótszej ścieżki w~grafie, najbardziej naturalnym wyborem zdaje się generowanie digrafów, a~zatem grafów skierowanych\footnote{Grafy nieskierowane można przedstawić za~pomocą grafów skierowanych, w~których każdy łuk $(u, v)$ o~wadze $w$ ma także w $A$ odpowiadający mu jeden i~tylko jeden łuk $(v, u)$, o~takiej samej wadze.}. Grafy te nie będą zawierać pętli\footnote{Pętla, zwana także pętlą własną, to krawędź lub łuk w grafie, który łączy dany wierzchołek z nim samym.}.
+Aby uzyskać wiarygodne pomiary, należy ustalić maksymalnie jednolite podejście do~generowania grafów. Ponieważ projekt dotyczy zagadnienia poszukiwania najkrótszej ścieżki w~grafie, najbardziej naturalnym wyborem zdaje się generowanie digrafów, a~zatem grafów skierowanych\footnote{Grafy nieskierowane można przedstawić za~pomocą grafów skierowanych, w~których każdy łuk $(u, v)$ o~wadze $w$ ma także w~$A$ odpowiadający mu jeden i~tylko jeden łuk $(v, u)$, o~takiej samej wadze.}. Grafy te nie będą zawierać pętli\footnote{Pętla, zwana także pętlą własną, to krawędź lub łuk w~grafie, który łączy dany wierzchołek z~nim samym.}.
 
-Podstawowymi parametrami, które należy ustalić podczas generowania grafu, są: wierzchołki (ich liczba, oznaczająca rozmiar grafu), łuki (ich liczba, związana bezpośrednio z gęstością grafu) oraz wagi. Ponieważ do generowania zostanie wykorzystana pseudolosowość, należy zadbać o~to, by dla danej konfiguracji (rozmiar, gęstość) początkowo założyć próbę rzędu tysiąca grafów, a~jej liczebność zweryfikować w~badaniach pilotażowych. Grafy w~takiej próbie będą miały ten sam rozmiar i~tę samą liczbę łuków odpowiadającą gęstości docelowej, natomiast ich wagi i~topologia mogą się różnić.
+Podstawowymi parametrami, które należy ustalić podczas generowania grafu, są: wierzchołki (ich liczba, oznaczająca rozmiar grafu), łuki (ich liczba, związana bezpośrednio z~gęstością grafu) oraz wagi. Ponieważ do~generowania zostanie wykorzystana pseudolosowość, należy zadbać o~to, by dla danej konfiguracji (rozmiar, gęstość) początkowo założyć próbę rzędu tysiąca grafów, a~jej liczebność zweryfikować w~badaniach pilotażowych. Grafy w~takiej próbie będą miały ten sam rozmiar i~tę samą liczbę łuków odpowiadającą gęstości docelowej, natomiast ich wagi i~topologia mogą się różnić.
 
-Istotne jest to, w~jaki sposób należy generować wagi. Ze względu na to, że nie każdy algorytm wspiera ujemne wagi, należy zapewnić, by wagi generowanych grafów były nieujemne. Jednak sam ten fakt nie wystarczy do~określenia informacyjnej heurystyki dla algorytmu A*. Bez wiedzy dziedzinowej i~dodatkowych informacji o~interpretacji grafu jej skonstruowanie może być trudne. Aby rozwiązać ten problem, autor proponuje podejście oparte o~przypisanie każdemu wierzchołkowi unikalnych współrzędnych. Następnie, należy wygenerować łuki między wybranymi wierzchołkami. Ich liczbę wyznacza się na podstawie gęstości docelowej, zaokrąglając wynik w~górę do liczby całkowitej; rzeczywista gęstość może więc nieznacznie różnić się od docelowej. Waga łuku jest z~kolei zależna od odległości między współrzędnymi dwóch jego wierzchołków, z~losowanym niezależnie dla każdego łuku współczynnikiem skalującym $c_{uv}$. Poglądowy algorytm generowania został opisany jako algorytm \ref{alg:generator-grafow}.
+Istotne jest to, w~jaki sposób należy generować wagi. Ze~względu na~to, że nie każdy algorytm wspiera ujemne wagi, należy zapewnić, by wagi generowanych grafów były nieujemne. Jednak sam ten fakt nie wystarczy do~określenia informacyjnej heurystyki dla algorytmu A*. Bez wiedzy dziedzinowej i~dodatkowych informacji o~interpretacji grafu jej skonstruowanie może być trudne. Aby rozwiązać ten problem, autor proponuje podejście oparte o~przypisanie każdemu wierzchołkowi unikalnych współrzędnych. Następnie, należy wygenerować łuki między wybranymi wierzchołkami. Ich liczbę wyznacza się na~podstawie gęstości docelowej, zaokrąglając wynik w~górę do~liczby całkowitej; rzeczywista gęstość może więc nieznacznie różnić się od~docelowej. Waga łuku jest z~kolei zależna od~odległości między współrzędnymi dwóch jego wierzchołków, z~losowanym niezależnie dla każdego łuku współczynnikiem skalującym $c_{uv}$. Poglądowy algorytm generowania został opisany jako algorytm \ref{alg:generator-grafow}.
 
 \begin{algorithm}[H]
   \caption{Generowanie próby losowych grafów skierowanych}
@@ -616,19 +616,19 @@ Istotne jest to, w~jaki sposób należy generować wagi. Ze względu na to, że
     $\operatorname{losujJednostajnie}(a, b)$ & Losowanie liczby z ciągłego rozkładu jednostajnego $U(a, b)$. \\
     \bottomrule
   \end{tabularx}
-  \caption{Oznaczenia użyte w pseudokodzie generatora grafów testowych.}
+  \caption{Oznaczenia użyte w~pseudokodzie generatora grafów testowych.}
   \label{tab:oznaczenia-generatora}
 \end{table}
 
-W linii 3, algorytm opiera wartość rozmiaru boku kwadratowej siatki współrzędnych na trzykrotności pierwiastka z~docelowej liczby wierzchołków. Zabieg ten ma zapewnić zróżnicowanie przestrzenne grafu. Ze względu na zaokrąglenie w~górę liczba punktów siatki spełnia $L^2 \ge 9n_G$, zatem zajętych zostanie co najwyżej $\frac{1}{9}$, czyli około $11{,}1\%$ punktów. Wyborem alternatywnym mógłby być współczynnik 2, przy którym zajętych zostałoby co najwyżej $\frac{1}{4}$ punktów siatki; mniejsza siatka może sprzyjać mniejszym odległościom między wierzchołkami\footnote{W~trakcie implementacji autor zastrzega sobie możliwość zmiany współczynnika w~oparciu o~empiryczne badanie jakości generowanych próbek.}.
+W~linii 3, algorytm opiera wartość rozmiaru boku kwadratowej siatki współrzędnych na~trzykrotności pierwiastka z~docelowej liczby wierzchołków. Zabieg ten ma zapewnić zróżnicowanie przestrzenne grafu. Ze~względu na~zaokrąglenie w~górę liczba punktów siatki spełnia $L^2 \ge 9n_G$, zatem zajętych zostanie co najwyżej $\frac{1}{9}$, czyli około $11{,}1\%$ punktów. Wyborem alternatywnym mógłby być współczynnik 2, przy którym zajętych zostałoby co najwyżej $\frac{1}{4}$ punktów siatki; mniejsza siatka może sprzyjać mniejszym odległościom między wierzchołkami\footnote{W~trakcie implementacji autor zastrzega sobie możliwość zmiany współczynnika w~oparciu o~empiryczne badanie jakości generowanych próbek.}.
 
-W~odniesieniu do algorytmu A*, generowanie wag na~podstawie faktycznego umiejscowienia przestrzennego wierzchołków jest istotne z~punktu widzenia heurystyki. Dzięki przyjęciu współczynnika $c \ge 1$, waga każdego łuku spełnia warunek $w(u, v) = \lceil c \cdot d_E \rceil \ge d_E(u, v)$. Gwarantuje to, że odległość euklidesowa do~celu $h(v) = d_E(v, t)$ jest dla algorytmu A* heurystyką dopuszczalną i~spójną (nigdy nie~przeszacowuje rzeczywistego kosztu trasy).
+W~odniesieniu do~algorytmu A*, generowanie wag na~podstawie faktycznego umiejscowienia przestrzennego wierzchołków jest istotne z~punktu widzenia heurystyki. Dzięki przyjęciu współczynnika $c \ge 1$, waga każdego łuku spełnia warunek $w(u, v) = \lceil c \cdot d_E \rceil \ge d_E(u, v)$. Gwarantuje to, że odległość euklidesowa do~celu $h(v) = d_E(v, t)$ jest dla algorytmu A* heurystyką dopuszczalną i~spójną (nigdy nie~przeszacowuje rzeczywistego kosztu trasy).
 
-Dopuszczalne jest wygenerowanie grafu niespójnego, bowiem wszystkie cztery rozważane algorytmy, poprawnie zaimplementowane, powinny być w~stanie obsłużyć tę sytuację. Przy odpowiednio dużej próbie wystąpienie takiej sytuacji nie powinno stwarzać problemów w~szerszej perspektywie. Prawdopodobieństwo spójności zależy od relacji między $n_G$ a~$\rho_G$: przy ustalonej gęstości procentowej wraz ze wzrostem liczby wierzchołków rośnie średni stopień wyjściowy $\rho_G(n_G - 1)$, co sprzyja spójności większych struktur. 
+Dopuszczalne jest wygenerowanie grafu niespójnego, bowiem wszystkie cztery rozważane algorytmy, poprawnie zaimplementowane, powinny być w~stanie obsłużyć tę sytuację. Przy odpowiednio dużej próbie wystąpienie takiej sytuacji nie powinno stwarzać problemów w~szerszej perspektywie. Prawdopodobieństwo spójności zależy od~relacji między $n_G$ a~$\rho_G$: przy ustalonej gęstości procentowej wraz ze~wzrostem liczby wierzchołków rośnie średni stopień wyjściowy $\rho_G(n_G - 1)$, co sprzyja spójności większych struktur.
 
 Eksperymenty wydajnościowe oraz generowane dlań grafy powinny być powtarzalne. Istotne jest zatem skojarzenie każdej próby z~ziarnem generatora pseudolosowego. Ponowne użycie tego samego ziarna odtworzy ten sam ciąg wartości pseudolosowych przy tym samym generatorze; wraz z~zachowaniem parametrów i~procedury generowania umożliwi to odtworzenie próby.
 
-Tam, gdzie przeprowadzane będą testy z~weryfikacją odręczną, bądź testy przypadków szczególnych, grafy zostaną przygotowane z uwzględnieniem specjalnych potrzeb danego testu. Grafy pod te testy zostaną ustalone, w~imię powtarzalności testów, a zatem nie~będą generowane każdorazowo, losowo - o~ich rozmiarach i~topologii zadecydują potrzeby przeprowadzanych testów.
+Tam, gdzie przeprowadzane będą testy z~weryfikacją odręczną, bądź testy przypadków szczególnych, grafy zostaną przygotowane z~uwzględnieniem specjalnych potrzeb danego testu. Grafy pod te testy zostaną ustalone, w~imię powtarzalności testów, a~zatem nie~będą generowane każdorazowo, losowo - o~ich rozmiarach i~topologii zadecydują potrzeby przeprowadzanych testów.
 
 
 
@@ -647,7 +647,7 @@ Tam, gdzie przeprowadzane będą testy z~weryfikacją odręczną, bądź testy p
 }
 \end{center}
 
-Aby móc rzetelnie porównać algorytmy, należy zadbać o~to, aby ich implementacje odzwierciedlały różne rozważane wcześniej warianty i~podjęte decyzje implementacyjne, które mogą prowadzić do różnic w~wydajności w~zależności od grafu przetwarzanego przez daną implementację. Uwzględnienie różnych implementacji pozwoli zaobserwować wpływ wybranych decyzji implementacyjnych na wyniki. Przewidziano łącznie 11 standardowych implementacji.
+Aby móc rzetelnie porównać algorytmy, należy zadbać o~to, aby ich implementacje odzwierciedlały różne rozważane wcześniej warianty i~podjęte decyzje implementacyjne, które mogą prowadzić do~różnic w~wydajności w~zależności od~grafu przetwarzanego przez daną implementację. Uwzględnienie różnych implementacji pozwoli zaobserwować wpływ wybranych decyzji implementacyjnych na~wyniki. Przewidziano łącznie 11 standardowych implementacji.
 
 \begin{itemize}
 	\item Algorytm Dijkstry 
@@ -672,9 +672,9 @@ Aby móc rzetelnie porównać algorytmy, należy zadbać o~to, aby ich implement
 	\item Algorytm Floyda-Warshalla
 \end{itemize}
 
-Chociaż przewidziane są 4~implementacje algorytmu A*, każda z~nich zostanie zbadana w~5 wariantach skalowania dopuszczalnej heurystyki euklidesowej: $h_\alpha(v, t) = \alpha \cdot d_E(v, t)$ dla $\alpha \in \{1{,}00; \; 0{,}75; \; 0{,}50; \; 0{,}25; \; 0{,}00\}$ (od pełnej heurystyki euklidesowej 100\% po heurystykę zerową 0\%). Zatem łącznie algorytm A* będzie reprezentowany przez 4~implementacje $\times$ 5~wariantów heurystyki, a~zatem 20 pozycji pomiarowych. Nie oznacza to 20 różnych implementacji w~kodzie, bowiem parametr ten jest jedynie współczynnikiem skalującym funkcję heurystyczną.
+Chociaż przewidziane są 4~implementacje algorytmu A*, każda z~nich zostanie zbadana w~5 wariantach skalowania dopuszczalnej heurystyki euklidesowej: $h_\alpha(v, t) = \alpha \cdot d_E(v, t)$ dla $\alpha \in \{1{,}00; \; 0{,}75; \; 0{,}50; \; 0{,}25; \; 0{,}00\}$ (od~pełnej heurystyki euklidesowej 100\% po~heurystykę zerową 0\%). Zatem łącznie algorytm A* będzie reprezentowany przez 4~implementacje $\times$ 5~wariantów heurystyki, a~zatem 20 pozycji pomiarowych. Nie oznacza to 20 różnych implementacji w~kodzie, bowiem parametr ten jest jedynie współczynnikiem skalującym funkcję heurystyczną.
 
-Na potrzeby pytania badawczego PB1 mogą powstać dodatkowe implementacje algorytmu Bellmana-Forda. Będą się one charakteryzować różnymi kolejnościami iteracji po~łukach, celem ich zestawienia ze sobą.
+Na~potrzeby pytania badawczego PB1 mogą powstać dodatkowe implementacje algorytmu Bellmana-Forda. Będą się one charakteryzować różnymi kolejnościami iteracji po~łukach, celem ich zestawienia ze~sobą.
 
 
 \newpage
@@ -691,14 +691,14 @@ Na potrzeby pytania badawczego PB1 mogą powstać dodatkowe implementacje algory
 }
 \end{center}
 
-Głównym celem eksperymentów wydajnościowych jest określenie tego, jaki wpływ na wydajność obliczeniową oraz pamięciową mają zarówno różne konfiguracje grafów, jak~i~różne decyzje implementacyjne (np. macierz sąsiedztwa vs. lista sąsiedztwa). Standardowo mierzony będzie czas wykonania, co świadczyć ma o~wydajności obliczeniowej, zaś wydajność pamięciowa będzie mierzona w oparciu o~faktycznie spożytkowaną pamięć w~trakcie pracy algorytmu\footnote{Szczegóły sposobu pomiaru wykorzystania pamięci są ściśle związane z wykorzystanymi technologiami. Zagadnienie pomiaru pamięci zostanie doprecyzowane na~etapie implementacyjnym.}.
+Głównym celem eksperymentów wydajnościowych jest określenie tego, jaki wpływ na~wydajność obliczeniową oraz pamięciową mają zarówno różne konfiguracje grafów, jak~i~różne decyzje implementacyjne (np. macierz sąsiedztwa vs. lista sąsiedztwa). Standardowo mierzony będzie czas wykonania, co świadczyć ma o~wydajności obliczeniowej, zaś wydajność pamięciowa będzie mierzona w~oparciu o~faktycznie spożytkowaną pamięć w~trakcie pracy algorytmu\footnote{Szczegóły sposobu pomiaru wykorzystania pamięci są ściśle związane z~wykorzystanymi technologiami. Zagadnienie pomiaru pamięci zostanie doprecyzowane na~etapie implementacyjnym.}.
 
-Oprócz tego warto również zliczać charakterystyczne operacje wykonywane w~trakcie pracy algorytmów. Do takich operacji można zaliczyć: wpis do struktury danych, odczyt ze struktury danych, porównanie. Dla ustalonej deterministycznej implementacji i~tych samych danych liczby tych operacji powinny być powtarzalne, w~przeciwieństwie do czasu wykonania, który może fluktuować, choćby za~sprawą działań systemu operacyjnego w~tle. Należy jednak pamiętać, że~każdy pomiar odbywa się z~niezerowym narzutem obliczeniowym, co może wydłużyć czas działania lub zwiększyć zapotrzebowanie pamięciowe implementacji algorytmu.
+Oprócz tego warto również zliczać charakterystyczne operacje wykonywane w~trakcie pracy algorytmów. Do~takich operacji można zaliczyć: wpis do~struktury danych, odczyt ze~struktury danych, porównanie. Dla ustalonej deterministycznej implementacji i~tych samych danych liczby tych operacji powinny być powtarzalne, w~przeciwieństwie do~czasu wykonania, który może fluktuować, choćby za~sprawą działań systemu operacyjnego w~tle. Należy jednak pamiętać, że~każdy pomiar odbywa się z~niezerowym narzutem obliczeniowym, co może wydłużyć czas działania lub zwiększyć zapotrzebowanie pamięciowe implementacji algorytmu.
 
 {\small
 \renewcommand{\arraystretch}{1.2}
 \begin{xltabular}{\textwidth}{@{}l>{\raggedright\arraybackslash}X>{\centering\arraybackslash}p{0.24\textwidth}@{}}
-  \caption{Zestawienie mierzonych wielkości i wskaźników wydajności w eksperymentach.}
+  \caption{Zestawienie mierzonych wielkości i~wskaźników wydajności w~eksperymentach.}
   \label{tab:zestawienie-wielkosci-pomiarowych} \\
   \toprule
   \textbf{Mierzona wielkość} & \textbf{Opis i znaczenie w badaniach} & \textbf{Badane algorytmy} \\
@@ -746,16 +746,16 @@ Oprócz tego warto również zliczać charakterystyczne operacje wykonywane w~tr
 \end{xltabular}
 }
 
-Analogiczne parametry będą rozważane dla problemów badawczych PB1 oraz PB2, z uwagi na ich charakter dotyczący kwestii wydajnościowych. Ponieważ działania badane w~ich ramach hipotetycznie mogą wpłynąć na~wydajność, w~szczególności wydajność obliczeniową, będą one mierzone dokładnie w tych samych kategoriach.
+Analogiczne parametry będą rozważane dla problemów badawczych PB1 oraz PB2, z~uwagi na~ich charakter dotyczący kwestii wydajnościowych. Ponieważ działania badane w~ich ramach hipotetycznie mogą wpłynąć na~wydajność, w~szczególności wydajność obliczeniową, będą one mierzone dokładnie w~tych samych kategoriach.
 
 \subsection{Metodyka pomiarów}
 
-Pomiary zostaną zrealizowane w~ramach izolowanych przebiegów na dużych próbach (np. 1000) grafów\footnote{Autor zastrzega sobie możliwość dostosowania rozmiaru do~sytuacji, które mogą się ujawnić w~trakcie wykonania.}, dla sformalizowanej listy konfiguracji. Dla każdej instancji zadaniowej pomiar czasu wykonania zostanie powtórzony wielokrotnie (liczba powtórzeń zostanie ustalona na etapie pilotażowym), a~wartością reprezentatywną dla danego grafu będzie mediana tych przebiegów, co pozwoli ograniczyć wpływ chwilowych fluktuacji środowiska systemowego \cite{pieterse-2014-performancemeasurements}. Czas będzie mierzony za pomocą zegara monotonicznego o~możliwie wysokiej rozdzielczości, dostępnego w~wybranym środowisku. W~celu umożliwienia porównania wyników całej próby z~innymi próbami (innymi konfiguracjami), dla każdego monitorowanego parametru zostaną obliczone:
+Pomiary zostaną zrealizowane w~ramach izolowanych przebiegów na~dużych próbach (np. 1000) grafów\footnote{Autor zastrzega sobie możliwość dostosowania rozmiaru do~sytuacji, które mogą się ujawnić w~trakcie wykonania.}, dla sformalizowanej listy konfiguracji. Dla każdej instancji zadaniowej pomiar czasu wykonania zostanie powtórzony wielokrotnie (liczba powtórzeń zostanie ustalona na~etapie pilotażowym), a~wartością reprezentatywną dla danego grafu będzie mediana tych przebiegów, co pozwoli ograniczyć wpływ chwilowych fluktuacji środowiska systemowego \cite{pieterse-2014-performancemeasurements}. Czas będzie mierzony za~pomocą zegara monotonicznego o~możliwie wysokiej rozdzielczości, dostępnego w~wybranym środowisku. W~celu umożliwienia porównania wyników całej próby z~innymi próbami (innymi konfiguracjami), dla każdego monitorowanego parametru zostaną obliczone:
 \begin{itemize}
-	\item Średnia i mediana
-	\item Minimum i maksimum
+	\item Średnia i~mediana
+	\item Minimum i~maksimum
 	\item Odchylenie standardowe
-	\item Kwartyle Q1 i Q3
+	\item Kwartyle Q1 i~Q3
 \end{itemize}
 Dla kluczowych wielkości, takich jak czas wykonania i~rozmiar używanej pamięci, zostanie także obliczony 95\% przedział ufności dla średniej.
 
@@ -769,14 +769,14 @@ Dla kluczowych wielkości, takich jak czas wykonania i~rozmiar używanej pamięc
   \begin{minipage}{0.92\textwidth}
     \textbf{\textcolor{red!70!black}{Planowane scenariusze i~liczebności prób}}
 
-    Przedstawione konfiguracje grafów, scenariusze testowe i~badawcze oraz liczebności prób mają charakter koncepcyjny. W~szczególności $N_p = 1000$ grafów na konfigurację jest wartością początkową, którą można dostosować po~pomiarach pilotażowych, uwzględniając koszt badań. Ewentualne zmiany oraz ich uzasadnienie zostaną opisane w~odpowiednich kolejnych raportach.
+    Przedstawione konfiguracje grafów, scenariusze testowe i~badawcze oraz liczebności prób mają charakter koncepcyjny. W~szczególności $N_p = 1000$ grafów na~konfigurację jest wartością początkową, którą można dostosować po~pomiarach pilotażowych, uwzględniając koszt badań. Ewentualne zmiany oraz ich uzasadnienie zostaną opisane w~odpowiednich kolejnych raportach.
   \end{minipage}%
 }
 \end{center}
 
 \subsection{Scenariusze dot. badań wydajnościowych}
 
-Podstawą ogólnych badań wydajnościowych jest dwuczynnikowy plan eksperymentu, w~którym kontrolowanymi zmiennymi niezależnymi są dwa fundamentalne parametry grafu: jego rozmiar (liczba wierzchołków $n_G = |V|$) oraz gęstość ($\rho_G$). Kombinacja przyjętych poziomów tych parametrów tworzy dwuwymiarową macierz scenariuszy pomiarowych, zestawioną w~Tabeli~\ref{tab:macierz-scenariuszy-wydajnosciowych}. Każda komórka macierzy określa teoretyczną liczbę łuków $m_G = \lceil \rho_G n_G (n_G - 1)\rceil$, pokrywając pełne spektrum od grafów małych i~rzadkich po rozległe grafy gęste.
+Podstawą ogólnych badań wydajnościowych jest dwuczynnikowy plan eksperymentu, w~którym kontrolowanymi zmiennymi niezależnymi są dwa fundamentalne parametry grafu: jego rozmiar (liczba wierzchołków $n_G = |V|$) oraz gęstość ($\rho_G$). Kombinacja przyjętych poziomów tych parametrów tworzy dwuwymiarową macierz scenariuszy pomiarowych, zestawioną w~Tabeli~\ref{tab:macierz-scenariuszy-wydajnosciowych}. Każda komórka macierzy określa teoretyczną liczbę łuków $m_G = \lceil \rho_G n_G (n_G - 1)\rceil$, pokrywając pełne spektrum od~grafów małych i~rzadkich po~rozległe grafy gęste.
 
 \begin{table}[H]
   \centering
@@ -800,7 +800,7 @@ Podstawą ogólnych badań wydajnościowych jest dwuczynnikowy plan eksperymentu
   \label{tab:macierz-scenariuszy-wydajnosciowych}
 \end{table}
 
-Dla każdej z~36 konfiguracji macierzy początkowo zakłada się wygenerowanie pseudolosowej próby $N_p = 1000$ instancji digrafów za pomocą generatora syntetycznego (Algorytm~\ref{alg:generator-grafow}), przy zachowaniu powtarzalnych ziaren (\textit{seeds}). Liczebność próby ma charakter koncepcyjny i~może zostać dostosowana po~pomiarach pilotażowych; ewentualna zmiana zostanie opisana w~odpowiednim raporcie. Eksperymenty wymagają rygorystycznej powtarzalności: nie należy losować danych wejściowych oddzielnie przy każdym uruchomieniu poszczególnych algorytmów. Zamiast tego, po wygenerowaniu próby grafów $P = \{G_1, \ldots, G_{N_p}\}$ dla danej konfiguracji, jednokrotnie tworzy się dla niej deterministyczny zbiór instancji zadaniowych $Z = \{Z_1, \ldots, Z_{N_p}\}$, gdzie $Z_k = (G_k, s_k, t_k, b_k)$. Procedurę tę formalizuje Algorytm~\ref{alg:generator-zadan}.
+Dla każdej z~36 konfiguracji macierzy początkowo zakłada się wygenerowanie pseudolosowej próby $N_p = 1000$ instancji digrafów za~pomocą generatora syntetycznego (Algorytm~\ref{alg:generator-grafow}), przy zachowaniu powtarzalnych ziaren (\textit{seeds}). Liczebność próby ma charakter koncepcyjny i~może zostać dostosowana po~pomiarach pilotażowych; ewentualna zmiana zostanie opisana w~odpowiednim raporcie. Eksperymenty wymagają rygorystycznej powtarzalności: nie należy losować danych wejściowych oddzielnie przy każdym uruchomieniu poszczególnych algorytmów. Zamiast tego, po~wygenerowaniu próby grafów $P = \{G_1, \ldots, G_{N_p}\}$ dla danej konfiguracji, jednokrotnie tworzy się dla niej deterministyczny zbiór instancji zadaniowych $Z = \{Z_1, \ldots, Z_{N_p}\}$, gdzie $Z_k = (G_k, s_k, t_k, b_k)$. Procedurę tę formalizuje Algorytm~\ref{alg:generator-zadan}.
 
 \begin{algorithm}[H]
   \caption{Generowanie danych zadaniowych dla próby grafów}
@@ -827,7 +827,7 @@ Dla każdej z~36 konfiguracji macierzy początkowo zakłada się wygenerowanie p
 
 Wierzchołki traktowane są jako obiekty abstrakcyjne w~zbiorze $V(G)$, a~zastosowanie dyskretnego rozkładu jednostajnego bez zwracania gwarantuje, że każda para różnych wierzchołków $s \neq t$ ma identyczne prawdopodobieństwo wyboru, eliminując faworyzowanie jakichkolwiek obszarów grafu.
 
-Przeszukiwanie $\operatorname{BFS}(G, s)$ służy wyłącznie do ustalenia flagi $b$ informującej o~istnieniu ścieżki $s \leadsto t$. Flaga ta jest jedynie metadaną badawczą — nie jest przekazywana algorytmom i~nie zaburza naturalnych właściwości próby. Cały proces przygotowania zadań odbywa się przed właściwymi testami, dzięki czemu nie wpływa na mierzony czas wykonania algorytmów.
+Przeszukiwanie $\operatorname{BFS}(G, s)$ służy wyłącznie do~ustalenia flagi $b$ informującej o~istnieniu ścieżki $s \leadsto t$. Flaga ta jest jedynie metadaną badawczą — nie jest przekazywana algorytmom i~nie zaburza naturalnych właściwości próby. Cały proces przygotowania zadań odbywa się przed właściwymi testami, dzięki czemu nie wpływa na~mierzony czas wykonania algorytmów.
 
 Każda badana implementacja otrzymuje dokładnie tę samą próbę zadań $Z$, pobierając z~krotki~$Z_k$ wyłącznie podzbiór danych odpowiadający jej klasie problemu (Tabela~\ref{tab:wykorzystanie-danych-zadaniowych}).
 
@@ -853,7 +853,7 @@ Dla każdej instancji zadaniowej w~próbie uruchamiane są wszystkie badane wari
 
 \newpage
 
-W~celu zachowania ścisłej powtarzalności badań, jednoznacznej identyfikacji w~plikach z~danymi pomiarowymi oraz czytelności na wykresach, każda badana instancja algorytmu została oznaczona unikalnym kodem segmentowym. Zestawienie wszystkich 27 badanych instancji wraz z~przypisaną konfiguracją struktur danych przedstawia Tabela~\ref{tab:identyfikatory-instancji}.
+W~celu zachowania ścisłej powtarzalności badań, jednoznacznej identyfikacji w~plikach z~danymi pomiarowymi oraz czytelności na~wykresach, każda badana instancja algorytmu została oznaczona unikalnym kodem segmentowym. Zestawienie wszystkich 27 badanych instancji wraz z~przypisaną konfiguracją struktur danych przedstawia Tabela~\ref{tab:identyfikatory-instancji}.
 
 \begin{table}[H]
   \centering
@@ -898,37 +898,37 @@ W~celu zachowania ścisłej powtarzalności badań, jednoznacznej identyfikacji 
     \texttt{FW-MAT}        & Floyd--Warshall & Macierz odległości & Dostęp bezpośredni ($O(1)$) \\
     \bottomrule
   \end{tabularx}
-  \caption{Zestawienie ujednoliconych identyfikatorów instancji algorytmów w badaniach wydajnościowych.}
+  \caption{Zestawienie ujednoliconych identyfikatorów instancji algorytmów w~badaniach wydajnościowych.}
   \label{tab:identyfikatory-instancji}
 \end{table} 
 
 \subsection{Scenariusze testowe}
 
-Pod pojęciem scenariuszy testowych rozumie się dedykowane próby weryfikacji poprawności implementacji algorytmów na niewielkich, w~pełni kontrolowanych instancjach grafów. W~przeciwieństwie do masowych badań wydajnościowych, celem tych scenariuszy nie jest pomiar czasu, lecz weryfikacja, czy implementacje zachowują się zgodnie z~modelem teoretycznym w~wybranych przypadkach typowych (możliwych do bezbłędnego przeliczenia ręcznego na kartce) i~brzegowych. Zgodnie z~założeniami projektu właściwe testy poprawności zostaną przeprowadzone w~kolejnych etapach prac - w~Raporcie 2 (dla algorytmów Dijkstry i~Bellmana--Forda) oraz w~Raporcie 3 (dla algorytmów A* i~Floyda--Warshalla). Grafy do tych testów zostaną przygotowane ręcznie na etapie ich realizacji, odpowiednio do potrzeb danego przypadku, i~nie są opisywane w~tym miejscu.
+Pod pojęciem scenariuszy testowych rozumie się dedykowane próby weryfikacji poprawności implementacji algorytmów na~niewielkich, w~pełni kontrolowanych instancjach grafów. W~przeciwieństwie do~masowych badań wydajnościowych, celem tych scenariuszy nie jest pomiar czasu, lecz weryfikacja, czy implementacje zachowują się zgodnie z~modelem teoretycznym w~wybranych przypadkach typowych (możliwych do~bezbłędnego przeliczenia ręcznego na~kartce) i~brzegowych. Zgodnie z~założeniami projektu właściwe testy poprawności zostaną przeprowadzone w~kolejnych etapach prac - w~Raporcie 2 (dla algorytmów Dijkstry i~Bellmana--Forda) oraz w~Raporcie 3 (dla algorytmów A* i~Floyda--Warshalla). Grafy do~tych testów zostaną przygotowane ręcznie na~etapie ich realizacji, odpowiednio do~potrzeb danego przypadku, i~nie są opisywane w~tym miejscu.
 
-Weryfikacja obejmie testy podstawowej poprawności obliczeń (na małych grafach o~jednoznacznym rozwiązaniu możliwym do weryfikacji ręcznej) oraz testy przypadków szczególnych, obejmujące m.in.:
+Weryfikacja obejmie testy podstawowej poprawności obliczeń (na~małych grafach o~jednoznacznym rozwiązaniu możliwym do~weryfikacji ręcznej) oraz testy przypadków szczególnych, obejmujące m.in.:
 \begin{itemize}
-  \item \textbf{Algorytm Dijkstry:} wierzchołki nieosiągalne w grafie niespójnym (odległość $\infty$ i~brak poprzednika) oraz krawędzie o~wadze zerowej.
-  \item \textbf{Algorytm Bellmana--Forda:} występowanie krawędzi o wagach ujemnych, obecność cyklu o ujemnej wadze (weryfikacja mechanizmu detekcji) oraz brak ścieżki w grafie niespójnym.
-  \item \textbf{Algorytm A*:} brak ścieżki do celu w grafie niespójnym, wierzchołek docelowy tożsamy ze źródłowym ($s = t$) oraz zachowanie przy skrajnych wariantach heurystyki ($h \equiv 0$ oraz $h = d_E$).
+  \item \textbf{Algorytm Dijkstry:} wierzchołki nieosiągalne w~grafie niespójnym (odległość $\infty$ i~brak poprzednika) oraz krawędzie o~wadze zerowej.
+  \item \textbf{Algorytm Bellmana--Forda:} występowanie krawędzi o~wagach ujemnych, obecność cyklu o~ujemnej wadze (weryfikacja mechanizmu detekcji) oraz brak ścieżki w~grafie niespójnym.
+  \item \textbf{Algorytm A*:} brak ścieżki do~celu w~grafie niespójnym, wierzchołek docelowy tożsamy ze~źródłowym ($s = t$) oraz zachowanie przy skrajnych wariantach heurystyki ($h \equiv 0$ oraz $h = d_E$).
   \item \textbf{Algorytm Floyda--Warshalla:} pary wierzchołków rozłącznych (odległość $\infty$), grafy z~wagami ujemnymi, detekcja ujemnego cyklu na~przekątnej macierzy ($d[i][i] < 0$) oraz~weryfikacja procedury $\textsc{odtwórzŚcieżkę}$.
 \end{itemize} 
 
 \subsection{Scenariusze dot. pytań badawczych}
 
-Scenariusze te służą zebraniu danych potrzebnych do odpowiedzi na dwa pytania badawcze postawione w~podrozdziale~\ref{sec:pytania-badawcze}:
+Scenariusze te służą zebraniu danych potrzebnych do~odpowiedzi na~dwa pytania badawcze postawione w~podrozdziale~\ref{sec:pytania-badawcze}:
 
 \begin{itemize}
-  \item \textbf{Scenariusz dla PB1 (Kolejność krawędzi w algorytmie Bellmana--Forda):}
-    Badanie realizowane jest na próbach grafów z~macierzy scenariuszy wydajnościowych. Aby operacje zmiany porządku miały formalne znaczenie, zbiór łuków $A$ traktowany jest jako uporządkowana sekwencja (lista krawędzi). Przygotowuje się dedykowane instancje algorytmu Bellmana--Forda różniące się przyjętą kolejnością przetwarzania łuków na liście (kolejność pierwotna z~generatora, kolejność odwrócona oraz kolejność losowo przetasowana). Wszystkie te instancje przetwarzają identyczne próby zadań ze wspólnym źródłem $s$. Dla każdego wykonania rejestruje się liczbę iteracji pętli głównej $I_{\mathrm{iter}}$ wykonanych przed zadziałaniem warunku wczesnego zatrzymania oraz łączny czas działania, co pozwala statystycznie ocenić wpływ kolejności krawędzi na tempo zbieżności algorytmu.
+  \item \textbf{Scenariusz dla PB1 (Kolejność krawędzi w~algorytmie Bellmana--Forda):}
+    Badanie realizowane jest na~próbach grafów z~macierzy scenariuszy wydajnościowych. Aby operacje zmiany porządku miały formalne znaczenie, zbiór łuków $A$ traktowany jest jako uporządkowana sekwencja (lista krawędzi). Przygotowuje się dedykowane instancje algorytmu Bellmana--Forda różniące się przyjętą kolejnością przetwarzania łuków na~liście (kolejność pierwotna z~generatora, kolejność odwrócona oraz kolejność losowo przetasowana). Wszystkie te instancje przetwarzają identyczne próby zadań ze~wspólnym źródłem $s$. Dla każdego wykonania rejestruje się liczbę iteracji pętli głównej $I_{\mathrm{iter}}$ wykonanych przed zadziałaniem warunku wczesnego zatrzymania oraz łączny czas działania, co pozwala statystycznie ocenić wpływ kolejności krawędzi na~tempo zbieżności algorytmu.
 
   \item \textbf{Scenariusz dla PB2 (Wielokrotna Dijkstra vs Floyd--Warshall dla APSP):}
     Dla~grafów o~wagach nieujemnych z~macierzy scenariuszy wydajnościowych uruchamiane są dwa konkurencyjne podejścia rozwiązujące problem wszystkich par:
     \begin{enumerate}
-      \item pętla wywołująca algorytm Dijkstry (w wariancie lista sąsiedztwa + kopiec binarny) kolejno dla każdego wierzchołka $v \in V$ jako źródła,
-      \item algorytm Floyda--Warshalla wykonany jednokrotnie na macierzy sąsiedztwa.
+      \item pętla wywołująca algorytm Dijkstry (w~wariancie lista sąsiedztwa + kopiec binarny) kolejno dla każdego wierzchołka $v \in V$ jako źródła,
+      \item algorytm Floyda--Warshalla wykonany jednokrotnie na~macierzy sąsiedztwa.
     \end{enumerate}
-    Granicę pomiarową dla obu podejść stanowi całkowity czas wyznaczenia pełnej macierzy odległości $|V| \times |V|$ wraz z~niezbędną inicjalizacją struktur danych. Dla obu metod mierzony jest łączny czas wykonania oraz zapotrzebowanie pamięciowe w~zależności od gęstości grafu $\rho_G$, co pozwoli sprawdzić, czy w~badanym zakresie występuje próg gęstości, przy którym jedno rozwiązanie staje się szybsze od drugiego.
+    Granicę pomiarową dla obu podejść stanowi całkowity czas wyznaczenia pełnej macierzy odległości $|V| \times |V|$ wraz z~niezbędną inicjalizacją struktur danych. Dla obu metod mierzony jest łączny czas wykonania oraz zapotrzebowanie pamięciowe w~zależności od~gęstości grafu $\rho_G$, co pozwoli sprawdzić, czy w~badanym zakresie występuje próg gęstości, przy którym jedno rozwiązanie staje się szybsze od~drugiego.
 \end{itemize}
 Powyższe scenariusze należy traktować jako poglądowe - do~momentu ich realizacji podejście może zostać udoskonalone bądź zmienione.
 
@@ -936,7 +936,7 @@ Powyższe scenariusze należy traktować jako poglądowe - do~momentu ich realiz
 
 \section{Notatki końcowe}
 
-Kolejne części projektu autor zamierza realizować opierając się w~maksymalnym stopniu na~rozwiązaniach zaproponowanych przez siebie w~niniejszym raporcie. Jednocześnie, w~miarę eksplorowania zagadnień w~części implementacyjnej mogą pojawić się dodatkowe informacje bądź pomysły na usprawnienie podejścia. Ewentualne zmiany w~przyjętej metodyce zostaną opisane w~kolejnych raportach.
+Kolejne części projektu autor zamierza realizować opierając się w~maksymalnym stopniu na~rozwiązaniach zaproponowanych przez siebie w~niniejszym raporcie. Jednocześnie, w~miarę eksplorowania zagadnień w~części implementacyjnej mogą pojawić się dodatkowe informacje bądź pomysły na~usprawnienie podejścia. Ewentualne zmiany w~przyjętej metodyce zostaną opisane w~kolejnych raportach.
 
 \bibliographystyle{IEEEtran}
 \bibliography{../shared/references}
