@@ -61,7 +61,7 @@ W szczególności, w~przypadku języków programowania o~silnej orientacji na~pa
 
 \subsection{Porównanie}
 
-Przedstawiono dwie różne techniki reprezentacji grafu. Poniższa tabela zestawia podstawowe koszty operacji dla macierzy i listy sąsiedztwa. Wartość $d$ oznacza stopień wierzchołka $u$. Zestawienie opracowano na podstawie \cite{learngraphtheory-2026-graphrepresentation}.
+Przedstawiono dwie różne techniki reprezentacji grafu. Poniższa tabela zestawia podstawowe koszty operacji dla macierzy i listy sąsiedztwa. Wartość $d$ oznacza stopień wierzchołka $u$. Zestawienie opracowano na podstawie \cite{learngraphtheory-2026-graphrepresentation}; złożoność pamięciową obu reprezentacji opisano również w~\cite{mit-2011-graphrepresentation}.
 
 \begin{table}[H]
   \centering
@@ -204,14 +204,14 @@ Całkowity czas działania algorytmu Dijkstry wynika ze współdziałania dwóch
   \item \textbf{Przegląd i relaksacja krawędzi wychodzących:} w~reprezentacji macierzowej sprawdzenie sąsiadów wierzchołka wymaga weryfikacji całego wiersza macierzy ($|V|$ elementów), co daje w~najgorszym przypadku koszt $O(|V|^2)$, niezależnie od liczby krawędzi. Z~kolei lista sąsiedztwa przechowuje wyłącznie istniejące połączenia. W~grafie skierowanym algorytm przegląda co najwyżej $|E|$ łuków; w~grafie nieskierowanym krawędź może wystąpić na listach obu swoich końców. Każda skuteczna relaksacja wiąże się ze wstawieniem wpisu do kopca w~czasie $O(\log |V|)$ (łącznie $O(|E|\log |V|)$).
 \end{enumerate}
 
-Zestawienie dwóch struktur reprezentacji grafu z dwoma mechanizmami kolejkowania prowadzi do czterech możliwych wariantów implementacyjnych, przedstawionych w Tabeli~\ref{tab:zlozonosc-dijkstry} \cite{geeksforgeeks-2025-dijkstracomplexity}:
+Zestawienie dwóch struktur reprezentacji grafu z dwoma mechanizmami kolejkowania prowadzi do czterech możliwych wariantów implementacyjnych, przedstawionych w Tabeli~\ref{tab:zlozonosc-dijkstry} \cite{geeksforgeeks-2025-dijkstracomplexity}. Analizę algorytmu i~wpływu struktury kolejki przedstawiono także w~\cite{sedgewick-nd-shortestpaths}:
 \begin{itemize}
   \item \textbf{Macierz sąsiedztwa i wybór liniowy:} obie fazy mają koszt $O(|V|^2)$, dając łączną złożoność $O(|V|^2)$, również dla grafów gęstych, w~których $|E| \approx |V|^2$.
   \item \textbf{Lista sąsiedztwa i kopiec binarny:} eliminacja pustych przejść przez macierz oraz logarytmiczny koszt obsługi kolejki dają złożoność $O((|V|+|E|)\log |V|)$. Dla grafów rzadkich ($|E| \approx |V|$) otrzymuje się ograniczenie $O(|V|\log |V|)$, a~dla grafu pełnego ($|E| = \Theta(|V|^2)$) ograniczenie $O(|V|^2\log |V|)$. Są to oszacowania asymptotyczne, a~nie wyniki pomiarów.
   \item \textbf{Kombinacje hybrydowe (macierz z kopcem oraz lista z wyborem liniowym):} dla macierzy i~kopca analiza uwzględnia koszt przeglądu macierzy oraz obsługi kopca ($O(|V|^2 + |E|\log |V|)$), natomiast dla listy z~wyborem liniowym koszt wynosi $O(|V|^2)$.
 \end{itemize}
 
-Pamięć dodatkowa dla wyboru liniowego wynosi $O(|V|)$ (tablice $d$, $\pi$ oraz tablica odwiedzonych), natomiast kopiec z~leniwym usuwaniem duplikatów mieści tymczasowo do $O(|E|)$ wpisów, ustalając pamięć pomocniczą na poziomie $O(|V| + |E|)$.
+Pamięć dodatkowa dla wyboru liniowego wynosi $O(|V|)$ (tablice $d$, $\pi$ oraz tablica odwiedzonych), natomiast kopiec z~leniwym usuwaniem duplikatów mieści tymczasowo do $O(|E|)$ wpisów, ustalając pamięć pomocniczą na poziomie $O(|V| + |E|)$. Podobny wariant leniwy, w~którym kolejka może osiągnąć rozmiar proporcjonalny do liczby krawędzi, przedstawiono w~\cite{sedgewick-2025-lazydijkstra}.
 
 \begin{table}[H]
   \centering
@@ -235,7 +235,7 @@ Pamięć dodatkowa dla wyboru liniowego wynosi $O(|V|)$ (tablice $d$, $\pi$ oraz
 
 \subsection{Algorytm Bellmana-Forda}
 
-Algorytm Bellmana-Forda (1955, 1956, 1958) to algorytm klasy SSSP. Dla zadanego wierzchołka startowego $s$ w grafie $G$, oblicza on długość najkrótszych ścieżek do wszystkich pozostałych wierzchołków tego grafu.
+Algorytm Bellmana-Forda (1955, 1956, 1958) to algorytm klasy SSSP \cite{stanford-2026-bellmanfordfloydwarshall}. Dla zadanego wierzchołka startowego $s$ w grafie $G$, oblicza on długość najkrótszych ścieżek do wszystkich pozostałych wierzchołków tego grafu.
 
 Podstawą działania algorytmu jest operacja relaksacji krawędzi. Polega ona na sprawdzeniu, czy przejście do wierzchołka $v$ przez wierzchołek $u$ pozwala uzyskać mniejszy koszt niż dotychczas znana odległość do $v$. Takie sprawdzenie jest wykonywane dla każdej krawędzi $(u,v)$. Jeżeli tak, odległość zostaje zaktualizowana, a $u$ jest zapamiętywany jako poprzednik $v$ na aktualnie najkrótszej znanej ścieżce.
 
@@ -312,7 +312,7 @@ W~pseudokodzie $s$ oznacza źródło, $w(u,v)$ wagę krawędzi, a~$d$ i~$\pi$ ta
 
 Algorytm A* (1968) \cite{hart-1968-heuristicpath} to algorytm klasy SPSP. Dla zadanego wierzchołka startowego $s$ oraz wierzchołka docelowego $t$ w grafie $G$, oblicza on najkrótszą ścieżkę między nimi, o~ile takowa istnieje. Algorytm znajduje szerokie zastosowanie m.in. w systemach nawigacyjnych i grach komputerowych.
 
-Istotą algorytmu jest ukierunkowane przeszukiwanie grafu z wykorzystaniem heurystyki $h(v)$, czyli funkcji szacującej pozostały koszt dotarcia z wierzchołka $v$ do celu $t$. Podczas gdy algorytm Dijkstry bada wierzchołki koncentrycznie wyłącznie na podstawie dotychczas przebytej drogi $d[v]$, A* wybiera wierzchołki na podstawie łącznej funkcji oceny $f(v) = d[v] + h(v)$, reprezentującej przewidywany całkowity koszt ścieżki prowadzącej przez $v$. W~szczególnym przypadku, gdy dla każdego wierzchołka $h(v)=0$, algorytm działa według zasad algorytmu Dijkstry.
+Istotą algorytmu jest ukierunkowane przeszukiwanie grafu z wykorzystaniem heurystyki $h(v)$, czyli funkcji szacującej pozostały koszt dotarcia z wierzchołka $v$ do celu $t$. Podczas gdy algorytm Dijkstry bada wierzchołki koncentrycznie wyłącznie na podstawie dotychczas przebytej drogi $d[v]$, A* wybiera wierzchołki na podstawie łącznej funkcji oceny $f(v) = d[v] + h(v)$, reprezentującej przewidywany całkowity koszt ścieżki prowadzącej przez $v$. W~szczególnym przypadku, gdy dla każdego wierzchołka $h(v)=0$, algorytm działa według zasad algorytmu Dijkstry \cite{mit-2026-pathsearch}.
 
 Postać heurystyki zależy od specyfiki problemu. Jeżeli wierzchołki odpowiadają punktom w przestrzeni, heurystyką może być odległość w odpowiedniej metryce: Manhattan (dla ruchu w czterech kierunkach o jednostkowym koszcie), Czebyszewa (dla ruchu w ośmiu kierunkach o jednostkowym koszcie) lub euklidesowa (gdy wagi krawędzi odpowiadają odległościom geometrycznym).
 
@@ -322,7 +322,7 @@ Oprócz wyznaczenia minimalnego kosztu dojścia, algorytm rekonstruuje wierzcho�
 
 Aby algorytm gwarantował znalezienie najkrótszej ścieżki, heurystyka musi być \textbf{dopuszczalna} (ang. \textit{admissible}). Oznacza to, że nie może ona przeszacowywać rzeczywistego minimalnego kosztu dojścia z wierzchołka $v$ do celu $t$, oznaczanego przez $d^*(v,t)$: \\ $0 \leq h(v) \leq d^*(v,t)$ dla każdego $v \in V$, przy czym $h(t) = 0$. Dopuszczalność jest warunkiem zapewniającym, że wyznaczona trasa do celu będzie optymalna.
 
-Silniejszą własnością jest \textbf{spójność} (monotoniczność) heurystyki. Wymaga ona, aby dla każdej krawędzi $(u,v)\in E$ zachodziła nierówność: $h(u) \leq w(u,v) + h(v)$. Nieujemna heurystyka spójna, dla której $h(t)=0$, jest dopuszczalna. Przy heurystyce spójnej w chwili przetworzenia danego wierzchołka jego odległość jest optymalna i ostateczna. Jeżeli heurystyka jest jedynie dopuszczalna, lecz niespójna, znalezienie krótszej drogi może wymagać ponownego rozpatrzenia wcześniej odwiedzonego wierzchołka.
+Silniejszą własnością jest \textbf{spójność} (monotoniczność) heurystyki \cite{mit-2026-pathsearch}. Wymaga ona, aby dla każdej krawędzi $(u,v)\in E$ zachodziła nierówność: $h(u) \leq w(u,v) + h(v)$. Nieujemna heurystyka spójna, dla której $h(t)=0$, jest dopuszczalna \cite{stanford-2023-searchconsistency}. Przy heurystyce spójnej w chwili przetworzenia danego wierzchołka jego odległość jest optymalna i ostateczna. Jeżeli heurystyka jest jedynie dopuszczalna, lecz niespójna, znalezienie krótszej drogi może wymagać ponownego rozpatrzenia wcześniej odwiedzonego wierzchołka.
 
 Szczególnym przypadkiem jest heurystyka idealna ($h = d^*$). Przy właściwym rozstrzyganiu remisów algorytm rozwija wówczas wyłącznie wierzchołki leżące na optymalnej ścieżce. 
 
@@ -407,7 +407,7 @@ Kwestia złożoności algorytmu A* jest zależna od~jakości zastosowanej heurys
 
 \subsection{Algorytm Floyda-Warshalla}
 
-Algorytm Floyda-Warshalla (1962) to algorytm klasy APSP. Dla każdej uporządkowanej pary wierzchołków grafu $G$, oblicza on długość najkrótszej ścieżki między nimi. Znajduje zastosowanie m.in. w~analizie sieci transportu publicznego lub~sieci społecznościowych.
+Algorytm Floyda-Warshalla (1962) to algorytm klasy APSP \cite{stanford-2026-bellmanfordfloydwarshall}. Dla każdej uporządkowanej pary wierzchołków grafu $G$, oblicza on długość najkrótszej ścieżki między nimi. Znajduje zastosowanie m.in. w~analizie sieci transportu publicznego lub~sieci społecznościowych.
 
 Algorytm realizuje ideę programowania dynamicznego. W~pierwszej swojej fazie buduje macierze~odległości i~poprzedników w~oparciu o~fakty, które można natychmiast ustalić. Są nimi:
 \begin{itemize}
@@ -748,6 +748,8 @@ Oprócz tego warto również zliczać charakterystyczne operacje wykonywane w~tr
 Analogiczne parametry będą rozważane dla problemów badawczych PB1 oraz PB2, z uwagi na ich charakter dotyczący kwestii wydajnościowych. Ponieważ działania badane w~ich ramach hipotetycznie mogą wpłynąć na~wydajność, w~szczególności wydajność obliczeniową, będą one mierzone dokładnie w tych samych kategoriach.
 
 \subsection{Metodyka pomiarów}
+
+Powtarzanie pomiarów i~analiza ich zmienności są istotne dla oceny niepewności wyników pomiarów wydajności oprogramowania \cite{pieterse-2014-performancemeasurements}.
 
 Pomiary zostaną zrealizowane w~ramach izolowanych przebiegów na dużych próbach (np. 1000) grafów\footnote{Autor zastrzega sobie możliwość dostosowania rozmiaru do~sytuacji, które mogą się ujawnić w~trakcie wykonania.}, dla sformalizowanej listy konfiguracji. Dla każdej instancji zadaniowej pomiar czasu wykonania zostanie powtórzony wielokrotnie (liczba powtórzeń zostanie ustalona na etapie pilotażowym), a~wartością reprezentatywną dla danego grafu będzie mediana tych przebiegów, co pozwoli ograniczyć wpływ chwilowych fluktuacji środowiska systemowego. Czas będzie mierzony za pomocą zegara monotonicznego o~możliwie wysokiej rozdzielczości, dostępnego w~wybranym środowisku. W~celu umożliwienia porównania wyników całej próby z~innymi próbami (innymi konfiguracjami), dla każdego monitorowanego parametru zostaną obliczone:
 \begin{itemize}
