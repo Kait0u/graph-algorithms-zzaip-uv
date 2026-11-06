@@ -197,8 +197,6 @@ Poniżej znajduje się pseudokod algorytmu Dijkstry. Wykorzystuje on strukturę 
 
 W~pseudokodzie $s$ oznacza źródło, $N(u)$ zbiór sąsiadów wierzchołka $u$, a~$w(u,v)$ wagę krawędzi. Tablice $d$ i~$\pi$ przechowują odpowiednio dotychczasowe odległości i~poprzedników, natomiast $Q$ jest kolejką priorytetową. Wartość $d_u$ to odległość zapisana w~pobranym wpisie kolejki.
 
-\newpage
-
 Całkowity czas działania algorytmu Dijkstry wynika ze~współdziałania dwóch zasadniczych operacji powtarzanych iteracyjnie:
 \begin{enumerate}
   \item \textbf{Wybór wierzchołka o~minimalnej odległości:} w~tablicy z~wyborem liniowym operacja ta wykonywana $|V|$ razy wymaga każdorazowo przeszukania $|V|$ pozycji, dając sumarycznie $|V| \times |V| = O(|V|^2)$ operacji. Zastosowanie kopca binarnego\footnote{Zastosowanie kopca adresowalnego z~operacją \textit{decrease-key} ogranicza liczbę pobrań do~co najwyżej $|V|$ (koszt $O(|V|\log |V|)$) oraz redukuje pamięć pomocniczą kolejki do~$O(|V|)$.} redukuje koszt pobrania do~poziomu $O(\log |V|)$, przy czym z~kolejki pobieranych jest łącznie do~$O(|V| + |E|)$\footnote{Składnik $|V|$ odpowiada liczbie rozwinięć właściwych wierzchołków osiągalnych ze~źródła, natomiast składnik $|E|$ stanowi górne ograniczenie na~liczbę zduplikowanych wpisów usuwanych leniwie.} wpisów przy leniwym usuwaniu duplikatów, co sumarycznie zajmuje do~$O((|V| + |E|)\log |V|)$ czasu.
