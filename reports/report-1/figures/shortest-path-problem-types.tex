@@ -1,4 +1,3 @@
-% Wszystkie trzy panele odnoszą się do tego samego grafu ważonego.
 \begin{figure}[H]
   \centering
   \setlength{\fboxsep}{4pt}
@@ -16,7 +15,6 @@
         \draw[graph edge] (a)--node[above]       {1} (b);
         \draw[graph edge] (a)--node[below left]  {3} (t);
         \draw[graph edge] (b)--node[below right] {4} (t);
-        % Najkrótsza ścieżka s -> b -> a -> t ma koszt 2+1+3=6.
       \draw[black,line width=1.7pt] (s)--(b)--(a)--(t);
       \end{tikzpicture}
     \end{minipage}

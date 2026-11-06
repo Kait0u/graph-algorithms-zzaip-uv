@@ -540,71 +540,9 @@ Intuicja stojąca za problemem PB2 polega na spostrzeżeniu, którego dokonano o
 \end{itemize} 
 W przypadku algorytmu Floyda-Warshalla, złożoność obliczeniowa niezmiennie wynosi $O(|V|^3)$. Sugeruje to, że gęstość grafu może mieć wpływ na to, który algorytm lepiej w~danym kontekście zastosować.
 
-% ## Pytania badawcze
-% 
-% Choć prosisz przede wszystkim o rozdział 2, warto zaprojektować oba razem. Pytania z rozdziału 3 powinny wynikać wprost z serii eksperymentalnych.
-% 
-% Proponuję cztery pytania:
-% 
-% 1. W jaki sposób liczba wierzchołków i gęstość grafu wpływają na rzeczywisty czas działania algorytmów Dijkstry, Bellmana–Forda i Floyda–Warshalla oraz na zgodność obserwowanych tendencji z ich złożonością asymptotyczną?
-% 2. W jakich warunkach reprezentacja macierzowa staje się korzystniejsza od listowej pod względem czasu wykonania i zapotrzebowania na pamięć?
-% 3. W jakim stopniu zastosowanie heurystyki Manhattan w algorytmie A* ogranicza liczbę rozwiniętych wierzchołków i czas wyszukiwania względem heurystyki zerowej oraz algorytmu Dijkstry?
-% 4. Czy rodzaj i rozkład wag krawędzi istotnie wpływa na wydajność badanych algorytmów przy niezmienionej strukturze grafu?
-% 
-% Każde z tych pytań ma odpowiednik w zaproponowanych eksperymentach. To istotne, ponieważ w raporcie końcowym będziesz mógł odpowiedzieć na nie na podstawie konkretnych wykresów i pomiarów.
-% 
 % ## Dwie decyzje metodologiczne, które szczególnie polecam
-% 
 % Pierwsza: rozdziel porównanie wydajności algorytmów od porównania zakresu wykonywanej pracy. Przykładowo, dla problemu pojedynczej pary możesz porównać A* z Dijkstrą zatrzymywaną po ustaleniu odległości celu. Dla SSSP możesz porównać Dijkstrę z Bellmanem–Fordem. Dla APSP możesz zestawić Floyda–Warshalla z wielokrotnym uruchomieniem Dijkstry na grafach o nieujemnych wagach. To jest znacznie bardziej obronne metodologicznie niż zestawienie czterech dowolnych czasów.
-% 
-% Druga: ogranicz ambicję liczbową, ale zachowaj rygor pomiarowy. Pięć sensownie zaprojektowanych serii, ze stałymi parametrami, powtórzeniami i poprawną interpretacją, będzie wartościowsze od setek przypadkowych kombinacji.
-% 
-% Moja rekomendacja końcowa: zastosuj dokładnie strukturę 2.1–2.6, a rozdział 3 oprzyj na czterech powyższych pytaniach. Taki układ spełni wszystkie wymagania raportu 1 dotyczące eksperymentów, a jednocześnie stworzy konkretny plan wykonawczy dla następnego etapu projektu.
 
-% W rozdziale 2. Plan eksperymentów proponuję odejść od bardzo ogólnego podrozdziału „Założenia” i przedstawić konkretną metodykę badań, którą będzie można później zrealizować bez wymyślania eksperymentów od nowa.
-% 
-% Z wymagań wynika, że raport 1 nie musi jeszcze zawierać wyników. Musi natomiast wyjaśniać:
-% 
-% - na jakich grafach będą testowane algorytmy i jak te grafy powstaną;
-% - jakie czynniki będą zmieniane: liczba wierzchołków, gęstość, wagi, reprezentacja;
-% - co będzie mierzone i w jaki sposób;
-% - jak zapewnisz porównywalność wyników Dijkstry, Bellmana–Forda, A* i Floyda–Warshalla.
-% 
-% Ten ostatni punkt jest szczególnie ważny: Dijkstra i Bellman–Ford rozwiązują problem SSSP, A* jest ukierunkowany na pojedynczą parę wierzchołków, a Floyd–Warshall oblicza odległości dla wszystkich par. Nie byłoby rzetelne porównać bezpośrednio czasu jednego uruchomienia każdego algorytmu i uznać na tej podstawie, że jeden jest szybszy od pozostałych.
-% 
-% ## Proponowany spis treści rozdziału 2
-% 
-% | Podrozdział | Zawartość |
-% | --- | --- |
-% | 2.1. Cel i zakres eksperymentów | Co porównujemy i jakie są ograniczenia porównania |
-% | 2.2. Przygotowanie grafów testowych | Generator, rozmiary, gęstości, kierunkowość, rodzaje wag |
-% | 2.3. Warianty implementacyjne | Reprezentacje grafów, struktury danych, heurystyka A* |
-% | 2.4. Scenariusze eksperymentalne | Konkretne serie pomiarów i zmienne niezależne |
-% | 2.5. Metodyka pomiarów | Czas, pamięć, powtórzenia, środowisko testowe |
-% | 2.6. Weryfikacja poprawności i analiza wyników | Testy kontrolne, zestawienia i wykresy |
-% 
-% Proponuję około 4–6 stron, zależnie od szczegółowości tabel. To rozsądna objętość względem rozbudowanego rozdziału teoretycznego, który już przygotowałeś.
-% 
-% Poniżej rozpisuję, co konkretnie umieściłbym w każdym podrozdziale.
-%
-% ## 2.1. Cel i zakres eksperymentów
-% 
-% Ten podrozdział powinien określić, co jest przedmiotem badania, a co będzie stanowiło wynik eksperymentu.
-% 
-% Zawarłbym w nim cztery elementy:
-% 
-% 1. Cel: określenie wpływu rozmiaru grafu, gęstości, rodzaju wag i reprezentacji na wydajność algorytmów.
-% 2. Rozróżnienie pomiędzy badaniem wydajności pojedynczej implementacji a porównywaniem różnych algorytmów.
-% 3. Informację, że porównania będą wykonywane wyłącznie na danych spełniających ograniczenia danych metod.
-% 4. Rozdzielenie pomiarów SSSP, SPSP i APSP.
-% 
-% Przykładowa treść:
-% 
-% > Celem eksperymentów jest empiryczna ocena wydajności czterech algorytmów wyznaczania najkrótszych ścieżek: Dijkstry, Bellmana–Forda, A* oraz Floyda–Warshalla. Badania obejmą analizę wpływu liczby wierzchołków, gęstości grafu, rozkładu wag krawędzi oraz sposobu reprezentacji grafu na czas działania i zapotrzebowanie pamięciowe.
-% >
-% > Ze względu na odmienne zakresy rozwiązywanych problemów porównania zostaną podzielone na eksperymenty dotyczące pojedynczego źródła, pojedynczej pary wierzchołków oraz wszystkich par wierzchołków. Pozwoli to uniknąć bezpośredniego zestawiania czasów wykonania zadań o różnym zakresie obliczeń.
-% 
-% Tutaj wystarczą dwa lub trzy akapity. Nie powtarzałbym teorii z rozdziału 1.
 
 \section{Przygotowanie grafów testowych}
 
@@ -692,54 +630,6 @@ Eksperymenty wydajnościowe oraz generowane dlań grafy powinny być powtarzalne
 Tam, gdzie przeprowadzane będą testy z~weryfikacją odręczną, bądź testy przypadków szczególnych, grafy zostaną przygotowane z uwzględnieniem specjalnych potrzeb danego testu. Grafy pod te testy zostaną ustalone, w~imię powtarzalności testów, a zatem nie~będą generowane każdorazowo, losowo - o~ich rozmiarach i~topologii zadecydują potrzeby przeprowadzanych testów.
 
 
-% ## 2.2. Przygotowanie grafów testowych
-% 
-% To jeden z dwóch najważniejszych podrozdziałów.
-% 
-% ### Sposób generowania
-% 
-% Proponuję grafy syntetyczne generowane pseudolosowo, a nie grafy pobierane z internetu. Dzięki temu możesz precyzyjnie kontrolować badane parametry i odtwarzać eksperymenty.
-% 
-% Ustal jedną podstawową klasę grafów: ważone grafy skierowane, bez pętli własnych i bez wielokrotnych łuków. Jest to wygodne, ponieważ wszystkie cztery algorytmy mogą działać na grafach skierowanych, natomiast wagi ujemne będziesz mógł testować tylko w dozwolonych przypadkach.
-% 
-% Przykładowa tabela parametrów:
-% 
-% | Parametr | Proponowane wartości |
-% | --- | --- |
-% | Liczba wierzchołków \(n\) | 50, 100, 250, 500, 1000 |
-% | Gęstość \(\rho\) | 1%, 5%, 20%, 50%, 90% |
-% | Dodatnie wagi | Całkowite, losowane z [1, 100] |
-% | Wagi zerowe | Całkowite, losowane z [0, 100] |
-% | Wagi mieszane | Całkowite, np. z [-10, 100], bez ujemnych cykli |
-% | Powtórzenia | 10 różnych grafów na konfigurację |
-% | Kierunkowość | Grafy skierowane |
-% | Reprezentacje | Macierz i lista sąsiedztwa |
-% 
-% Warto wyjaśnić definicję gęstości dla digrafu bez pętli własnych:
-% 
-% \[ \rho=\frac{|E|}{|V|(|V|-1)} \]
-% 
-% Wówczas liczbę łuków można ustalać według wzoru:
-% 
-% \[ m=\operatorname{round}(\rho n(n-1)). \]
-% 
-% Ważna uwaga dotycząca skali: nie realizowałbym automatycznie wszystkich kombinacji dla wszystkich czterech algorytmów. Floyd–Warshall ma złożoność \(O(n^3)\), dlatego dla \(n=1000\) będzie wykonywał około miliarda iteracji zasadniczej pętli. Warianty o największych rozmiarach powinny być traktowane jako rozszerzenie, zależne od czasu działania i dostępnej pamięci.
-% 
-% ### Wagi ujemne
-% 
-% Tutaj proponuję rozwiązanie prostsze i bezpieczniejsze niż niezależne losowanie wartości ujemnych.
-% 
-% Dla osobnych testów Bellmana–Forda i Floyda–Warshalla możesz generować skierowane grafy acykliczne (DAG) z wagami ujemnymi. Brak cykli gwarantuje brak cykli ujemnych.
-% 
-% Trzeba jednak jasno zaznaczyć, że zmieniasz wtedy nie tylko rozkład wag, ale również strukturę grafu. Dlatego wpływu samych wag nie da się na tej podstawie całkowicie odizolować. Lepszym wariantem, jeśli chcesz kontrolować ten czynnik, jest wygenerowanie tej samej struktury DAG i przypisanie jej kolejno wag wyłącznie dodatnich oraz mieszanych.
-% 
-% ### Grafy dla A*
-% 
-% Dla A* utworzyłbym dodatkową rodzinę grafów geometrycznych, np. siatki dwuwymiarowe o 4 kierunkach ruchu.
-% 
-% Dlaczego osobną? Ponieważ losowy digraf nie dostarcza naturalnej, informatywnej heurystyki. Na siatce możesz zastosować odległość Manhattan i porównać A* z heurystyką zerową oraz z Dijkstrą zatrzymywaną po znalezieniu celu.
-% 
-% Nie próbowałbym stosować zwykłej odległości geometrycznej jako heurystyki dla całkowicie losowych wag, ponieważ nie ma gwarancji jej dopuszczalności.
 
 \newpage
 
@@ -785,33 +675,6 @@ Chociaż przewidziane są 4~implementacje algorytmu A*, każda z~nich zostanie z
 
 Na potrzeby pytania badawczego PB1 mogą powstać dodatkowe implementacje algorytmu Bellmana-Forda. Będą się one charakteryzować różnymi kolejnościami iteracji po~łukach, celem ich zestawienia ze sobą.
 
-% ## 2.3. Warianty implementacyjne
-% 
-% Ten rozdział ma połączyć wcześniejszą analizę reprezentacji grafów z praktycznymi eksperymentami.
-% 
-% Proponuję następujący zakres:
-% 
-% | Algorytm | Warianty |
-% | --- | --- |
-% | Dijkstra | Macierz + wybór liniowy; lista + kopiec binarny |
-% | Bellman–Ford | Macierz sąsiedztwa; lista krawędzi wyprowadzona z listy sąsiedztwa |
-% | A* | Lista sąsiedztwa + kopiec; heurystyka zerowa oraz Manhattan |
-% | Floyd–Warshall | Macierz odległości |
-% 
-% W ten sposób reprezentacja grafu jest rzeczywistym czynnikiem eksperymentalnym, a nie tylko elementem opisu teoretycznego.
-% 
-% Jednak dla Dijkstry zmieniają się jednocześnie reprezentacja grafu i sposób wybierania wierzchołka. Nie można więc na podstawie tych dwóch wariantów jednoznacznie przypisać całej różnicy wydajności samej reprezentacji.
-% 
-% Jeżeli chcesz zbadać wpływ reprezentacji bardziej rygorystycznie, możesz wykorzystać wszystkie cztery kombinacje z tabeli 1.3 swojego raportu:
-% 
-% - macierz + wybór liniowy;
-% - lista + wybór liniowy;
-% - macierz + kopiec;
-% - lista + kopiec.
-% 
-% To pozwoli osobno rozważyć wpływ reprezentacji i struktury kolejki.
-% 
-% Nie rozszerzałbym natomiast na siłę Floyda–Warshalla o listę sąsiedztwa, jeśli faktyczna implementacja sprowadzałaby się do wcześniejszej konwersji listy na macierz. W tym przypadku sensowniej porównać koszty przygotowania danych, a sam algorytm wykonać na macierzy.
 
 \newpage
 
@@ -895,36 +758,6 @@ Pomiary zostaną zrealizowane w~ramach izolowanych przebiegów na dużych próba
 \end{itemize}
 Dla kluczowych wielkości, takich jak czas wykonania i~rozmiar używanej pamięci, zostanie także obliczony 95\% przedział ufności dla średniej.
 
-% ## 2.5. Metodyka pomiarów
-% 
-% Ta część powinna być na tyle precyzyjna, żeby inna osoba mogła odtworzyć Twoje badania.
-% 
-% ### Co mierzyć?
-% 
-% | Wielkość | Metoda pomiaru |
-% | --- | --- |
-% | Czas wykonania | Czas ścienny (wall-clock) mierzony wysokorozdzielczym zegarem |
-% | Pamięć grafu | Pamięć zajmowana przez reprezentację grafu |
-% | Pamięć pomocnicza | Struktury algorytmu: kolejki, tablice odległości, poprzednicy |
-% | Liczba relaksacji | Liczba sprawdzeń i skutecznych aktualizacji odległości |
-% | Liczba pobrań z kolejki | Szczególnie Dijkstra i A* |
-% | Liczba rozwiniętych wierzchołków | Szczególnie A* |
-% 
-% Rozdzieliłbym też czas generowania grafu i budowy reprezentacji od czasu działania algorytmu. Możesz mierzyć oba, ale wynik główny powinien dotyczyć samego wyszukiwania najkrótszych ścieżek.
-% 
-% ### Powtarzalność
-% 
-% Zaproponowałbym następującą procedurę:
-% 
-% 1. Dla każdej konfiguracji wygenerować 10 grafów z różnymi, zapisanymi ziarnami generatora.
-% 2. Dla każdego grafu wykonać kilka uruchomień rozgrzewkowych, jeśli implementacja korzysta z Javy/JVM.
-% 3. Wykonać 10 właściwych pomiarów czasu na tym samym grafie.
-% 4. Wyznaczyć medianę czasu dla danego grafu, a następnie zagregować wyniki dla 10 grafów, np. medianą i rozstępem międzykwartylowym.
-% 5. Przeprowadzać testy na tym samym komputerze, z możliwie stałym obciążeniem i tymi samymi ustawieniami środowiska.
-% 
-% Ponieważ rozważasz Javę, dopisałbym, że `System.nanoTime()` może służyć do pomiarów czasu, ale nie należy utożsamiać zmiany `Runtime.totalMemory() - Runtime.freeMemory()` z dokładnym szczytowym zużyciem pamięci algorytmu. Dla pamięci obiektowej dobrze byłoby wskazać profiler lub narzędzie pomiarowe, które zostanie użyte w realizacji projektu.
-% 
-% Możesz też zastrzec, że w raporcie końcowym zostaną podane parametry środowiska: procesor, RAM, system operacyjny, wersja JDK oraz konfiguracja JVM.
 
 \newpage
 
@@ -1099,33 +932,6 @@ Scenariusze te służą zebraniu danych potrzebnych do odpowiedzi na dwa pytania
 Powyższe scenariusze należy traktować jako poglądowe - do~momentu ich realizacji podejście może zostać udoskonalone bądź zmienione.
 
 
-% ## 2.4. Scenariusze eksperymentalne
-% 
-% To najważniejsza część planu. Powinna konkretnie odpowiadać na pytanie: jakie doświadczenia zostaną wykonane?
-% 
-% Proponuję pięć serii, z których każda bada jedno główne zagadnienie.
-% 
-% E1. Wpływ rozmiaru grafu
-% 
-% Zmieniaj \(n\) od 50 do 1000, utrzymując gęstość, np. \(\rho=5\%\), i rozkład wag [1, 100]. Mierz czas i pamięć. Dla Floyda–Warshalla możesz ograniczyć maksymalną wielkość do 500 wierzchołków.
-% 
-% E2. Wpływ gęstości grafu
-% 
-% Utrzymaj \(n=250\), a gęstość zmieniaj między 1%, 5%, 20%, 50% i 90%. Zbadaj, czy moment przewagi macierzy nad listą zależy od algorytmu.
-% 
-% E3. Wpływ rodzaju wag
-% 
-% Dla ustalonej struktury grafu porównaj rozkłady [1, 100] oraz [0, 100]. Dodatkowo dla grafów DAG zbadaj wagi dodatnie i mieszane. W części z ujemnymi wagami uruchamiaj Bellmana–Forda i Floyda–Warshalla.
-% 
-% E4. Wpływ jakości heurystyki A*
-% 
-% Na siatkach porównaj heurystykę zerową z heurystyką Manhattan. Mierz czas i liczbę rozwiniętych wierzchołków, a także porównaj wyniki z Dijkstrą dla jednej pary.
-% 
-% E5. Wpływ reprezentacji grafu
-% 
-% Dla tych samych struktur grafów uruchamiaj różne warianty Dijkstry i Bellmana–Forda. Osobno porównaj zajętość pamięci przez macierz i listę sąsiedztwa.
-% 
-% Nie musisz realizować pełnego iloczynu kartezjańskiego wszystkich parametrów. Właśnie dlatego sugeruję osobne serie eksperymentów z kontrolowanymi zmiennymi. To zapewnia interpretowalność wyników i ogranicza liczbę pomiarów.
 
 \section{Notatki końcowe}
 
