@@ -1,0 +1,41 @@
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[c]{0.58\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=1.0]
+      \node[graph vertex] (s)  at (0,2.0) {$s$};
+      \node[graph vertex] (v1) at (-1.8,0.9) {$v_1$};
+      \node[graph vertex] (v2) at (1.8,0.9) {$v_2$};
+      \node[graph vertex] (v3) at (-1.3,-0.45) {$v_3$};
+      \node[graph vertex] (v4) at (1.3,-0.45) {$v_4$};
+      \node[graph vertex] (t)  at (0,-1.7) {$t$};
+
+      \draw[graph edge] (s)--node[above left]  {4} (v1);
+      \draw[graph edge] (s)--node[above right] {2} (v2);
+      \draw[graph edge] (v1)--node[left]       {2} (v3);
+      \draw[graph edge] (v1)--node[above]      {5} (v4);
+      \draw[graph edge] (v2)--node[below]      {6} (v3);
+      \draw[graph edge] (v2)--node[right]      {1} (v4);
+      \draw[graph edge] (v3)--node[below left] {3} (t);
+      \draw[graph edge] (v4)--node[below right]{4} (t);
+      \draw[graph edge] (v3)--node[below]      {2} (v4);
+
+      \draw[black,line width=1.8pt] (s)--(v2)--(v4)--(t);
+    \end{tikzpicture}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[c]{0.38\textwidth}
+    \small
+    \begin{tabular}{@{}l@{}}
+      $s\to v_1\to v_3\to t$\\
+      koszt $4+2+3=9$\\[2mm]
+      $s\to v_2\to v_3\to t$\\
+      koszt $2+6+3=11$\\[2mm]
+      $s\to v_2\to v_4\to t$\\
+      koszt $2+1+4=7$\\
+      \textbf{najkrótsza ścieżka}
+    \end{tabular}
+  \end{minipage}
+  \caption{Przykład wyznaczania najkrótszej ścieżki w grafie ważonym. Pogrubiona ścieżka ma najmniejszy łączny koszt.}
+  \label{fig:przyklad-najkrotszej-sciezki}
+\end{figure}

@@ -1,0 +1,164 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{report-style}[2026/10/04 Shared Polish report style]
+
+\RequirePackage[a4paper,left=30mm,right=25mm,top=25mm,bottom=25mm,headheight=14pt]{geometry}
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[polish]{babel}
+\RequirePackage{lmodern}
+\RequirePackage{microtype}
+\RequirePackage{indentfirst}
+\RequirePackage{amsmath,amssymb}
+\RequirePackage{booktabs}
+\RequirePackage{tabularx}
+\RequirePackage{xltabular}
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta,calc,positioning,shapes.geometric}
+\RequirePackage{xcolor}
+\RequirePackage{float}
+\RequirePackage{enumitem}
+\RequirePackage{fancyhdr}
+\RequirePackage{titlesec}
+\RequirePackage{caption}
+\RequirePackage{subcaption}
+\RequirePackage{listings}
+\RequirePackage{algorithm}
+\RequirePackage{algpseudocode}
+\floatname{algorithm}{Algorytm}
+
+% Polish algorithmic keywords shared by all reports.
+\algrenewcommand{\algorithmicrequire}{\textbf{Dane:}}
+\algrenewcommand{\algorithmicensure}{\textbf{Wynik:}}
+\algrenewcommand{\algorithmicwhile}{\textbf{dopóki}}
+\algrenewcommand{\algorithmicdo}{\textbf{wykonuj}}
+\algrenewcommand{\algorithmicfor}{\textbf{dla}}
+\algrenewcommand{\algorithmicforall}{\textbf{dla każdego}}
+\algrenewcommand{\algorithmicif}{\textbf{jeżeli}}
+\algrenewcommand{\algorithmicthen}{\textbf{wtedy}}
+\algrenewcommand{\algorithmicelse}{\textbf{w przeciwnym razie}}
+\algrenewcommand{\algorithmicend}{\textbf{koniec}}
+\algrenewcommand{\algorithmicreturn}{\textbf{zwróć}}
+\algrenewcommand{\algorithmicfunction}{\textbf{funkcja}}
+\RequirePackage[hidelinks]{hyperref}
+\RequirePackage{cleveref}
+\RequirePackage{cite}
+
+\definecolor{CodeBackground}{HTML}{F5F6F7}
+
+\setlength{\parindent}{12pt}
+\setlength{\parskip}{0.25em}
+\linespread{1.12}
+\setlist{itemsep=0.2em,topsep=0.3em}
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+% Orphan/widow control: do not leave only one, two, or three lines of a
+% paragraph at a page boundary. This makes a short opening fragment move to
+% the following page instead of being separated from the rest of its text.
+\clubpenalty=10000
+\widowpenalty=10000
+\clubpenalties 3 10000 10000 10000
+\widowpenalties 3 10000 10000 10000
+
+\captionsetup{font=small,labelfont=bf,labelsep=period,justification=centering}
+\graphicspath{{../../figures/}{../../figures/generated/}}
+
+% Reusable black-and-white TikZ styles for diagrams.
+\tikzset{
+  graph vertex/.style={circle,draw=black,fill=white,inner sep=1.5pt,minimum size=7mm},
+  graph edge/.style={draw=black,line width=0.6pt},
+  graph arrow/.style={-{Latex[length=2.2mm,width=1.5mm]},draw=black,line width=0.6pt,shorten >=-0.6pt},
+  diagram box/.style={draw=black,rounded corners=2pt,align=center,inner sep=5pt},
+  diagram decision/.style={diamond,draw=black,align=center,inner sep=3pt},
+  diagram arrow/.style={-Latex,draw=black,line width=0.6pt}
+}
+
+\lstset{
+  basicstyle=\footnotesize\ttfamily,
+  backgroundcolor=\color{CodeBackground},
+  frame=single,
+  rulecolor=\color{black!15},
+  breaklines=true,
+  columns=fullflexible,
+  keepspaces=true,
+  numbers=left,
+  numberstyle=\tiny\color{black},
+  numbersep=8pt,
+  showstringspaces=false
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\small\TextProject}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Chapter pages normally use the report class's `plain` style and its large
+% built-in top whitespace. Use the same header/footer everywhere and make
+% chapter headings begin at the regular text area.
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[C]{\small\TextProject}
+  \fancyfoot[C]{\small\thepage}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+\titleformat{\chapter}[hang]
+  {\normalfont\bfseries\LARGE}
+  {\thechapter}
+  {0.8em}
+  {}
+\titlespacing*{\chapter}{0pt}{0pt}{1.5em}
+
+\addto\captionspolish{%
+  \renewcommand{\contentsname}{Spis treści}%
+  \renewcommand{\listfigurename}{Spis rysunków}%
+  \renewcommand{\listtablename}{Spis tabel}%
+}
+
+% Strona tytułowa: klasyczny, jednokolumnowy układ akademicki. Wyróżnienie
+% tytułu wynika wyłącznie z kroju pisma, bez ozdobnych linii i kolorów.
+% Dane i powtarzalne napisy pochodzą z report-resources.tex.
+\newcommand{\makeReportTitlePage}[2]{%
+  \begin{titlepage}
+    \thispagestyle{empty}
+    \centering
+    % Nazwa uczelni i studiów: skromny, zwarty nagłówek.
+    {\large\bfseries\ReportInstitution\par}
+    \vspace{3mm}
+    {\normalsize\ReportFaculty\par}
+
+    % Przedmiot i projekt tworzą jedną, dwuwierszową całość.
+    \vspace*{40mm}
+    \begin{minipage}{0.92\textwidth}
+      \centering
+      {\normalsize\bfseries\ReportCourse\par}
+      \vspace{2mm}
+      {\normalsize\TextProject\par}
+      \vspace{15mm}
+      {\large\bfseries\TextReport\ #2\par}
+      \vspace{6mm}
+      {\LARGE\bfseries #1\par}
+    \end{minipage}\par
+
+    % Szczegóły autorstwa tworzą jedną, czytelną tabelę.
+    \vspace*{43mm}
+    {\normalsize
+      \renewcommand{\arraystretch}{1.55}%
+      \begin{tabular}{@{}r@{\hspace{1.5em}}l@{}}
+        \textbf{\TextAuthor:} & \ReportAuthor\\
+        \textbf{\TextStudentID:} & \ReportStudentID\\
+        \textbf{\TextGroup:} & \ReportGroup\\
+        \textbf{\TextInstructor:} & \ReportInstructor
+      \end{tabular}\par}
+
+    \vfill
+    {\normalsize\ReportPlace, \ReportDate\par}
+  \end{titlepage}
+  \setcounter{page}{1}
+  \clearpage
+}
+
+\newcommand{\reportchapter}[1]{\chapter{#1}}

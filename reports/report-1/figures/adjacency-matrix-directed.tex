@@ -1,0 +1,46 @@
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[c]{0.42\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=0.92]
+      \node[graph vertex] (v1) at (0,2.2) {$v_1$};
+      \node[graph vertex] (v2) at (1.8,1.2) {$v_2$};
+      \node[graph vertex] (v3) at (-1.8,1.2) {$v_3$};
+      \node[graph vertex] (v4) at (0,0.2) {$v_4$};
+      \node[graph vertex] (v5) at (1.8,-0.8) {$v_5$};
+      \node[graph vertex] (v6) at (1.8,-2.0) {$v_6$};
+      \draw[graph arrow] (v1)--(v2);
+      \draw[graph arrow] (v1)--(v3);
+      \draw[graph arrow] (v2) to[bend left=16] (v3);
+      \draw[graph arrow] (v3) to[bend left=16] (v2);
+      \draw[graph arrow] (v2)--(v4);
+      \draw[graph arrow] (v4)--(v3);
+      \draw[graph arrow] (v4)--(v5);
+      \draw[graph arrow] (v5)--(v6);
+      \draw[graph arrow] (v6)--(v4);
+      \draw[graph arrow] (v4) to[out=270,in=180,looseness=8] (v4);
+    \end{tikzpicture}
+    \\[2mm]
+    \small Graf skierowany
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.52\textwidth}
+    \centering
+    {\renewcommand{\arraystretch}{1.35}%
+     \setlength{\tabcolsep}{5pt}%
+     \begin{tabular}{c|cccccc}
+       & $v_1$ & $v_2$ & $v_3$ & $v_4$ & $v_5$ & $v_6$ \\
+       \hline
+       $v_1$ & 0 & 1 & 1 & 0 & 0 & 0 \\
+       $v_2$ & 0 & 0 & 1 & 1 & 0 & 0 \\
+       $v_3$ & 0 & 1 & 0 & 0 & 0 & 0 \\
+       $v_4$ & 0 & 0 & 1 & 1 & 1 & 0 \\
+       $v_5$ & 0 & 0 & 0 & 0 & 0 & 1 \\
+       $v_6$ & 0 & 0 & 0 & 1 & 0 & 0
+     \end{tabular}}
+    \\[2mm]
+     \small Wiersze: wierzchołek \textbf{źródłowy}; \\ kolumny: wierzchołek \textbf{docelowy}
+  \end{minipage}
+  \caption{Macierz sąsiedztwa przykładowego grafu skierowanego o sześciu wierzchołkach}
+  \label{fig:macierz-sasiedztwa-graf-skierowany}
+\end{figure}

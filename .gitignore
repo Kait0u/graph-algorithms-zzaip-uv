@@ -1,0 +1,10 @@
+reports/**/*.aux
+reports/**/*.bbl
+reports/**/*.blg
+reports/**/*.fdb_latexmk
+reports/**/*.fls
+reports/**/*.log
+reports/**/*.out
+reports/**/*.pdf
+reports/**/*.synctex.gz
+reports/**/*.toc

@@ -1,0 +1,42 @@
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[c]{0.42\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=0.92]
+      \node[graph vertex] (v1) at (0,2.2) {$v_1$};
+      \node[graph vertex] (v2) at (1.8,1.2) {$v_2$};
+      \node[graph vertex] (v3) at (-1.8,1.2) {$v_3$};
+      \node[graph vertex] (v4) at (0,0.2) {$v_4$};
+      \node[graph vertex] (v5) at (1.8,-0.8) {$v_5$};
+      \node[graph vertex] (v6) at (1.8,-2.0) {$v_6$};
+      \draw[graph arrow] (v1)--(v2);
+      \draw[graph arrow] (v1)--(v3);
+      \draw[graph arrow] (v2) to[bend left=16] (v3);
+      \draw[graph arrow] (v3) to[bend left=16] (v2);
+      \draw[graph arrow] (v2)--(v4);
+      \draw[graph arrow] (v4)--(v3);
+      \draw[graph arrow] (v4)--(v5);
+      \draw[graph arrow] (v5)--(v6);
+      \draw[graph arrow] (v6)--(v4);
+      \draw[graph arrow] (v4) to[out=270,in=180,looseness=8] (v4);
+    \end{tikzpicture}
+    \\[2mm]
+    \small Graf skierowany
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.52\textwidth}
+    \small
+    \begin{tabular}{@{}r@{\;}l@{}}
+      $v_1 \to$ & $[v_2, v_3]$ \\
+      $v_2 \to$ & $[v_3, v_4]$ \\
+      $v_3 \to$ & $[v_2]$ \\
+      $v_4 \to$ & $[v_3, v_4, v_5]$ \\
+      $v_5 \to$ & $[v_6]$ \\
+      $v_6 \to$ & $[v_4]$
+    \end{tabular}
+    \\[2mm]
+    \small Lista następników (sąsiadów wychodzących)
+  \end{minipage}
+  \caption{Lista sąsiedztwa przykładowego grafu skierowanego o sześciu wierzchołkach}
+  \label{fig:lista-sasiedztwa-graf-skierowany}
+\end{figure}

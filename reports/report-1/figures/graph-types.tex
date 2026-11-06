@@ -1,0 +1,49 @@
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[t]{0.45\textwidth}
+    \centering
+    \begin{tikzpicture}[node distance=13mm]
+      \node[graph vertex] (u1) {$v_1$};
+      \node[graph vertex,below right=of u1] (u2) {$v_2$};
+      \node[graph vertex,below left=of u1] (u3) {$v_3$};
+      \node[graph vertex,below right=of u3] (u4) {$v_4$};
+      \draw[graph edge] (u1) -- (u2);
+      \draw[graph edge] (u1) -- (u3);
+      \draw[graph edge] (u2) -- (u4);
+      \draw[graph edge] (u3) -- (u4);
+      \draw[graph edge] (u2) -- (u3);
+    \end{tikzpicture}
+    \caption{Graf nieskierowany\\[-1mm]
+      $\begin{aligned}
+        V &= \{v_1, v_2, v_3, v_4\}\\
+        E &= \{\{v_1,v_2\},\{v_1,v_3\},\{v_2,v_3\},\\[-1mm]
+           &\quad\{v_2,v_4\},\{v_3,v_4\}\}
+      \end{aligned}$}
+    \label{fig:graf-nieskierowany}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{0.45\textwidth}
+    \centering
+    \begin{tikzpicture}[node distance=13mm]
+      \node[graph vertex] (d1) {$v_1$};
+      \node[graph vertex,below right=of d1] (d2) {$v_2$};
+      \node[graph vertex,below left=of d1] (d3) {$v_3$};
+      \node[graph vertex,below right=of d3] (d4) {$v_4$};
+      \draw[graph arrow] (d1) -- (d2);
+      \draw[graph arrow] (d1) -- (d3);
+      \draw[graph arrow] (d2) -- (d4);
+      \draw[graph arrow] (d4) -- (d3);
+      \draw[graph arrow] (d2) to[bend left=16] (d3);
+      \draw[graph arrow] (d3) to[bend left=16] (d2);
+    \end{tikzpicture}
+    \caption{Graf skierowany\\[-1mm]
+      $\begin{aligned}
+        V &= \{v_1, v_2, v_3, v_4\}\\
+        A &= \{(v_1,v_2),(v_1,v_3),(v_2,v_3),\\[-1mm]
+           &\quad(v_2,v_4),(v_3,v_2),(v_4,v_3)\}
+      \end{aligned}$}
+    \label{fig:graf-skierowany}
+  \end{subfigure}
+  \caption{Przykłady podstawowych typów grafów}
+  \label{fig:typy-grafow}
+\end{figure}

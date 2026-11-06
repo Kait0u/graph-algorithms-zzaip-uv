@@ -1,0 +1,48 @@
+% Wspólny graf bazowy dla trzech przykładów.
+\newcommand{\drawExampleGraph}{%
+  \node[graph vertex] (a) at (0,1.8) {$v_1$};
+  \node[graph vertex] (b) at (-1.1,0.7) {$v_2$};
+  \node[graph vertex] (c) at (1.1,0.7) {$v_3$};
+  \node[graph vertex] (d) at (-1.1,-0.7) {$v_4$};
+  \node[graph vertex] (e) at (1.1,-0.7) {$v_5$};
+  \draw[draw=black!30,line width=0.5pt] (a)--(b) (a)--(c) (b)--(c);
+  \draw[draw=black!30,line width=0.5pt] (b)--(d) (c)--(d) (c)--(e) (d)--(e);
+}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[t]{0.31\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=0.82]
+      \drawExampleGraph
+      \draw[line width=1.4pt] (a)--(b)--(c)--(b)--(d);
+    \end{tikzpicture}
+    \caption{Droga (\textit{walk})\\[-1mm]
+      $v_1,v_2,v_3,v_2,v_4$}
+    \label{fig:przyklad-walk}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{0.31\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=0.82]
+      \drawExampleGraph
+      \draw[line width=1.4pt] (a)--(b)--(c)--(d)--(b);
+    \end{tikzpicture}
+    \caption{Droga prosta (\textit{trail})\\[-1mm]
+      $v_1,v_2,v_3,v_4,v_2$}
+    \label{fig:przyklad-trail}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{0.31\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=0.82]
+      \drawExampleGraph
+      \draw[line width=1.4pt] (a)--(c)--(e)--(d);
+    \end{tikzpicture}
+    \caption{Droga elementarna (\textit{path})\\[-1mm]
+      $v_1,v_3,v_5,v_4$}
+    \label{fig:przyklad-path}
+  \end{subfigure}
+  \caption{Przykłady ciągów wierzchołków w tym samym grafie}
+  \label{fig:przyklady-walk-trail-path}
+\end{figure}

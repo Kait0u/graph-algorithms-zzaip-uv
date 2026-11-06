@@ -1,0 +1,79 @@
+% Wszystkie trzy panele odnoszą się do tego samego grafu ważonego.
+\begin{figure}[H]
+  \centering
+  \setlength{\fboxsep}{4pt}
+  \begin{minipage}[c]{0.31\textwidth}
+    \centering
+    \begin{minipage}[c][4.4cm][c]{0.88\linewidth}
+      \centering
+      \begin{tikzpicture}[scale=0.72]
+        \node[graph vertex] (s) at (0,1.45) {$s$};
+        \node[graph vertex] (a) at (-1.35,0) {$a$};
+        \node[graph vertex] (b) at (1.35,0) {$b$};
+        \node[graph vertex] (t) at (0,-1.45) {$t$};
+        \draw[graph edge] (s)--node[above left]  {4} (a);
+        \draw[graph edge] (s)--node[above right] {2} (b);
+        \draw[graph edge] (a)--node[above]       {1} (b);
+        \draw[graph edge] (a)--node[below left]  {3} (t);
+        \draw[graph edge] (b)--node[below right] {4} (t);
+        % Najkrótsza ścieżka s -> b -> a -> t ma koszt 2+1+3=6.
+      \draw[black,line width=1.7pt] (s)--(b)--(a)--(t);
+      \end{tikzpicture}
+    \end{minipage}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.32\textwidth}
+    \centering
+    \fbox{\begin{minipage}[c][2.1cm][c]{0.87\linewidth}
+      \centering
+      {\normalsize\bfseries SPSP\par}
+      \vspace{1mm}
+      {\scriptsize jedna para: $s\to t$\par}
+      \vspace{1mm}
+      {\small $s\to b\to a\to t$\\
+      koszt: $2+1+3=6$\par}
+    \end{minipage}}
+
+    \vspace{2mm}
+
+    \fbox{\begin{minipage}[c][2.1cm][c]{0.87\linewidth}
+      \centering
+      {\normalsize\bfseries SSSP\par}
+      \vspace{1mm}
+      {\scriptsize źródło: $s$\par}
+      \vspace{1mm}
+      {\small
+      \begin{tabular}{@{}c@{\quad}c@{}}
+        $d(s,s)=0$ & $d(s,a)=3$ \\
+        $d(s,b)=2$ & $d(s,t)=6$
+      \end{tabular}\par}
+    \end{minipage}}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[c]{0.31\textwidth}
+    \centering
+    \fbox{\begin{minipage}[c][4.4cm][c]{0.88\linewidth}
+      \centering
+      {\normalsize\bfseries APSP\par}
+      \vspace{1mm}
+      {\scriptsize wszystkie uporządkowane pary\par}
+      \vspace{1.5mm}
+      {\scriptsize
+      \renewcommand{\arraystretch}{1.15}
+      \setlength{\tabcolsep}{4pt}
+      \begin{tabular}{c|cccc}
+        & $s$ & $a$ & $b$ & $t$ \\
+        \hline
+        $s$ & 0 & 3 & 2 & 6 \\
+        $a$ & 3 & 0 & 1 & 3 \\
+        $b$ & 2 & 1 & 0 & 4 \\
+        $t$ & 6 & 3 & 4 & 0
+      \end{tabular}\par}
+      \vspace{1.5mm}
+
+      {\scriptsize macierz odległości $d(u,v)$\par}
+    \end{minipage}}
+  \end{minipage}
+  \caption{Trzy warianty problemu najkrótszych ścieżek dla tego samego grafu ważonego.}
+  \label{fig:typy-problemow-najkrotszej-sciezki}
+\end{figure}
