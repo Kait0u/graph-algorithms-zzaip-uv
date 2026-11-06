@@ -84,7 +84,7 @@ Przedstawiono dwie różne techniki reprezentacji grafu. Poniższa tabela zestaw
   \label{tab:porownanie-reprezentacji}
 \end{table}
 
-Dla listy sąsiedztwa przyjęto, że liczba sąsiadów wierzchołka jest przechowywana lub dostępna w~czasie $O(1)$, a~dodanie połączenia polega na~wstawieniu elementu na~początek listy wiązanej, bez sprawdzania, czy połączenie już istnieje. Dla digrafu $d$ oznacza stopień wyjściowy. W~grafie nieskierowanym usunięcie krawędzi wymaga przeszukania list obu jej końców, a~jego koszt wynosi $O(d(u)+d(v))$.
+Dla listy sąsiedztwa przyjęto, że liczba sąsiadów wierzchołka jest przechowywana lub dostępna w~czasie $O(1)$, a~dodanie połączenia polega na~wstawieniu elementu na~początek listy wiązanej (ang. \textit{linked list}), bez sprawdzania, czy połączenie już istnieje. Dla digrafu $d$ oznacza stopień wyjściowy. W~grafie nieskierowanym usunięcie krawędzi wymaga przeszukania list obu jej końców, a~jego koszt wynosi $O(d(u)+d(v))$.
 
 W~przypadku grafu nieskierowanego każda krawędź jest zwykle przechowywana na~dwóch listach sąsiedztwa, natomiast w~przypadku digrafu każdy łuk jest przechowywany raz, na~liście jego wierzchołka źródłowego.
 
@@ -313,9 +313,7 @@ W~pseudokodzie $s$ oznacza źródło, $w(u,v)$ wagę krawędzi, a~$d$ i~$\pi$ ta
 
 Algorytm A* (1968) \cite{hart-1968-heuristicpath} to algorytm klasy SPSP. Dla zadanego wierzchołka startowego $s$ oraz wierzchołka docelowego $t$ w~grafie $G$, oblicza on najkrótszą ścieżkę między nimi, o~ile takowa istnieje. Algorytm znajduje szerokie zastosowanie m.in. w~systemach nawigacyjnych i~grach komputerowych.
 
-Istotą algorytmu jest ukierunkowane przeszukiwanie grafu z~wykorzystaniem heurystyki $h(v)$, czyli funkcji szacującej pozostały koszt dotarcia z~wierzchołka $v$ do~celu $t$. Podczas gdy algorytm Dijkstry bada wierzchołki koncentrycznie wyłącznie na~podstawie dotychczas przebytej drogi $d[v]$, A* wybiera wierzchołki na~podstawie łącznej funkcji oceny $f(v) = d[v] + h(v)$, reprezentującej przewidywany całkowity koszt ścieżki prowadzącej przez $v$. W~szczególnym przypadku, gdy dla każdego wierzchołka $h(v)=0$, algorytm działa według zasad algorytmu Dijkstry \cite{mit-2026-pathsearch}.
-
-Postać heurystyki zależy od~specyfiki problemu. Jeżeli wierzchołki odpowiadają punktom w~przestrzeni, heurystyką może być odległość w~odpowiedniej metryce: Manhattan (dla ruchu w~czterech kierunkach o~jednostkowym koszcie), Czebyszewa (dla ruchu w~ośmiu kierunkach o~jednostkowym koszcie) lub euklidesowa (gdy wagi krawędzi odpowiadają odległościom geometrycznym).
+Istotą algorytmu jest ukierunkowane przeszukiwanie grafu z~wykorzystaniem heurystyki $h(v)$, czyli funkcji szacującej pozostały koszt dotarcia z~wierzchołka $v$ do~celu $t$. Podczas gdy algorytm Dijkstry bada wierzchołki koncentrycznie wyłącznie na~podstawie dotychczas przebytej drogi $d[v]$, A* wybiera wierzchołki na~podstawie łącznej funkcji oceny $f(v) = d[v] + h(v)$, reprezentującej przewidywany całkowity koszt ścieżki prowadzącej przez $v$. W~szczególnym przypadku, gdy dla każdego wierzchołka $h(v)=0$, algorytm działa według zasad algorytmu Dijkstry \cite{mit-2026-pathsearch}. Postać heurystyki zależy od~specyfiki problemu. Jeżeli wierzchołki odpowiadają punktom w~przestrzeni, heurystyką może być odległość w~odpowiedniej metryce: Manhattan (dla ruchu w~czterech kierunkach o~jednostkowym koszcie), Czebyszewa (dla ruchu w~ośmiu kierunkach o~jednostkowym koszcie) lub euklidesowa (gdy wagi krawędzi odpowiadają odległościom geometrycznym).
 
 Oprócz wyznaczenia minimalnego kosztu dojścia, algorytm rekonstruuje wierzchołkową postać ścieżki, odtwarzając sekwencję przejść wstecz od~celu do~źródła za~pomocą zapamiętanych poprzedników.
 
@@ -758,9 +756,6 @@ Pomiary zostaną zrealizowane w~ramach izolowanych przebiegów na~dużych próba
 	\item Kwartyle Q1 i~Q3
 \end{itemize}
 Dla kluczowych wielkości, takich jak czas wykonania i~rozmiar używanej pamięci, zostanie także obliczony 95\% przedział ufności dla średniej.
-
-
-\newpage
 
 \section{Scenariusze eksperymentalne}
 
