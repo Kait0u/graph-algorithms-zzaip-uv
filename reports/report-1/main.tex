@@ -243,7 +243,7 @@ Algorytm wykonuje $|V|-1$ pełnych iteracji relaksacji. Jest to wystarczająca l
 
 \subsubsection{Ograniczenia}
 
-W przeciwieństwie do algorytmu Dijkstry, algorytm Bellmana-Forda obsługuje ujemne wagi krawędzi. Pojedyncza ujemna krawędź nie oznacza jeszcze problemu, o ile nie prowadzi do osiągalnego cyklu o~ujemnej wadze. Jest to cykl, którego suma wag jest mniejsza od zera. Wielokrotne przechodzenie przez taki cykl pozwala zmniejszać koszt ścieżki bez ograniczenia. Algorytm może wykryć istnienie takiego cyklu, ale nie zwraca wówczas poprawnych skończonych odległości dla wierzchołków, które można z niego osiągnąć. Cykl o~ujemnej wadze, do którego nie można dotrzeć ze źródła $s$, nie wpływa na wyniki dla tego źródła.
+W przeciwieństwie do algorytmu Dijkstry, algorytm Bellmana-Forda obsługuje ujemne wagi krawędzi. Sama obecność ujemnej krawędzi nie ogranicza poprawności algorytmu; ograniczenie dotyczy cykli o~ujemnej wadze osiągalnych ze źródła. Jest to cykl, którego suma wag jest mniejsza od zera. Wielokrotne przechodzenie przez taki cykl pozwala zmniejszać koszt ścieżki bez ograniczenia. Algorytm może wykryć istnienie takiego cyklu, ale nie zwraca wówczas poprawnych skończonych odległości dla wierzchołków, które można z niego osiągnąć. Cykl o~ujemnej wadze, do którego nie można dotrzeć ze źródła $s$, nie wpływa na wyniki dla tego źródła.
 
 Głównym ograniczeniem algorytmu jest jednak jego wydajność. Dla listy krawędzi jego złożoność czasowa wynosi $O(|V||E|)$, ponieważ wszystkie krawędzie są analizowane w każdej iteracji. W przypadku macierzy sąsiedztwa sprawdzanie wszystkich możliwych par wierzchołków prowadzi do złożoności $O(|V|^3)$. Możliwe jest wcześniejsze zakończenie działania algorytmu. Jeżeli podczas pełnej iteracji nie zmieniła się żadna odległość, dalsze iteracje nie poprawią wyniku i algorytm może zakończyć pracę wcześniej.
 
@@ -515,7 +515,15 @@ Pierwsza faza algorytmu ma złożoność kwadratową, związaną z przeglądem m
 
 \reportchapter{Plan prac}
 
-Przedstawiony plan implementacji i~badań ma charakter koncepcyjny. Sposób generowania danych, warianty implementacyjne, scenariusze, liczebności prób oraz plan pomiarów mogą ulec zmianie po~próbach pilotażowych przeprowadzonych podczas implementacji. Ewentualne zmiany zostaną opisane w~odpowiednich kolejnych raportach.
+\begin{center}
+\fcolorbox{red!70!black}{white}{%
+  \begin{minipage}{0.92\textwidth}
+    \textbf{\textcolor{red!70!black}{Ważne: koncepcyjny charakter planu prac i~badań}}
+
+    Cały przedstawiony w~tym rozdziale plan implementacji i~badań ma charakter koncepcyjny. Dotyczy to w~szczególności sposobu generowania danych, wariantów implementacyjnych, scenariuszy, liczebności prób oraz metod i~zakresu pomiarów. Wszystkie te założenia mogą ulec zmianie w~trakcie implementacji, w~szczególności na podstawie wyników prób pilotażowych. Ewentualne zmiany wraz z~ich uzasadnieniem zostaną opisane w~odpowiednich kolejnych raportach.
+  \end{minipage}%
+}
+\end{center}
 
 Celem projektu jest zaimplementowanie czterech algorytmów, a następnie porównanie ich w kontekście realizacji swoich zadań. Warto przypomnieć, że realizują one różne typy zadań: Dijkstra, Bellman-Ford $\rightarrow$ SSSP, A* $\rightarrow$ SPSP oraz Floyd-Warshall $\rightarrow$ APSP. Warto także przypomnieć o swego rodzaju potencjalnym "zawieraniu się" rozwiązania problemu SPSP w~rozwiązaniu problemu SSSP, które z~kolei może stanowić część rozwiązania problemu APSP. Istnieje zatem sens porównywania tych algorytmów ze~sobą pod~kątem wydajności obliczeniowej i~pamięciowej, tak długo, jak pozostaje się świadomym, w~jakiej relacji z~pozostałymi problemami jest problem rozwiązywany przez algorytm.
 
