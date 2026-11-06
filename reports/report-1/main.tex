@@ -107,8 +107,6 @@ Dla zachowania porządku, autor projektu przyjmie, że słowo \textit{ścieżka}
 
 \input{figures/walk-trail-path}
 
-Szczególnymi przypadkami dróg jest droga Eulera (droga prosta zawierająca wszystkie krawędzie grafu) oraz droga Hamiltona (droga elementarna zawierająca wszystkie wierzchołki grafu) - choć są to inne zagadnienia względem zagadnienia poszukiwania najkrótszej ścieżki, które stanowi przedmiot projektu.
-
 \subsection{Definicja problemu}
 
 Problem najkrótszej ścieżki polega na znalezieniu w grafie drogi elementarnej pomiędzy dwoma zadanymi wierzchołkami grafu, której koszt jest najmniejszy.
@@ -196,30 +194,7 @@ Poniżej znajduje się pseudokod algorytmu Dijkstry. Wykorzystuje on strukturę 
   \end{algorithmic}
 \end{algorithm}
 
-\begin{table}[H]
-  \centering
-  \small
-  \renewcommand{\arraystretch}{1.15}
-  \begin{tabularx}{0.9\textwidth}{@{}lX@{}}
-    \toprule
-    \textbf{Oznaczenie} & \textbf{Znaczenie} \\
-    \midrule
-    $V$, $E$ & Zbiór wierzchołków i zbiór krawędzi (łuków) grafu. \\
-    $N(u)$ & Zbiór sąsiadów wierzchołka $u$ (dla digrafu: zbiór jego następników). \\
-    $s$ & Wierzchołek źródłowy; jego odległość początkowa wynosi $0$. \\
-    $w(u,v)$ & Nieujemna waga krawędzi (łuku) z $u$ do $v$. \\
-    $d[v]$ & Najkrótsza dotychczas znaleziona odległość od $s$ do $v$. \\
-    $\pi[v]$ & Poprzednik $v$ na aktualnie najkrótszej znanej ścieżce. \\
-    $d$, $\pi$ & Tablice (odwzorowania) odległości i poprzedników. \\
-    $Q$ & Kolejka priorytetowa par $(\text{odległość}, \text{wierzchołek})$, uporządkowana według odległości od źródła. \\
-    $d[u]+w(u,v)$ & Koszt dojścia do $v$ przez $u$. \\
-    $d_u$ & Odległość wierzchołka $u$ zapisana we wpisie pobranym z kolejki $Q$. \\
-    $\operatorname{pobierzNajmniejszy}(Q)$ & Operacja pobrania z $Q$ elementu o najmniejszej odległości. \\
-    \bottomrule
-  \end{tabularx}
-  \caption{Oznaczenia użyte w pseudokodzie algorytmu Dijkstry.}
-  \label{tab:oznaczenia-dijkstra}
-\end{table}
+W~pseudokodzie $s$ oznacza źródło, $N(u)$ zbiór sąsiadów wierzchołka $u$, a~$w(u,v)$ wagę krawędzi. Tablice $d$ i~$\pi$ przechowują odpowiednio dotychczasowe odległości i~poprzedników, natomiast $Q$ jest kolejką priorytetową. Wartość $d_u$ to odległość zapisana w~pobranym wpisie kolejki.
 
 \newpage
 
@@ -313,30 +288,7 @@ W przypadku grafu niespójnego odległość dla wierzchołków nieosiągalnych z
 	\end{algorithmic}
 \end{algorithm}
 
-\begin{table}[H]
-  \centering
-  \small
-  \renewcommand{\arraystretch}{1.15}
-  \begin{tabularx}{0.9\textwidth}{@{}lX@{}}
-    \toprule
-    \textbf{Oznaczenie} & \textbf{Znaczenie} \\
-    \midrule
-    $V$, $E$ & Zbiór wierzchołków i zbiór krawędzi (łuków) grafu. \\
-    $i$ & Licznik iteracji. \\
-    $|V|$ & Liczba wierzchołków grafu; $|V|-1$ to liczba iteracji relaksacji. \\
-    $(u,v)\in E$ & Krawędź lub łuk o końcach $u$ i $v$, w kierunku od $u$ do $v$. \\
-    $s$ & Wierzchołek źródłowy. \\
-    $w(u,v)$ & Waga krawędzi (łuku) z $u$ do $v$; może być ujemna. \\
-    $d[v]$ & Najkrótsza dotychczas znaleziona odległość od $s$ do $v$. \\
-    $\pi[v]$ & Poprzednik $v$ na aktualnie najkrótszej znanej ścieżce. \\
-    $d[u]+w(u,v)$ & Koszt dojścia do $v$ przez $u$. \\
-    \text{zmiana} & Flaga logiczna sygnalizująca zajście relaksacji w bieżącej iteracji. \\
-    $d,\pi$ & Tablice (odwzorowania) odległości i poprzedników. \\
-    \bottomrule
-  \end{tabularx}
-  \caption{Oznaczenia użyte w pseudokodzie algorytmu Bellmana--Forda.}
-  \label{tab:oznaczenia-bellman-ford}
-\end{table}
+W~pseudokodzie $s$ oznacza źródło, $w(u,v)$ wagę krawędzi, a~$d$ i~$\pi$ tablice dotychczasowych odległości i~poprzedników. Flaga $\text{zmiana}$ sygnalizuje relaksację w~bieżącej iteracji.
 
 \begin{table}[H]
   \centering
@@ -429,37 +381,9 @@ Algorytm wymaga wiedzy dziedzinowej pozwalającej sformułować funkcję heuryst
   \end{algorithmic}
 \end{algorithm}
 
-\begin{table}[H]
-  \centering
-  \small
-  \renewcommand{\arraystretch}{1.15}
-  \begin{tabularx}{0.9\textwidth}{@{}lX@{}}
-    \toprule
-    \textbf{Oznaczenie} & \textbf{Znaczenie} \\
-    \midrule
-    $V$, $E$ & Zbiór wierzchołków i zbiór krawędzi (łuków) grafu. \\
-    $s$, $t$ & Wierzchołek źródłowy i wierzchołek docelowy. \\
-    $N(u)$ & Zbiór sąsiadów wierzchołka $u$ (dla digrafu: zbiór jego następników). \\
-    $w(u,v)$ & Nieujemna waga krawędzi (łuku) z $u$ do $v$. \\
-    $h$ & Funkcja heurystyczna; $h(v)$ oznacza oszacowanie kosztu dojścia z $v$ do celu $t$. \\
-    $d[v]$ & Najmniejszy dotąd znany koszt dojścia ze źródła $s$ do $v$. \\
-    $d_{\mathrm{pr}}$ & Koszt dojścia do $v$ przez $u$, obliczony jako $d[u]+w(u,v)$. \\
-    $\pi$ & Odwzorowanie poprzedników wierzchołków na wyznaczonej trasie. \\
-    $\pi[v]$ & Poprzednik wierzchołka $v$ w odwzorowaniu $\pi$. \\
-    $u\in\pi$ & Przynależność wierzchołka $u$ do dziedziny odwzorowania $\pi$. \\
-    $Q$ & Kolejka priorytetowa par (priorytet, wierzchołek), uporządkowana rosnąco według priorytetu. \\
-    $f_u$, $f_v$ & Priorytety wierzchołków w $Q$, równe sumie kosztu dojścia i oszacowania heurystycznego. \\
-    $\operatorname{pobierzNajmniejszy}(Q)$ & Operacja pobrania z $Q$ elementu o najmniejszym priorytecie. \\
-    $\text{ścieżka}$ & Sekwencja wierzchołków tworząca trasę od $s$ do $t$. \\
-    $\textsc{odtwórzŚcieżkę}(\pi, u)$ & Funkcja rekonstruująca sekwencję wierzchołków od źródła do $u$. \\
-    $\text{odwróć}(\text{ścieżka})$ & Operacja odwrócenia kolejności elementów w sekwencji wierzchołków. \\
-    \bottomrule
-  \end{tabularx}
-  \caption{Oznaczenia użyte w pseudokodzie algorytmu A*.}
-  \label{tab:oznaczenia-a-star}
-\end{table}
+W~pseudokodzie $s$ i~$t$ oznaczają źródło i~cel, $d[v]$ dotychczasowy koszt dojścia do $v$, a~$h(v)$ oszacowanie kosztu do celu. Kolejka $Q$ porządkuje wierzchołki według sumy tych wartości; $\pi$ przechowuje poprzedników potrzebnych do odtworzenia ścieżki, zaś $d_{\mathrm{pr}}$ jest kosztem dojścia do sąsiada przez bieżący wierzchołek.
 
-Kwestia złożoności algorytmu A* jest zależna od~jakości zastosowanej heurystyki oraz doboru struktur danych. W~przypadku heurystyki spójnej wierzchołki nie są re-ewaluowane, a~złożoność zależy od kombinacji reprezentacji grafu i~kolejki (analogicznie do analizy dla algorytmu Dijkstry). W~wariantach z~kopcem binarnym z~leniwym usuwaniem kolejka może tymczasowo mieścić do $O(|E|)$ wpisów, co daje pamięć pomocniczą $O(|V| + |E|)$. W~przypadku heurystyki całkowicie nieinformacyjnej ($h \equiv 0$) algorytm przeszukuje całą osiągalną składową grafu, osiągając pesymistyczny czas odpowiadający pełnemu przebiegowi algorytmu Dijkstry.
+Kwestia złożoności algorytmu A* jest zależna od~jakości zastosowanej heurystyki oraz doboru struktur danych. W~przypadku heurystyki spójnej wierzchołki nie są re-ewaluowane, a~złożoność zależy od kombinacji reprezentacji grafu i~kolejki (analogicznie do analizy dla algorytmu Dijkstry). W~wariantach z~kopcem binarnym z~leniwym usuwaniem kolejka może tymczasowo mieścić do $O(|E|)$ wpisów, co daje pamięć pomocniczą $O(|V| + |E|)$. Przy heurystyce $h \equiv 0$ algorytm A* przetwarza wierzchołki według zasad algorytmu Dijkstry, jednak może zakończyć działanie po osiągnięciu celu, bez przeszukiwania całej osiągalnej części grafu.
 
 \begin{table}[H]
   \centering
@@ -569,32 +493,7 @@ Wyznaczona macierz poprzedników $\pi$ umożliwia opcjonalne odtworzenie sekwenc
   \end{algorithmic}
 \end{algorithm}
 
-\begin{table}[H]
-  \centering
-  \small
-  \renewcommand{\arraystretch}{1.15}
-  \begin{tabularx}{0.9\textwidth}{@{}lX@{}}
-    \toprule
-    \textbf{Oznaczenie} & \textbf{Znaczenie} \\
-    \midrule
-    $V$, $E$ & Zbiór wierzchołków i zbiór krawędzi (łuków) grafu. \\
-    $|V|$ & Liczba wierzchołków grafu. \\
-    $(i,j)\in E$ & Krawędź lub łuk skierowany z wierzchołka $i$ do $j$. \\
-    $w(i,j)$ & Waga krawędzi (łuku) z wierzchołka $i$ do $j$. \\
-    $d$ & Macierz najkrótszych odległości o wymiarach $|V|\times|V|$. \\
-    $d[i][j]$ & Najmniejszy dotąd znany koszt dojścia z wierzchołka $i$ do $j$. \\
-    $d[i][k]+d[k][j]$ & Koszt dojścia z wierzchołka $i$ do $j$ przez wierzchołek pośredni $k$. \\
-    $\pi$ & Macierz poprzedników o wymiarach $|V|\times|V|$. \\
-    $\pi[i][j]$ & Poprzednik wierzchołka $j$ na aktualnie najkrótszej ścieżce z $i$ do $j$. \\
-    $i, j, k$ & Indeksy wierzchołków grafu ($k$ jest wierzchołkiem pośrednim). \\
-    $u, v$ & Wierzchołek początkowy i końcowy odtwarzanej trasy. \\
-    $\text{ścieżka}$ & Sekwencja wierzchołków tworząca trasę od $u$ do $v$. \\
-    $\text{odwróć}(\text{ścieżka})$ & Operacja odwrócenia kolejności elementów w sekwencji wierzchołków. \\
-    \bottomrule
-  \end{tabularx}
-  \caption{Oznaczenia użyte w pseudokodzie algorytmu Floyda--Warshalla oraz procedury odtwarzania ścieżki.}
-  \label{tab:oznaczenia-floyd-warshall}
-\end{table}
+Macierze $d$ i~$\pi$ przechowują odpowiednio dotychczasowe odległości oraz poprzedników na ścieżkach. Indeksy $i$, $j$ i~$k$ oznaczają wierzchołki, przy czym $k$ jest rozważanym wierzchołkiem pośrednim. W~procedurze odtwarzania $u$ i~$v$ oznaczają początek i~koniec ścieżki.
 
 Pierwsza faza algorytmu ma złożoność kwadratową, związaną z przeglądem macierzy. Druga faza to iteracja potrójnie zagnieżdżona - stąd złożoność sześcienna. Rekonstrukcja ścieżki ma~złożoność zależną liniowo od~liczby wierzchołków.
 
@@ -615,6 +514,8 @@ Pierwsza faza algorytmu ma złożoność kwadratową, związaną z przeglądem m
 \end{table}
 
 \reportchapter{Plan prac}
+
+Przedstawiony plan implementacji i~badań ma charakter koncepcyjny. Sposób generowania danych, warianty implementacyjne, scenariusze, liczebności prób oraz plan pomiarów mogą ulec zmianie po~próbach pilotażowych przeprowadzonych podczas implementacji. Ewentualne zmiany zostaną opisane w~odpowiednich kolejnych raportach.
 
 Celem projektu jest zaimplementowanie czterech algorytmów, a następnie porównanie ich w kontekście realizacji swoich zadań. Warto przypomnieć, że realizują one różne typy zadań: Dijkstra, Bellman-Ford $\rightarrow$ SSSP, A* $\rightarrow$ SPSP oraz Floyd-Warshall $\rightarrow$ APSP. Warto także przypomnieć o swego rodzaju potencjalnym "zawieraniu się" rozwiązania problemu SPSP w~rozwiązaniu problemu SSSP, które z~kolei może stanowić część rozwiązania problemu APSP. Istnieje zatem sens porównywania tych algorytmów ze~sobą pod~kątem wydajności obliczeniowej i~pamięciowej, tak długo, jak pozostaje się świadomym, w~jakiej relacji z~pozostałymi problemami jest problem rozwiązywany przez algorytm.
 
@@ -1027,7 +928,7 @@ Podstawą ogólnych badań wydajnościowych jest dwuczynnikowy plan eksperymentu
   \label{tab:macierz-scenariuszy-wydajnosciowych}
 \end{table}
 
-Dla każdej z~36 konfiguracji macierzy generowana jest pseudolosowo próba $N_p = 1000$ instancji digrafów za pomocą generatora syntetycznego (Algorytm~\ref{alg:generator-grafow}), przy zachowaniu powtarzalnych ziaren (\textit{seeds}). Eksperymenty wymagają rygorystycznej powtarzalności: nie należy losować danych wejściowych oddzielnie przy każdym uruchomieniu poszczególnych algorytmów. Zamiast tego, po wygenerowaniu próby grafów $P = \{G_1, \ldots, G_{N_p}\}$ dla danej konfiguracji, jednokrotnie tworzy się dla niej deterministyczny zbiór instancji zadaniowych $Z = \{Z_1, \ldots, Z_{N_p}\}$, gdzie $Z_k = (G_k, s_k, t_k, b_k)$. Procedurę tę formalizuje Algorytm~\ref{alg:generator-zadan}.
+Dla każdej z~36 konfiguracji macierzy początkowo zakłada się wygenerowanie pseudolosowej próby $N_p = 1000$ instancji digrafów za pomocą generatora syntetycznego (Algorytm~\ref{alg:generator-grafow}), przy zachowaniu powtarzalnych ziaren (\textit{seeds}). Liczebność próby ma charakter koncepcyjny i~może zostać dostosowana po~pomiarach pilotażowych; ewentualna zmiana zostanie opisana w~odpowiednim raporcie. Eksperymenty wymagają rygorystycznej powtarzalności: nie należy losować danych wejściowych oddzielnie przy każdym uruchomieniu poszczególnych algorytmów. Zamiast tego, po wygenerowaniu próby grafów $P = \{G_1, \ldots, G_{N_p}\}$ dla danej konfiguracji, jednokrotnie tworzy się dla niej deterministyczny zbiór instancji zadaniowych $Z = \{Z_1, \ldots, Z_{N_p}\}$, gdzie $Z_k = (G_k, s_k, t_k, b_k)$. Procedurę tę formalizuje Algorytm~\ref{alg:generator-zadan}.
 
 \begin{algorithm}[H]
   \caption{Generowanie danych zadaniowych dla próby grafów}
