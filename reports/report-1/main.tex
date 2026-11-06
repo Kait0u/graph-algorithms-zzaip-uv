@@ -76,7 +76,7 @@ Przedstawiono dwie różne techniki reprezentacji grafu. Poniższa tabela zestaw
     Wyznaczenie sąsiadów $u$ & $\Theta(|V|)$ & $\Theta(d)$ \\
     Wyznaczenie stopnia $u$ & $\Theta(|V|)$ & $O(1)$ \\
     Iteracja po wszystkich krawędziach/łukach & $\Theta(|V|^2)$ & $\Theta(|V|+|E|)$ \\
-    Dodanie krawędzi/łuku & $O(1)$ & $O(1)$ amortyzowane \\
+    Dodanie krawędzi/łuku & $O(1)$ & $O(1)$ \\
     Usunięcie krawędzi/łuku & $O(1)$ & $O(d)$ \\
     \bottomrule
   \end{tabularx}
@@ -84,9 +84,7 @@ Przedstawiono dwie różne techniki reprezentacji grafu. Poniższa tabela zestaw
   \label{tab:porownanie-reprezentacji}
 \end{table}
 
-Dla listy sąsiedztwa przyjęto, że liczba sąsiadów wierzchołka jest przechowywana lub dostępna w~czasie $O(1)$, a~dodanie połączenia nie obejmuje sprawdzenia, czy już istnieje. Dla digrafu $d$ oznacza stopień wyjściowy. W~grafie nieskierowanym usunięcie krawędzi wymaga przeszukania list obu jej końców, a~jego koszt wynosi $O(d(u)+d(v))$.
-
-Oznaczenie kosztu amortyzowanego $O(1)$ dla dodawania oznacza, że wykonanie $k$ kolejnych operacji dodawania do początkowo pustej struktury ma łączny koszt $O(k)$, nawet jeśli pojedyncza operacja wymaga więcej pracy. Tak jest np. przy dopisywaniu do tablicy dynamicznej, której pojemność w~razie potrzeby zwiększa się o~stały mnożnik, kopiując jej zawartość.
+Dla listy sąsiedztwa przyjęto, że liczba sąsiadów wierzchołka jest przechowywana lub dostępna w~czasie $O(1)$, a~dodanie połączenia polega na wstawieniu elementu na początek listy wiązanej, bez sprawdzania, czy połączenie już istnieje. Dla digrafu $d$ oznacza stopień wyjściowy. W~grafie nieskierowanym usunięcie krawędzi wymaga przeszukania list obu jej końców, a~jego koszt wynosi $O(d(u)+d(v))$.
 
 W przypadku grafu nieskierowanego każda krawędź jest zwykle przechowywana na~dwóch listach sąsiedztwa, natomiast w~przypadku digrafu każdy łuk jest przechowywany raz, na~liście jego wierzchołka źródłowego.
 
