@@ -515,16 +515,6 @@ Pierwsza faza algorytmu ma złożoność kwadratową, związaną z przeglądem m
 
 \reportchapter{Plan prac}
 
-\begin{center}
-\fcolorbox{red!70!black}{white}{%
-  \begin{minipage}{0.92\textwidth}
-    \textbf{\textcolor{red!70!black}{Ważne: koncepcyjny charakter planu prac i~badań}}
-
-    Cały przedstawiony w~tym rozdziale plan implementacji i~badań ma charakter koncepcyjny. Dotyczy to w~szczególności sposobu generowania danych, wariantów implementacyjnych, scenariuszy, liczebności prób oraz metod i~zakresu pomiarów. Wszystkie te założenia mogą ulec zmianie w~trakcie implementacji, w~szczególności na podstawie wyników prób pilotażowych. Ewentualne zmiany wraz z~ich uzasadnieniem zostaną opisane w~odpowiednich kolejnych raportach.
-  \end{minipage}%
-}
-\end{center}
-
 Celem projektu jest zaimplementowanie czterech algorytmów, a następnie porównanie ich w kontekście realizacji swoich zadań. Warto przypomnieć, że realizują one różne typy zadań: Dijkstra, Bellman-Ford $\rightarrow$ SSSP, A* $\rightarrow$ SPSP oraz Floyd-Warshall $\rightarrow$ APSP. Warto także przypomnieć o swego rodzaju potencjalnym "zawieraniu się" rozwiązania problemu SPSP w~rozwiązaniu problemu SSSP, które z~kolei może stanowić część rozwiązania problemu APSP. Istnieje zatem sens porównywania tych algorytmów ze~sobą pod~kątem wydajności obliczeniowej i~pamięciowej, tak długo, jak pozostaje się świadomym, w~jakiej relacji z~pozostałymi problemami jest problem rozwiązywany przez algorytm.
 
 Podstawowym celem eksperymentów jest określenie wpływu parametrów grafu - rozmiaru\footnote{Rozmiar grafu to liczba jego wierzchołków: $|V|$.}, gęstości\footnote{Gęstość grafu G ($\rho_G$) to~stosunek liczby łuków/krawędzi w~tym grafie do~maksymalnej ich liczby dla~danego rozmiaru grafu, często wyrażany w procentach.} oraz~rodzajów wag - na~wydajność obliczeniową i~pamięciową implementacji algorytmów. Badane algorytmy, poza algorytmem Floyda-Warshalla, mogą zostać zaimplementowane w~oparciu o~macierz sąsiedztwa bądź~o~listę sąsiedztwa. W takich przypadkach, oba warianty powinny zostać poddane osobnej analizie i~porównane.
@@ -617,6 +607,16 @@ W przypadku algorytmu Floyda-Warshalla, złożoność obliczeniowa niezmiennie w
 % Tutaj wystarczą dwa lub trzy akapity. Nie powtarzałbym teorii z rozdziału 1.
 
 \section{Przygotowanie grafów testowych}
+
+\begin{center}
+\fcolorbox{red!70!black}{white}{%
+  \begin{minipage}{0.92\textwidth}
+    \textbf{\textcolor{red!70!black}{Założenia dotyczące generowania danych}}
+
+    Przedstawiony sposób generowania grafów, współrzędnych, łuków i~wag oraz doboru zadań ma charakter koncepcyjny. Procedury i~ich parametry mogą zostać zmienione podczas implementacji po~ocenie wygenerowanych danych i~próbach pilotażowych. Ewentualne zmiany oraz ich uzasadnienie zostaną opisane w~odpowiednich kolejnych raportach.
+  \end{minipage}%
+}
+\end{center}
 
 Aby uzyskać wiarygodne pomiary, należy ustalić maksymalnie jednolite podejście do generowania grafów. Ponieważ projekt dotyczy zagadnienia poszukiwania najkrótszej ścieżki w~grafie, najbardziej naturalnym wyborem zdaje się generowanie digrafów, a~zatem grafów skierowanych\footnote{Grafy nieskierowane można przedstawić za~pomocą grafów skierowanych, w~których każdy łuk $(u, v)$ o~wadze $w$ ma także w $A$ odpowiadający mu jeden i~tylko jeden łuk $(v, u)$, o~takiej samej wadze.}. Grafy te nie będą zawierać pętli\footnote{Pętla, zwana także pętlą własną, to krawędź lub łuk w grafie, który łączy dany wierzchołek z nim samym.}.
 
@@ -746,6 +746,16 @@ Tam, gdzie przeprowadzane będą testy z~weryfikacją odręczną, bądź testy p
 \section{Warianty implementacyjne}
 \label{sec:warianty-implementacyjne}
 
+\begin{center}
+\fcolorbox{red!70!black}{white}{%
+  \begin{minipage}{0.92\textwidth}
+    \textbf{\textcolor{red!70!black}{Planowane warianty implementacyjne}}
+
+    Przedstawione warianty reprezentacji grafu, kolejek i~heurystyk oraz ich oznaczenia są propozycją. Ich zakres może zostać dostosowany podczas implementacji po~próbach pilotażowych. Ewentualne zmiany oraz ich uzasadnienie zostaną opisane w~odpowiednich kolejnych raportach.
+  \end{minipage}%
+}
+\end{center}
+
 Aby móc rzetelnie porównać algorytmy, należy zadbać o~to, aby ich implementacje odzwierciedlały różne rozważane wcześniej warianty i~podjęte decyzje implementacyjne, które mogą prowadzić do różnic w~wydajności w~zależności od grafu przetwarzanego przez daną implementację. Mnogość implementacji gwarantuje możliwie szeroką obserwację. Przewidziano łącznie 11 standardowych implementacji.
 
 \begin{itemize}
@@ -806,6 +816,16 @@ Na potrzeby pytania badawczego PB1 mogą powstać dodatkowe implementacje algory
 \newpage
 
 \section{Pomiary}
+
+\begin{center}
+\fcolorbox{red!70!black}{white}{%
+  \begin{minipage}{0.92\textwidth}
+    \textbf{\textcolor{red!70!black}{Planowane metody pomiarów}}
+
+    Wymienione wielkości, sposób pomiaru czasu i~pamięci, liczba powtórzeń oraz metody opracowania wyników mają charakter koncepcyjny. Mogą zostać dostosowane do~możliwości implementacji i~wyników pomiarów pilotażowych. Ewentualne zmiany oraz ich uzasadnienie zostaną opisane w~odpowiednich kolejnych raportach.
+  \end{minipage}%
+}
+\end{center}
 
 Głównym celem eksperymentów wydajnościowych jest określenie tego, jaki wpływ na wydajność obliczeniową oraz pamięciową mają zarówno różne konfiguracje grafów, jak~i~różne decyzje implementacyjne (np. macierz sąsiedztwa vs. lista sąsiedztwa). Standardowo mierzony będzie czas wykonania, co świadczyć ma o~wydajności obliczeniowej, zaś wydajność pamięciowa będzie mierzona w oparciu o~faktycznie spożytkowaną pamięć w~trakcie pracy algorytmu\footnote{Szczegóły sposobu pomiaru wykorzystania pamięci są ściśle związane z wykorzystanymi technologiami. Zagadnienie pomiaru pamięci zostanie doprecyzowane na~etapie implementacyjnym.}.
 
@@ -909,6 +929,16 @@ Dla kluczowych wielkości, takich jak czas wykonania i~rozmiar używanej pamięc
 \newpage
 
 \section{Scenariusze eksperymentalne}
+
+\begin{center}
+\fcolorbox{red!70!black}{white}{%
+  \begin{minipage}{0.92\textwidth}
+    \textbf{\textcolor{red!70!black}{Planowane scenariusze i~liczebności prób}}
+
+    Przedstawione konfiguracje grafów, scenariusze testowe i~badawcze oraz liczebności prób mają charakter koncepcyjny. W~szczególności $N_p = 1000$ grafów na konfigurację jest wartością początkową, którą można dostosować po~pomiarach pilotażowych, uwzględniając koszt badań. Ewentualne zmiany oraz ich uzasadnienie zostaną opisane w~odpowiednich kolejnych raportach.
+  \end{minipage}%
+}
+\end{center}
 
 \subsection{Scenariusze dot. badań wydajnościowych}
 
