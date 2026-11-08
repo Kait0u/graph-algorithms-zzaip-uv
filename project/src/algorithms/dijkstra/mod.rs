@@ -26,7 +26,6 @@ impl LinearDijkstra {
             };
 
             settled[current_vertex.0] = true;
-            let current_distance = distances[current_vertex.0].unwrap(); // We only pick vertices with a known distance.
 
             for arc in graph.outgoing_arcs(current_vertex) {
                 let neighbor_id = arc.destination;
