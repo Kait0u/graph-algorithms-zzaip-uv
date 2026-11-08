@@ -7,7 +7,24 @@
 \tableofcontents
 \clearpage
 \reportchapter{Wprowadzenie}
-\PlaceholderNote
+
+W~poprzednim raporcie opisano podstawy teoretyczne projektu. W~szczególności zaprezentowano zagadnienia związane z~teorią grafów, zagadnieniem najkrótszej ścieżki oraz~czterech słynnych algorytmów rozwiązujących zadania typu SPSP, SSSP oraz APSP. Raport zwieńczono wstępnym planem realizowanych eksperymentów. Zastrzeżono, że może on zostać zmodyfikowany i urealniony w~ramach prób pilotażowych, które rozpoczynają się w~ramach pracy nad raportem nr 2.
+
+Niniejszy raport poświęci uwagę przygotowaniu aplikacji badawczej oraz implementacji dwóch z czterech algorytmów: algorytmu Dijkstry oraz Bellmana-Forda. Na~tej podstawie możliwe będzie zbudowanie modelu danych, który będzie spajał ich przepływ w programie. Możliwa będzie także weryfikacja słuszności założeń planu eksperymentów poczynionego w~raporcie nr~1 oraz~ewentualnej jego korekty.
+
+\section{Dobór technologii implementacyjnych}
+
+Z uwagi na~charakter pracy, który jasno wskazuje na pomiary wydajnościowe, autor zdecydował się wybrać język Rust. Jest to nowoczesny język kompilowany ogólnego przeznaczenia, rozwijany przez fundację Mozilla. Jest bardzo wydajny i bezpieczny pamięciowo. Udostępnia także wiele funkcjonalności znanych z nowoczesnych rozwiązań, takich jak menedżer projektu i~zależności Cargo.
+
+Wybór ten został poczyniony w oparciu o trzy przesłanki:
+\begin{enumerate}
+	\item Programy pisane w tym języku są wysoce wydajne, co zwieksza szanse na udaną realizację pierwotnych założeń dot. eksperymentów.
+	\item Język ten jest językiem programowania systemowego, co może wesprzeć w zbieraniu planowanych metryk, w szczególności metryk sprzętowych.
+	\item Jest to język, którego nauki podjał się autor. Jednocześnie jest to język, który mocno zyskuje na popularności w ramach zjawiska masowego reimplementowania programów za sprawą możliwości sztucznej inteligencji.
+\end{enumerate}
+
+Do przetwarzania danych zebranych w~ramach projektowanej aplikacji zostanie wykorzystany Rust oraz~Python - inny język, bardzo popularny w~sferze analizy danych. Do~pojedynczych, niepowtarzalnych czynności dopuszczane jest także~wykorzystanie arkusza kalkulacyjnego, np.~Microsoft Excel.
+
 \reportchapter{Wspólny model grafu}
 \PlaceholderNote
 \reportchapter{Implementacja algorytmu Dijkstry}
@@ -19,15 +36,15 @@
 \reportchapter{Pomiary wstępne}
 \PlaceholderNote
 
-\section{Robocze rozróżnienie kosztów pamięciowych}
+% Robocze rozróżnienie kosztów pamięciowych
 
-Raport I~przewiduje porównanie działania algorytmów korzystających z~macierzy i~listy sąsiedztwa, ale nie definiuje osobnej metryki pamięci zajmowanej przez wejściową reprezentację grafu. Zaplanowana pamięć pomocnicza $M_{\mathrm{aux}}$ obejmuje struktury robocze i~wynikowe pojedynczego wywołania algorytmu, bez wejściowej reprezentacji grafu.
+% Raport I~przewiduje porównanie działania algorytmów korzystających z~macierzy i~listy sąsiedztwa, ale nie definiuje osobnej metryki pamięci zajmowanej przez wejściową reprezentację grafu. Zaplanowana pamięć pomocnicza $M_{\mathrm{aux}}$ obejmuje struktury robocze i~wynikowe pojedynczego wywołania algorytmu, bez wejściowej reprezentacji grafu.
 
-Na~potrzeby dalszych badań proponuje się osobno określić pamięć $M_{\mathrm{graph}}$ zajmowaną przez wejściową reprezentację grafu. Pozwoliłoby to zestawić koszt samej macierzy lub listy sąsiedztwa z~pamięcią pomocniczą algorytmu. Sposób pomiaru lub oszacowania obu wielkości, w~tym uwzględnienie pojemności struktur i~narzutu alokacji, wymaga ustalenia i~weryfikacji podczas implementacji. Sumę tych wielkości można przedstawić osobno, pod warunkiem zachowania rozłącznych zakresów i~jasnego opisania metody.
+% Na~potrzeby dalszych badań proponuje się osobno określić pamięć $M_{\mathrm{graph}}$ zajmowaną przez wejściową reprezentację grafu. Pozwoliłoby to zestawić koszt samej macierzy lub listy sąsiedztwa z~pamięcią pomocniczą algorytmu. Sposób pomiaru lub oszacowania obu wielkości, w~tym uwzględnienie pojemności struktur i~narzutu alokacji, wymaga ustalenia i~weryfikacji podczas implementacji. Sumę tych wielkości można przedstawić osobno, pod warunkiem zachowania rozłącznych zakresów i~jasnego opisania metody.
 
-Czas wykonania algorytmu obejmuje inicjalizację jego struktur oraz korzystanie z~przygotowanej reprezentacji, ale nie obejmuje generowania grafu ani przygotowania danych zadaniowych. Osobny pomiar czasu budowy lub konwersji reprezentacji jest możliwym rozszerzeniem planu, a~nie wcześniej zadeklarowaną metryką. Liczniki operacji na~strukturach mogą uwzględniać ich odczyty i~zapisy podczas pracy algorytmu; szczegółowa polityka zliczania wymaga ustalenia.
+% Czas wykonania algorytmu obejmuje inicjalizację jego struktur oraz korzystanie z~przygotowanej reprezentacji, ale nie obejmuje generowania grafu ani przygotowania danych zadaniowych. Osobny pomiar czasu budowy lub konwersji reprezentacji jest możliwym rozszerzeniem planu, a~nie wcześniej zadeklarowaną metryką. Liczniki operacji na~strukturach mogą uwzględniać ich odczyty i~zapisy podczas pracy algorytmu; szczegółowa polityka zliczania wymaga ustalenia.
 
-Powyższe rozróżnienie ma charakter roboczy. Ostateczne metody i~ewentualne zmiany względem planu z~Raportu I~zostaną opisane w~odpowiednich raportach po~próbach implementacyjnych i~pilotażowych.
+% Powyższe rozróżnienie ma charakter roboczy. Ostateczne metody i~ewentualne zmiany względem planu z~Raportu I~zostaną opisane w~odpowiednich raportach po~próbach implementacyjnych i~pilotażowych.
 
 \bibliographystyle{IEEEtran}
 \bibliography{../shared/references}
