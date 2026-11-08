@@ -9,7 +9,7 @@ impl BellmanFord {
     pub fn run(
         graph: &Graph<impl GraphRepresentation>,
         source_id: VertexId,
-    ) -> Result<ResultSSSP, &'static str> {
+    ) -> Result<ResultSSSP, BellmanFordError> {
         let vertex_count = graph.vertex_count();
 
         let mut predecessors: Vec<Option<VertexId>> = vec![None; vertex_count];
@@ -39,8 +39,13 @@ impl BellmanFord {
             }
 
             // Check if it can finish early.
+            // We can even skip the negative cycle check if nothing has changed.
+            // That means there's none
             if !state_changed {
-                break;
+                return Ok(ResultSSSP {
+                    distances,
+                    predecessors,
+                });
             }
         }
 
@@ -56,7 +61,7 @@ impl BellmanFord {
                 && distances[destination.0]
                     .is_none_or(|destination_distance| candidate_distance < destination_distance)
             {
-                return Err("Negative cycle detected");
+                return Err(BellmanFordError::NegativeCycle);
             }
         }
 
@@ -65,4 +70,9 @@ impl BellmanFord {
             predecessors,
         })
     }
+}
+
+#[derive(Debug)]
+pub enum BellmanFordError {
+    NegativeCycle,
 }
