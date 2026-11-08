@@ -1,10 +1,11 @@
 use crate::data_model::graphs::VertexId;
 
-struct ResultSPSP {}
+pub struct ResultSPSP {}
 
-struct ResultSSSP {
+#[derive(Debug, Clone)]
+pub struct ResultSSSP {
     pub distances: Vec<Option<i64>>,
     pub predecessors: Vec<Option<VertexId>>,
 }
 
-struct ResultAPSP {}
+pub struct ResultAPSP {}

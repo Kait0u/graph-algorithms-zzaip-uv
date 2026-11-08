@@ -1,5 +1,5 @@
 use crate::{
-    algorithms::dijkstra::HeapDijkstra,
+    algorithms::dijkstra::{HeapDijkstra, LinearDijkstra},
     data_model::graphs::{
         AdjacencyListGraph, AdjacencyMatrixGraph, GraphDefinition, GraphDefinitionBuilder,
     },
@@ -30,11 +30,19 @@ fn test1() {
     let graph1_matrix = AdjacencyMatrixGraph::from_definition(&definition1);
 
     println!("T1: LIST");
+    println!("Heap:");
     let results = HeapDijkstra::run(&graph1_list, a);
+    println!("{results:?}");
+    println!("Linear:");
+    let results = LinearDijkstra::run(&graph1_list, a);
     println!("{results:?}");
 
     println!("T1: MATRIX");
+    println!("Heap:");
     let results = HeapDijkstra::run(&graph1_matrix, a);
+    println!("{results:?}");
+    println!("Linear:");
+    let results = LinearDijkstra::run(&graph1_matrix, a);
     println!("{results:?}");
 }
 
@@ -110,11 +118,19 @@ fn test2() {
     let graph2_matrix = AdjacencyMatrixGraph::from_definition(&definition2);
 
     println!("T2: LIST");
+    println!("Heap:");
     let results = HeapDijkstra::run(&graph2_list, a);
+    println!("{results:?}");
+    println!("Linear:");
+    let results = LinearDijkstra::run(&graph2_list, a);
     println!("{results:?}");
 
     println!("T2: MATRIX");
+    println!("Heap:");
     let results = HeapDijkstra::run(&graph2_matrix, a);
+    println!("{results:?}");
+    println!("Linear:");
+    let results = LinearDijkstra::run(&graph2_matrix, a);
     println!("{results:?}");
 }
 
