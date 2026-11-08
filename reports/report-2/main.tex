@@ -18,6 +18,17 @@
 \PlaceholderNote
 \reportchapter{Pomiary wstępne}
 \PlaceholderNote
+
+\section{Robocze rozróżnienie kosztów pamięciowych}
+
+Raport I~przewiduje porównanie działania algorytmów korzystających z~macierzy i~listy sąsiedztwa, ale nie definiuje osobnej metryki pamięci zajmowanej przez wejściową reprezentację grafu. Zaplanowana pamięć pomocnicza $M_{\mathrm{aux}}$ obejmuje struktury robocze i~wynikowe pojedynczego wywołania algorytmu, bez wejściowej reprezentacji grafu.
+
+Na~potrzeby dalszych badań proponuje się osobno określić pamięć $M_{\mathrm{graph}}$ zajmowaną przez wejściową reprezentację grafu. Pozwoliłoby to zestawić koszt samej macierzy lub listy sąsiedztwa z~pamięcią pomocniczą algorytmu. Sposób pomiaru lub oszacowania obu wielkości, w~tym uwzględnienie pojemności struktur i~narzutu alokacji, wymaga ustalenia i~weryfikacji podczas implementacji. Sumę tych wielkości można przedstawić osobno, pod warunkiem zachowania rozłącznych zakresów i~jasnego opisania metody.
+
+Czas wykonania algorytmu obejmuje inicjalizację jego struktur oraz korzystanie z~przygotowanej reprezentacji, ale nie obejmuje generowania grafu ani przygotowania danych zadaniowych. Osobny pomiar czasu budowy lub konwersji reprezentacji jest możliwym rozszerzeniem planu, a~nie wcześniej zadeklarowaną metryką. Liczniki operacji na~strukturach mogą uwzględniać ich odczyty i~zapisy podczas pracy algorytmu; szczegółowa polityka zliczania wymaga ustalenia.
+
+Powyższe rozróżnienie ma charakter roboczy. Ostateczne metody i~ewentualne zmiany względem planu z~Raportu I~zostaną opisane w~odpowiednich raportach po~próbach implementacyjnych i~pilotażowych.
+
 \bibliographystyle{IEEEtran}
 \bibliography{../shared/references}
 \end{document}
