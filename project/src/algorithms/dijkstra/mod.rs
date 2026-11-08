@@ -1,5 +1,3 @@
-use std::mem::discriminant;
-
 use min_heap::MinHeap;
 
 use crate::{
