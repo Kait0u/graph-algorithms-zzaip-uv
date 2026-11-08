@@ -8,13 +8,18 @@
 \clearpage
 \reportchapter{Wprowadzenie}
 
-W~poprzednim raporcie opisano podstawy teoretyczne projektu. W~szczególności zaprezentowano zagadnienia związane z~teorią grafów, zagadnieniem najkrótszej ścieżki oraz~czterech słynnych algorytmów rozwiązujących zadania typu SPSP, SSSP oraz APSP. Raport zwieńczono wstępnym planem realizowanych eksperymentów. Zastrzeżono, że może on zostać zmodyfikowany i urealniony w~ramach prób pilotażowych, które rozpoczynają się w~ramach pracy nad raportem nr 2.
-
-Niniejszy raport poświęci uwagę przygotowaniu aplikacji badawczej oraz implementacji dwóch z czterech algorytmów: algorytmu Dijkstry oraz Bellmana-Forda. Na~tej podstawie możliwe będzie zbudowanie modelu danych, który będzie spajał ich przepływ w programie. Możliwa będzie także weryfikacja słuszności założeń planu eksperymentów poczynionego w~raporcie nr~1 oraz~ewentualnej jego korekty.
+W~poprzednim raporcie opisano podstawy teoretyczne projektu. W~szczególności zaprezentowano zagadnienia związane z~teorią grafów, zagadnieniem najkrótszej ścieżki oraz~czterech słynnych algorytmów rozwiązujących zadania typu SPSP, SSSP oraz APSP. Raport zwieńczono wstępnym planem realizowanych eksperymentów. Zastrzeżono, że może on zostać zmodyfikowany i urealniony w~ramach prób pilotażowych, które rozpoczynają się w~ramach pracy nad~raportem~nr~2. Niniejszy raport poświęci uwagę przygotowaniu aplikacji badawczej oraz implementacji dwóch z czterech algorytmów: algorytmu Dijkstry oraz Bellmana-Forda. Na~tej podstawie możliwe będzie zbudowanie modelu danych, który będzie spajał ich przepływ w programie. Możliwa będzie także weryfikacja słuszności założeń planu eksperymentów poczynionego w~raporcie nr~1 oraz~ewentualnej jego korekty.
 
 \section{Dobór technologii implementacyjnych}
 
-Z uwagi na~charakter pracy, który jasno wskazuje na pomiary wydajnościowe, autor zdecydował się wybrać język Rust. Jest to nowoczesny język kompilowany ogólnego przeznaczenia, rozwijany przez fundację Mozilla. Jest bardzo wydajny i bezpieczny pamięciowo. Udostępnia także wiele funkcjonalności znanych z nowoczesnych rozwiązań, takich jak menedżer projektu i~zależności Cargo.
+Z uwagi na~charakter pracy, który jasno wskazuje na pomiary wydajnościowe, autor zdecydował się wybrać język \href{https://rust-lang.org/}{Rust}. Jest to nowoczesny język kompilowany ogólnego przeznaczenia, rozwijany przez fundację Mozilla. Jest bardzo wydajny i bezpieczny pamięciowo. Udostępnia także wiele funkcjonalności znanych z nowoczesnych rozwiązań, takich jak menedżer projektu i~zależności Cargo.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=2cm]{figures/rust-logo.png}
+    \caption{Logo języka Rust. Rust Foundation, \href{https://commons.wikimedia.org/wiki/File:Rust_programming_language_black_logo.svg}{Wikimedia Commons}, \href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}; zmieniono rozmiar.}
+    \label{fig:rust-logo}
+\end{figure}
 
 Wybór ten został poczyniony w oparciu o trzy przesłanki:
 \begin{enumerate}
