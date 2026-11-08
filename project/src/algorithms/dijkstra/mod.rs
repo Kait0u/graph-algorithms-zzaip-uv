@@ -2,44 +2,43 @@ use min_heap::MinHeap;
 
 use crate::{
     algorithms::results::ResultSSSP,
-    data_model::graphs::{Graph, GraphRepresentation, GraphVertex, VertexId},
+    data_model::graphs::{Graph, GraphRepresentation, VertexId},
 };
 
 pub struct LinearDijkstra;
 
 impl LinearDijkstra {
-    pub fn run(graph: &Graph<impl GraphRepresentation>, start_id: VertexId) -> ResultSSSP {
+    pub fn run(graph: &Graph<impl GraphRepresentation>, source_id: VertexId) -> ResultSSSP {
         let vertex_count = graph.vertex_count();
 
         let mut predecessors: Vec<Option<VertexId>> = vec![None; vertex_count];
         let mut distances: Vec<Option<i64>> = vec![None; vertex_count];
-        distances[start_id.0] = Some(0);
+        distances[source_id.0] = Some(0);
 
-        // Visitation tracker
-        let mut visited: Vec<bool> = vec![false; vertex_count];
+        // Keep track of vertices we've already picked.
+        let mut settled: Vec<bool> = vec![false; vertex_count];
 
         for _ in 0..(vertex_count - 1) {
-            let Some(vertex_id) = Self::find_min_unvisited(&distances, &visited) else {
+            let Some((current_vertex, current_distance)) =
+                Self::find_closest_unsettled(&distances, &settled)
+            else {
                 break;
             };
 
-            visited[vertex_id] = true;
-            let curr_dist_to_vertex = distances[vertex_id].unwrap(); // Has to exist, otherwise wouldn't be a min.
+            settled[current_vertex.0] = true;
+            let current_distance = distances[current_vertex.0].unwrap(); // We only pick vertices with a known distance.
 
-            for outgoing_arc in graph.outgoing_arcs(VertexId(vertex_id)) {
-                let neighbor_id = outgoing_arc.destination;
-                let outgoing_weight = outgoing_arc.weight; // Current to Neighbor
+            for arc in graph.outgoing_arcs(current_vertex) {
+                let neighbor_id = arc.destination;
+                let edge_weight = arc.weight; // Cost of going from the current vertex to its neighbor.
 
-                let potential_new_dist_to_neighbor = curr_dist_to_vertex + outgoing_weight;
-                let curr_dist_to_neighbor = distances[neighbor_id.0];
+                let candidate_distance = current_distance + edge_weight;
+                let known_distance = distances[neighbor_id.0];
 
-                // If there is no alternative or if the new one is better, improve and add to the heap.
-                if curr_dist_to_neighbor.is_none()
-                    || curr_dist_to_neighbor.unwrap() > potential_new_dist_to_neighbor
-                {
-                    let new_distance_to_neighbor = potential_new_dist_to_neighbor;
-                    distances[neighbor_id.0] = Some(new_distance_to_neighbor);
-                    predecessors[neighbor_id.0] = Some(VertexId(vertex_id));
+                // Save this path if it's the first one found or shorter than the previous one.
+                if known_distance.is_none_or(|distance| candidate_distance < distance) {
+                    distances[neighbor_id.0] = Some(candidate_distance);
+                    predecessors[neighbor_id.0] = Some(current_vertex);
                 }
             }
         }
@@ -50,70 +49,69 @@ impl LinearDijkstra {
         }
     }
 
-    fn find_min_unvisited(distances: &[Option<i64>], visited: &[bool]) -> Option<usize> {
-        let mut candidate: Option<usize> = None;
-        let mut min_so_far: Option<i64> = None;
+    fn find_closest_unsettled(
+        distances: &[Option<i64>],
+        settled: &[bool],
+    ) -> Option<(VertexId, i64)> {
+        let mut closest: Option<(VertexId, i64)> = None;
 
-        for (idx, is_visited) in visited.iter().enumerate() {
-            if *is_visited {
+        for (vertex_index, is_settled) in settled.iter().enumerate() {
+            if *is_settled {
                 continue;
             }
 
-            let dist = distances[idx];
-            if let Some(d) = dist {
-                if min_so_far.is_none_or(|min| d < min) {
-                    candidate = Some(idx);
-                    min_so_far = Some(d);
-                }
+            let Some(distance) = distances[vertex_index] else {
+                continue;
+            };
+
+            if closest.is_none_or(|(_, closest_distance)| distance < closest_distance) {
+                closest = Some((VertexId(vertex_index), distance));
             }
         }
 
-        candidate
+        closest
     }
 }
 
 pub struct HeapDijkstra;
 
 impl HeapDijkstra {
-    pub fn run(graph: &Graph<impl GraphRepresentation>, start_id: VertexId) -> ResultSSSP {
+    pub fn run(graph: &Graph<impl GraphRepresentation>, source_id: VertexId) -> ResultSSSP {
         let vertex_count = graph.vertex_count();
 
         let mut predecessors: Vec<Option<VertexId>> = vec![None; vertex_count];
         let mut distances: Vec<Option<i64>> = vec![None; vertex_count];
-        distances[start_id.0] = Some(0);
+        distances[source_id.0] = Some(0);
 
-        // Priority Queue (MinHeap)
-        let mut heap = MinHeap::<DijkstraCandidate>::new();
-        heap.push(DijkstraCandidate::new(start_id, 0));
+        // Pick the closest queued vertex first.
+        let mut heap = MinHeap::<HeapEntry>::new();
+        heap.push(HeapEntry::new(source_id, 0));
 
-        while !heap.is_empty() {
-            let DijkstraCandidate { vertex_id, weight } = heap.pop().unwrap(); // Not empty, so has to exist.
-            let curr_dist_to_vertex = distances[vertex_id.0].unwrap(); // Was inserted into the heap so has to exist.
+        while let Some(HeapEntry {
+            vertex_id: current_vertex,
+            distance,
+        }) = heap.pop()
+        {
+            let current_distance = distances[current_vertex.0].unwrap(); // Queued vertices always have a known distance.
 
-            // If current vertex already equals that value, skip.
-            if weight != curr_dist_to_vertex {
+            // Skip this entry if we found a shorter path since adding it to the heap.
+            if distance != current_distance {
                 continue;
             }
 
-            for outgoing_arc in graph.outgoing_arcs(vertex_id) {
-                let neighbor_id = outgoing_arc.destination;
-                let outgoing_weight = outgoing_arc.weight; // Current to Neighbor
+            for arc in graph.outgoing_arcs(current_vertex) {
+                let neighbor_id = arc.destination;
+                let edge_weight = arc.weight; // Cost of going from the current vertex to its neighbor.
 
-                let potential_new_dist_to_neighbor = curr_dist_to_vertex + outgoing_weight;
+                let candidate_distance = current_distance + edge_weight;
 
-                let curr_dist_to_neighbor = distances[neighbor_id.0];
+                let known_distance = distances[neighbor_id.0];
 
-                // If there is no alternative or if the new one is better, improve and add to the heap.
-                if curr_dist_to_neighbor.is_none()
-                    || curr_dist_to_neighbor.unwrap() > potential_new_dist_to_neighbor
-                {
-                    let new_distance_to_neighbor = potential_new_dist_to_neighbor;
-                    distances[neighbor_id.0] = Some(new_distance_to_neighbor);
-                    predecessors[neighbor_id.0] = Some(vertex_id);
-                    heap.push(DijkstraCandidate::new(
-                        neighbor_id,
-                        new_distance_to_neighbor,
-                    ));
+                // Save a better path and add the new distance to the heap.
+                if known_distance.is_none_or(|distance| candidate_distance < distance) {
+                    distances[neighbor_id.0] = Some(candidate_distance);
+                    predecessors[neighbor_id.0] = Some(current_vertex);
+                    heap.push(HeapEntry::new(neighbor_id, candidate_distance));
                 }
             }
         }
@@ -126,33 +124,36 @@ impl HeapDijkstra {
 }
 
 #[derive(Debug, Clone, Copy)]
-struct DijkstraCandidate {
+struct HeapEntry {
     vertex_id: VertexId,
-    weight: i64,
+    distance: i64,
 }
 
-impl DijkstraCandidate {
-    fn new(vertex_id: VertexId, weight: i64) -> DijkstraCandidate {
-        DijkstraCandidate { vertex_id, weight }
+impl HeapEntry {
+    fn new(vertex_id: VertexId, distance: i64) -> HeapEntry {
+        HeapEntry {
+            vertex_id,
+            distance,
+        }
     }
 }
 
-impl PartialEq for DijkstraCandidate {
+impl PartialEq for HeapEntry {
     fn eq(&self, other: &Self) -> bool {
-        self.weight == other.weight
+        self.distance == other.distance
     }
 }
 
-impl Eq for DijkstraCandidate {}
+impl Eq for HeapEntry {}
 
-impl PartialOrd for DijkstraCandidate {
+impl PartialOrd for HeapEntry {
     fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
         Some(self.cmp(other))
     }
 }
 
-impl Ord for DijkstraCandidate {
+impl Ord for HeapEntry {
     fn cmp(&self, other: &Self) -> std::cmp::Ordering {
-        self.weight.cmp(&other.weight)
+        self.distance.cmp(&other.distance)
     }
 }
