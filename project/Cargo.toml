@@ -5,3 +5,4 @@ edition = "2024"
 
 [dependencies]
 min-heap = "1.0.0"
+rand = "0.10.3"
