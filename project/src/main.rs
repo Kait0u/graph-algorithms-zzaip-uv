@@ -4,12 +4,14 @@ use crate::{
         dijkstra::{HeapDijkstra, LinearDijkstra},
     },
     data_model::graphs::{
-        AdjacencyListGraph, AdjacencyMatrixGraph, GraphDefinition, GraphDefinitionBuilder,
+        AdjacencyListGraph, AdjacencyMatrixGraph, GraphDefinition, GraphDefinitionBuilder, VertexId,
     },
+    utils::experiments::graph_generator::RandomGraphGenerator,
 };
 
 mod algorithms;
 mod data_model;
+mod utils;
 
 fn test1() {
     let mut def_builder = GraphDefinitionBuilder::default();
@@ -247,6 +249,38 @@ fn test4() {
     println!("{results:?}");
 }
 
+fn test5() {
+    let mut generator = RandomGraphGenerator::new(42u64);
+    let definition: GraphDefinition = generator.random_graph(20, 0.5, None);
+
+    let graph_list = AdjacencyListGraph::from_definition(&definition);
+    let graph_matrix = AdjacencyMatrixGraph::from_definition(&definition);
+
+    println!("T5: BF-LIST");
+    let results = BellmanFord::run(&graph_list, VertexId(0));
+    println!("{results:?}");
+
+    println!("T5: BF-MATRIX");
+    let results = BellmanFord::run(&graph_matrix, VertexId(0));
+    println!("{results:?}");
+
+    println!("T5: DH-LIST");
+    let results = HeapDijkstra::run(&graph_list, VertexId(0));
+    println!("{results:?}");
+
+    println!("T5: DH-MATRIX");
+    let results = HeapDijkstra::run(&graph_matrix, VertexId(0));
+    println!("{results:?}");
+
+    println!("T5: DL-LIST");
+    let results = LinearDijkstra::run(&graph_list, VertexId(0));
+    println!("{results:?}");
+
+    println!("T5: DL-MATRIX");
+    let results = LinearDijkstra::run(&graph_matrix, VertexId(0));
+    println!("{results:?}");
+}
+
 fn main() {
     println!("Hello, world!");
     println!("---------------------------------------------");
@@ -257,4 +291,6 @@ fn main() {
     test3();
     println!("---------------------------------------------");
     test4();
+    println!("---------------------------------------------");
+    test5();
 }
