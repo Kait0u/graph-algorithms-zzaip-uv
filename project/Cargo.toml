@@ -2,6 +2,9 @@
 resolver = "3"
 members = [
     "crates/graph-core",
+    "crates/experiment",
+    "crates/cli",
+    "crates/demo",
 ]
 
 [workspace.package]
