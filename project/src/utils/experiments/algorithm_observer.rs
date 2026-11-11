@@ -1,11 +1,11 @@
 use crate::data_model::metrics::AlgorithmLogicMetrics;
 
-trait AlgorithmObserver {
+pub trait AlgorithmObserver {
     fn finalize(&self) -> Option<AlgorithmLogicMetrics> {
         None
     }
 
-    fn on_comaprison(&mut self) {}
+    fn on_comparison(&mut self) {}
     fn on_update(&mut self) {}
     fn on_datastructure_op(&mut self) {}
     fn on_iteration_complete(&mut self) {}
@@ -23,7 +23,7 @@ impl AlgorithmObserver for MetricsAlgorithmObserver {
         Some(self.metrics)
     }
 
-    fn on_comaprison(&mut self) {
+    fn on_comparison(&mut self) {
         self.metrics.increment_comparison_count();
     }
 
