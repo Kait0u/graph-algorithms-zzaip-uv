@@ -1,9 +1,14 @@
-[package]
-name = "project"
+[workspace]
+resolver = "3"
+members = [
+    "crates/graph-core",
+]
+
+[workspace.package]
 version = "0.1.0"
 edition = "2024"
 
-[dependencies]
+[workspace.dependencies]
 min-heap = "1.0.0"
 polars = "0.55.2"
 rand = "0.10.3"

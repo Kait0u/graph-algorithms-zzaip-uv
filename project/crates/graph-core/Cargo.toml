@@ -1,0 +1,8 @@
+[package]
+name = "graph-core"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+min-heap.workspace = true
+rand.workspace = true
