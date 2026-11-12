@@ -1,3 +1,7 @@
+use log::info;
+
 fn main() {
-    println!("Hello, world!");
+    logging_config::configure_logging();
+
+    info!("Hello, world!");
 }

@@ -1,3 +1,7 @@
+use log::info;
+
 fn main() {
-    println!("cli");
+    logging_config::configure_logging();
+
+    info!("cli");
 }

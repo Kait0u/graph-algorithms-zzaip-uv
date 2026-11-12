@@ -1,7 +1,10 @@
 [workspace]
 resolver = "3"
 members = [
+    # Libs
     "crates/graph-core",
+    # Binaries
+    "crates/logging-config",
     "crates/performance-experiments",
     "crates/memory-experiments",
     "crates/experiments-rq1",
@@ -15,6 +18,12 @@ version = "0.1.0"
 edition = "2024"
 
 [workspace.dependencies]
-min-heap = "1.0.0"
-polars = "0.55.2"
 rand = "0.10.3"
+min-heap = "1.0.0"
+
+# Data
+polars = "0.55.2"
+
+# Logger
+log = "0.4.35"
+env_logger = "0.11.11"

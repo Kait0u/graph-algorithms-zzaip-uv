@@ -5,3 +5,7 @@ edition.workspace = true
 
 [dependencies]
 graph-core = { path = "../graph-core" }
+
+# Logging
+logging-config = { path = "../logging-config" }
+log.workspace = true

@@ -1,3 +1,7 @@
+use log::info;
+
 fn main() {
-    println!("experiments-rq1");
+    logging_config::configure_logging();
+
+    info!("experiments-rq1");
 }

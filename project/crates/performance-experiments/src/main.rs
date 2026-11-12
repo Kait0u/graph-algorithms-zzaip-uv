@@ -1,3 +1,7 @@
+use log::info;
+
 fn main() {
-    println!("performance-experiments");
+    logging_config::configure_logging();
+
+    info!("performance-experiments");
 }
