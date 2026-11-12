@@ -89,7 +89,7 @@ impl AdjacencyListGraph {
         }
 
         for arc in &definition.arcs {
-            adjacency_list.outgoing[arc.source.0].push(arc.clone());
+            adjacency_list.outgoing[arc.source.0].push(*arc);
         }
 
         AdjacencyListGraph::new(vertices, adjacency_list)
@@ -146,7 +146,7 @@ impl GraphRepresentation for AdjacencyList {
 }
 
 pub struct AdjacencyMatrix {
-    pub vertex_count: usize,
+    vertex_count: usize,
 
     // Matrix of weights, or None if no connection
     // Linear row-major representation: M[r, c] = r * vertex_count + c

@@ -3,7 +3,7 @@ use std::collections::{HashSet, VecDeque};
 use crate::data_model::graphs::{GraphArc, GraphDefinition, VertexId};
 
 pub fn bfs(graph_definition: &GraphDefinition, source: VertexId) -> Vec<VertexId> {
-    let mut achievable = vec![source.clone()];
+    let mut achievable = vec![source];
 
     let arcs = &graph_definition.arcs;
 

@@ -54,6 +54,6 @@ impl GraphProblemGenerator {
         let achievable_vertices = bfs(&graph_definition, VertexId(source_idx));
         let is_achievable = achievable_vertices.contains(&destination);
 
-        GraphProblem::new(graph_definition.clone(), source, destination, is_achievable)
+        GraphProblem::new(graph_definition, source, destination, is_achievable)
     }
 }

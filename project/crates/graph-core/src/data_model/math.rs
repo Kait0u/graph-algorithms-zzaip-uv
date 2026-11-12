@@ -17,10 +17,4 @@ impl IntCoords2D {
 
         dx.hypot(dy)
     }
-
-    pub fn to_string(&self) -> String {
-        let x = self.x;
-        let y = self.y;
-        format!("({x}, {y})")
-    }
 }
