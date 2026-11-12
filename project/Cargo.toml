@@ -2,7 +2,10 @@
 resolver = "3"
 members = [
     "crates/graph-core",
-    "crates/experiment",
+    "crates/performance-experiments",
+    "crates/memory-experiments",
+    "crates/experiments-rq1",
+    "crates/experiments-rq2",
     "crates/cli",
     "crates/demo",
 ]

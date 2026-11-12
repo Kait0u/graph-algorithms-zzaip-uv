@@ -1,0 +1,7 @@
+[package]
+name = "memory-experiments"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+graph-core = { path = "../graph-core" }

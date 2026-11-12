@@ -1,8 +1,7 @@
 [package]
-name = "experiment"
+name = "experiments-rq1"
 version.workspace = true
 edition.workspace = true
 
 [dependencies]
 graph-core = { path = "../graph-core" }
-polars.workspace = true

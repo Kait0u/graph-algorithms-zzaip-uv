@@ -577,11 +577,17 @@ dependencies = [
 ]
 
 [[package]]
-name = "experiment"
+name = "experiments-rq1"
 version = "0.1.0"
 dependencies = [
  "graph-core",
- "polars",
+]
+
+[[package]]
+name = "experiments-rq2"
+version = "0.1.0"
+dependencies = [
+ "graph-core",
 ]
 
 [[package]]
@@ -1247,6 +1253,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "memory-experiments"
+version = "0.1.0"
+dependencies = [
+ "graph-core",
+]
+
+[[package]]
 name = "min-heap"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1423,6 +1436,14 @@ name = "percent-encoding"
 version = "2.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9b4f627cb1b25917193a259e49bdad08f671f8d9708acfd5fe0a8c1455d87220"
+
+[[package]]
+name = "performance-experiments"
+version = "0.1.0"
+dependencies = [
+ "graph-core",
+ "polars",
+]
 
 [[package]]
 name = "phf"

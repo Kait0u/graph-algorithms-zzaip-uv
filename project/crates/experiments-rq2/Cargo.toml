@@ -1,0 +1,7 @@
+[package]
+name = "experiments-rq2"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+graph-core = { path = "../graph-core" }
